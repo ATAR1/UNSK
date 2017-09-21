@@ -34,7 +34,7 @@ namespace TestAndTunes
             JournalRecord newRecord = new JournalRecord() { Date=StoredDate, Shift =StoredShift, WorkArea = StoredWorkArea };
             _uncheckedRecord.Model = newRecord;
             _ctx.JournalRecords.Add(newRecord);
-            //test 1
+            //test 13
         }
     }
 }
