@@ -41,6 +41,7 @@ namespace TestAndTunes
                 _ctx.SaveChanges();
                 _viewModel.RefreshJournalRecords();
                 _viewModel.RefreshTotals();
+                // test 2
             }
         }
     }
