@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4a5d8ae379ce43e589595004fef8f847" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="JournalDBModel.JournalRecord" Width="1.5" PointX="0.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalDBModel.Employee" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Employee1" />
+        <EntityTypeShape EntityType="JournalDBModel.Shift" Width="1.5" PointX="3" PointY="2.75" />
+        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Shift" />
+        <EntityTypeShape EntityType="JournalDBModel.Defectoscope" Width="1.5" PointX="7" PointY="1" />
+        <EntityTypeShape EntityType="JournalDBModel.Work" Width="1.5" PointX="12" PointY="5.625" />
+        <EntityTypeShape EntityType="JournalDBModel.WorkArea" Width="1.5" PointX="4.75" PointY="0.75" />
+        <AssociationConnector Association="JournalDBModel.FK_Defectoscope_WorkArea" />
+        <EntityTypeShape EntityType="JournalDBModel.Operation" Width="1.5" PointX="5.625" PointY="4.125" />
+        <AssociationConnector Association="JournalDBModel.FK_AvaliableOperations_Defectoscope" />
+        <AssociationConnector Association="JournalDBModel.FK_AvaliableOperations_Work" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="JournalDBModel.JournalRecordOperation" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="JournalDBModel.Normative" Width="1.5" PointX="7.875" PointY="3.875" />
+        <AssociationConnector Association="JournalDBModel.FK_Normative_Operation" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

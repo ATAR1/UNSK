@@ -1,0 +1,308 @@
+﻿<Window x:Class="TestAndTunes.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestAndTunes"
+        mc:Ignorable="d"
+        Title="Window1" Height="300" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Печать" Click="MenuItem_Click"/>
+                <MenuItem Header="Сохранить" Click="MenuItem_Click_1"/>
+            </MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1" >
+            <Label Content="За период с:" VerticalAlignment="Center"/>
+            <DatePicker Margin="5" VerticalAlignment="Center" Name="beginPicker"/>
+            <Label Content="по:" VerticalAlignment="Center"/>
+            <DatePicker Margin="5" VerticalAlignment="Center" Name="endPicker"/>
+            <Button Width="25" Height="25" Margin="2" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button_Click">
+                <Image Source="Images/112_RefreshArrow_Blue_48x48_72.png" />
+            </Button>
+        </DockPanel>
+        <RichTextBox  Name="doc" Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="1" BorderBrush="Gray">
+            <FlowDocument PageHeight="1056" PageWidth="816" >
+                <Section TextAlignment="Center">
+                    <Paragraph>
+                        <Run Name="header" FontSize="18" />
+                    </Paragraph>
+                    <Paragraph TextAlignment="Center">
+                        <Run FontSize="18" Text="Время затраченное на настройку "/>
+                    </Paragraph>
+                    <Table CellSpacing="0" BorderThickness="1,0,0,1" BorderBrush="Gray" Name="table" TextAlignment="Center">
+                        <Table.Columns>
+                            <TableColumn Width="100"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                        </Table.Columns>
+                        <Table.Resources>
+                            <Style x:Key="{x:Type TableCell}" TargetType="{x:Type TableCell}">
+                                <Setter Property="BorderThickness" Value="0,1,1,0"/>
+                                <Setter Property="BorderBrush" Value="Gray"/>
+                            </Style>
+                        </Table.Resources>
+                        <TableRowGroup>
+                            <TableRow>
+                                <TableCell RowSpan="2">
+                                    <Paragraph/>
+                                </TableCell>
+                                <TableCell ColumnSpan="4">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="ТО №1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="3">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="ТО №2"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="2">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="УОГТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6.1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="Сканер"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="АУЗККТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6.2"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="Сканер"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="АУЗККТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 5.1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 5.2"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>
+                                        <Run Text="Среднее время"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>
+                                        Общее время
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>Общее время по участку</Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="4"/>
+                                <TableCell ColumnSpan="3"/>
+                                <TableCell ColumnSpan="2"/>
+                            </TableRow>
+                        </TableRowGroup>
+                    </Table>
+                </Section>
+                <Section TextAlignment="Center">
+                    <Paragraph>
+                        <Run FontSize="18" Text="Время затраченное на проверку чувствительности "/>
+                    </Paragraph>
+                    <Table CellSpacing="0" BorderThickness="1,0,0,1" BorderBrush="Gray" Name="table2" TextAlignment="Center">
+                        <Table.Columns>
+                            <TableColumn Width="100"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                            <TableColumn Width="70"/>
+                        </Table.Columns>
+                        <Table.Resources>
+                            <Style x:Key="{x:Type TableCell}" TargetType="{x:Type TableCell}">
+                                <Setter Property="BorderThickness" Value="0,1,1,0"/>
+                                <Setter Property="BorderBrush" Value="Gray"/>
+                            </Style>
+                        </Table.Resources>
+                        <TableRowGroup>
+                            <TableRow>
+                                <TableCell RowSpan="2">
+                                    <Paragraph/>
+                                </TableCell>
+                                <TableCell ColumnSpan="4">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="ТО №1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="3">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="ТО №2"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="2">
+                                    <Paragraph TextAlignment="Center">
+                                        <Run Text="УОГТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6.1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="Сканер"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="АУЗККТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 6.2"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="Сканер"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="АУЗККТ"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 5.1"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell>
+                                    <Paragraph>
+                                        <Run Text="МДТ 5.2"/>
+                                    </Paragraph>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>
+                                        <Run Text="Среднее время"/>
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>
+                                        Общее время
+                                    </Paragraph>
+                                </TableCell>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                                <TableCell/>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell TextAlignment="Left">
+                                    <Paragraph>Общее время по участку</Paragraph>
+                                </TableCell>
+                                <TableCell ColumnSpan="4"/>
+                                <TableCell ColumnSpan="3"/>
+                                <TableCell ColumnSpan="2"/>
+                            </TableRow>
+                        </TableRowGroup>
+                    </Table>
+                </Section>
+            </FlowDocument>
+        </RichTextBox>
+        <ItemsControl Name="items" Grid.Row="3"/>
+    </Grid>
+</Window>
