@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="DateShift.cs" />
     <Compile Include="ShiftedTimeComparer.cs" />
+    <Compile Include="ShiftService.cs" />
     <Compile Include="Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="TotalsModel.cs" />

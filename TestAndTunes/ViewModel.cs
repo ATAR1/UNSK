@@ -40,7 +40,7 @@ namespace TestAndTunes
                 _addCommand = new AddCommand(_ctx, UncheckedRecord);
                 _cancellCommand = new CancellCommand(_ctx, UncheckedRecord);
                 RefreshJournalRecords();
-                Shift = new DateShift();
+                Shift = new DateShiftVM();
                 Shift.PropertyChanged += CurrentShiftChanged;
                 RefreshTotals();
                 LoadCollections();
@@ -143,7 +143,7 @@ namespace TestAndTunes
 
         public ICollection<Shift> Shifts { get; private set; } = new ObservableCollection<Shift>();
 
-        public DateShift Shift { get; set; }
+        public DateShiftVM Shift { get; set; }
 
         public ICollection<Employee> Personal => _personal;
 

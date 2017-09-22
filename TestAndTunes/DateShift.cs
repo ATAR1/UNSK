@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace TestAndTunes
 {
-    public class DateShift:INotifyPropertyChanged
+    public class DateShiftVM:INotifyPropertyChanged
     {
         private DateTime _date = DateTime.Today;
         private string _letter = "А";
+        private ShiftService _shiftService = new ShiftService();
 
         public DateTime Date
         {
@@ -33,6 +37,9 @@ namespace TestAndTunes
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Letter)));
             }
         }
+
+        public ICollection<string> AvaliableShifts => _shiftService.GetAvaliableShifts(Date).ToArray();
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
