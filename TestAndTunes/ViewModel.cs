@@ -53,6 +53,7 @@ namespace TestAndTunes
 
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (String.IsNullOrEmpty(Shift.Letter)) return;
             RefreshTotals(Shift.Date, Shift.Letter);
         }
 
@@ -103,6 +104,7 @@ namespace TestAndTunes
 
         public void RefreshTotals()
         {
+            if (String.IsNullOrEmpty(Shift.Letter)) MessageBox.Show("Не выбранна смена!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             RefreshTotals(Shift.Date, Shift.Letter);
         }
 

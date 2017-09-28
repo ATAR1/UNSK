@@ -16,8 +16,8 @@ namespace TestAndTunes
         /// <summary>
         /// Вычисляет доступные смены для даты
         /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+        /// <param name="date">Дата</param>
+        /// <returns>Доступные смены</returns>
         public IEnumerable<string> GetAvaliableShifts(DateTime date)
         {
             int different = (int)(date - _startDate).TotalDays;

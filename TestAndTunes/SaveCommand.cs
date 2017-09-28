@@ -32,8 +32,8 @@ namespace TestAndTunes
             {
                 _ctx.SaveChanges();                
                 ((AddCommand)_viewModel.AddCommand).StoredWorkArea = _uncheckedRecord.WorkArea;
-                ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.Date.Value;
-                ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.Shift;
+                ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.DateShift.Date;
+                ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.DateShift.Letter;
                 _uncheckedRecord.Model = null;
                 _viewModel.RefreshJournalRecords();
                 _viewModel.RefreshTotals();

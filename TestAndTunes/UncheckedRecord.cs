@@ -12,7 +12,24 @@ namespace TestAndTunes
     {
         private JournalRecord _model;
 
-        
+        public UncheckedRecord()
+        {
+            DateShift = new DateShiftVM();
+            DateShift.PropertyChanged += DateShiftPropertyChanged;
+
+        }
+
+        private void DateShiftPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(DateShift.Date))
+            {
+                _model.Date = DateShift.Date;
+            }
+            if (e.PropertyName == nameof(DateShift.Letter))
+            {
+                _model.Shift = DateShift.Letter;
+            }
+        }
 
         public bool CheckModel()
         {
@@ -37,41 +54,11 @@ namespace TestAndTunes
 
         }
 
-        public DateTime? Date
-        {
-            get
-            {
-                return _model?.Date;
-            }
-            set
-            {
-                if (_model.Date != value)
-                {
-                    _model.Date = value.Value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
-                }
-            }
-        }
+        public DateShiftVM DateShift { get; set; }
 
-        public string Shift
-        {
-            get
-            {
-                return _model?.Shift;
-            }
-            set
-            {
-                if (_model.Shift != value)
-                {
-                    _model.Shift = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Shift)));
-                }
-            }
-        }
-        
-        
 
-       
+
+
 
         public string Start
         {
@@ -153,7 +140,7 @@ namespace TestAndTunes
                 if (_model != null)
                 {
                     _model.DefectoscopeName = value;
-                    if(String.IsNullOrEmpty(Operation)) Operation = "Проверка чувствительности";
+                    if (String.IsNullOrEmpty(Operation)) Operation = "Проверка чувствительности";
                 }
             }
         }
@@ -172,13 +159,18 @@ namespace TestAndTunes
         }
 
 
-        
+
         public JournalRecord Model
         {
             get { return _model; }
             set
             {
                 _model = value;
+                if (value != null)
+                {                    
+                    DateShift.Date = _model.Date;
+                    DateShift.Letter = _model.Shift;
+                }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
 
             }

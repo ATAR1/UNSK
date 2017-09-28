@@ -141,6 +141,7 @@
     <Compile Include="RefreshCommand.cs" />
     <Compile Include="ReportLine.cs" />
     <Compile Include="ReportService.cs" />
+    <Compile Include="Reports\ShiftsReportRecord.cs" />
     <Compile Include="SaveCommand.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Shift.cs">
@@ -219,6 +220,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\ShitsReport.rdlc" />
     <EntityDeploy Include="JournalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JournalModel.Designer.cs</LastGenOutput>
@@ -229,6 +232,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MonthReportViewModel.datasource" />
     <None Include="Properties\DataSources\ReportLine.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftsReportRecord.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

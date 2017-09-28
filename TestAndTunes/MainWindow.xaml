@@ -51,15 +51,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderBrush="DarkGray" BorderThickness="1">
-                    <DockPanel>
+                    <DockPanel DataContext="{Binding Shift}">
                         <Label Content="Дата начала смены:" Grid.Column="0"  VerticalAlignment="Center" Margin="5"/>
-                        <DatePicker Grid.Column="1" SelectedDate="{Binding Shift.Date}" VerticalAlignment="Center" Margin="5"/>
+                        <DatePicker Grid.Column="1" SelectedDate="{Binding Date}" VerticalAlignment="Center" Margin="5"/>
                         <Label Content="Смена:"  Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
                         <ComboBox Grid.Column="3" Width="100" 
-                          SelectedValue="{Binding Shift.Letter}" 
-                          SelectedValuePath="Value"
-                          ItemsSource="{Binding Shifts}" 
-                          DisplayMemberPath="Value"  VerticalAlignment="Center" Margin="5"/>
+                          SelectedValue="{Binding Letter}"
+                          ItemsSource="{Binding AvaliableShifts}"
+                          VerticalAlignment="Center" Margin="5"/>
                     </DockPanel>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1" Visibility="Hidden">
@@ -275,15 +274,14 @@
                 
 
             </Grid>
-            <DockPanel Grid.Row="0" LastChildFill="False">
+            <DockPanel Grid.Row="0" LastChildFill="False" DataContext="{Binding DateShift}">
                 <Label Content="Дата начала смены:" Grid.Column="0"  VerticalAlignment="Center" Margin="5"/>
                 <DatePicker Grid.Column="1" SelectedDate="{Binding Date}" VerticalAlignment="Center" Margin="5"/>
                 <Label Content="Смена:"  Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
                 <ComboBox Grid.Column="3" Width="100" 
-                          SelectedValue="{Binding Shift}" 
-                          SelectedValuePath="Value"
-                          ItemsSource="{Binding DataContext.Shifts, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" 
-                          DisplayMemberPath="Value"  VerticalAlignment="Center" Margin="5"/>
+                          SelectedValue="{Binding Letter}" 
+                          ItemsSource="{Binding AvaliableShifts}" 
+                          VerticalAlignment="Center" Margin="5"/>
             </DockPanel>
             <Grid Grid.Row="1" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>
