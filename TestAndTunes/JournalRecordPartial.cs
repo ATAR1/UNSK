@@ -29,5 +29,7 @@ namespace TestAndTunes
                 return this.Operation.Normatives.Where(n => n.BeginDate < this.Date).DefaultIfEmpty(new Normative { BeginDate = DateTime.MinValue}).OrderBy(n => n.BeginDate).Last().Value;
             }
         }
+
+        public TimeSpan Deviation => Duration - Normative;
     }
 }

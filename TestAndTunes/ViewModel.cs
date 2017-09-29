@@ -18,6 +18,7 @@ namespace TestAndTunes
         private readonly ObservableCollection<WorkArea> _areas = new ObservableCollection<WorkArea>();
         private readonly ObservableCollection<Employee> _personal = new ObservableCollection<Employee>();
         private readonly ICommand _refreshCommand;
+        
         private JournalRecordViewModel _selectedRecord;
         private ICommand _cancellCommand;
         private MenuModel _menu = new MenuModel();
@@ -39,6 +40,7 @@ namespace TestAndTunes
                 _refreshCommand = new RefreshCommand(this);
                 _addCommand = new AddCommand(_ctx, UncheckedRecord);
                 _cancellCommand = new CancellCommand(_ctx, UncheckedRecord);
+                
                 RefreshJournalRecords();
                 Shift = new DateShiftVM();
                 Shift.PropertyChanged += CurrentShiftChanged;

@@ -57,19 +57,13 @@ namespace TestAndTunes
 
         private void reportViewer_Load(object sender, EventArgs e)
         {
-            ReportService service = new ReportService();
-
-            
-
             var localReport = reportViewer.LocalReport;
             localReport.DataSources.Add(new ReportDataSource("TO1DataSet"));
             localReport.DataSources.Add(new ReportDataSource("TO2DataSet"));
             localReport.DataSources.Add(new ReportDataSource("UOGTDataSet"));
             localReport.DataSources.Add(new ReportDataSource("ReportDataSet"));
-            
             localReport.ReportEmbeddedResource = "TestAndTunes.Report1.rdlc";
-            localReport.Refresh();
-            
+            localReport.Refresh();            
         }
 
         private void WindowsFormsHost_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

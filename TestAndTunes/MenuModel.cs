@@ -7,7 +7,14 @@ namespace TestAndTunes
     {
         private ICommand _showMonthReport = new ShowMonthReportCommand();
 
+        private readonly ICommand _showShiftsReportCommand = new ShowShiftsReportCommand();
+        private ICommand _showMonthShiftReport = new ShowMonthShiftReportCommand();
+
         public ICommand ShowMonthReport => _showMonthReport;
+
+        public ICommand ShowShiftsReport => _showShiftsReportCommand;
+
+        public ICommand ShowMonthShiftReport => _showMonthShiftReport;
 
         private class ShowMonthReportCommand : ICommand
         {

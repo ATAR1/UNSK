@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
@@ -49,6 +50,44 @@ namespace TestAndTunes
             return result;
         }
 
-        
+        public ICollection<ShiftsReportRecord> GetShiftsReport(DateTime date, DateTime dateEnd)
+        {
+            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd)
+                .ToList()
+                .GroupBy(jr => new { jr.Date, jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
+                .Select(g => new ShiftsReportRecord
+                {
+
+                    Date = g.Key.Date,
+                    WorkArea = g.Key.WorkArea,
+                    RecordHeader = g.Key.OperationGroup=="Проверка чувствительности"?"Проверка": g.Key.OperationGroup,
+                    Shift = g.Key.Shift,
+                    Quantity = g.Count(),
+                    Duration = g.Sum(jr=>Math.Round(jr.Duration.TotalHours,2)),
+                    Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
+                    Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
+
+                }
+                ).ToList();
+        }
+
+        public ICollection<MonthShiftReportRecord> GetMonthShiftsReport(DateTime date, DateTime dateEnd)
+        {
+            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd)
+                .ToList()
+                .GroupBy(jr => new { jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
+                .Select(g => new MonthShiftReportRecord
+                {
+                    RecordHeader = g.Key.OperationGroup=="Проверка чувствительности"?"Проверка": g.Key.OperationGroup,
+                    Month = g.First().Date.ToString("MMMM"),
+                    Year = g.First().Date.ToString("yyyy"),
+                    Shift = g.Key.Shift,
+                    WorkArea = g.Key.WorkArea,
+                    Quantity = g.Count(),
+                    Duration = g.Sum(jr=>Math.Round(jr.Duration.TotalHours,2)),
+                    Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
+                    Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
+                }).ToList();
+        }
     }
 }
