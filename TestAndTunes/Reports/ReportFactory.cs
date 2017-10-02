@@ -1,6 +1,12 @@
 ﻿namespace TestAndTunes.Reports
 {
-    public enum ReportType { DailyMonth, ShiftMonth, Month }
+    public enum ReportType
+    {
+        DailyMonth,
+        ShiftMonth,
+        Month,
+        TestAndTunes
+    }
     public class ReportFactory
     {
         public static IReportViewModel CreateReportModel(ReportType _reportType)
@@ -12,7 +18,9 @@
                 case ReportType.ShiftMonth:
                     return new MonthShiftReportViewModel();
                 case ReportType.Month:
-                    return new MonthReportViewModel();                
+                    return new MonthReportViewModel();
+                case ReportType.TestAndTunes:
+                    return new TestAndTunesReportViewModel();
                 default: return null;
             }
         }

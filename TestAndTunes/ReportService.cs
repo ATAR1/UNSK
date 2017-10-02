@@ -9,9 +9,9 @@ namespace TestAndTunes
     {
         private JournalDBEntities _ctx = new JournalDBEntities();
 
-        public TotalsTable GenerateTotals(DateTime date,string shift,string workArea)
+        public TotalsTable GenerateTotals(DateTime date, string shift, string workArea)
         {
-            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shift&&jr.WorkArea== workArea).ToList();
+            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea).ToList();
             TotalsTable totals = GenerateTotals(journalRecords);
             totals.Caption = workArea;
             return totals;
@@ -19,15 +19,58 @@ namespace TestAndTunes
 
         public TotalsTable GenerateTotals(DateTime dateBegin, DateTime dateEnd, string workArea)
         {
-            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date >= dateBegin && jr.Date <dateEnd && jr.WorkArea == workArea).ToList();
+            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date >= dateBegin && jr.Date < dateEnd && jr.WorkArea == workArea).ToList();
             TotalsTable totals = GenerateTotals(journalRecords);
             totals.Caption = workArea;
             return totals;
         }
 
+        public ICollection<TestAndTunesReportRecord> GetTunes(DateTime beginDate, DateTime endDate)
+        {
+            var list = _ctx.JournalRecords
+                .Where(jr => jr.Date >= beginDate && jr.Date < endDate && jr.Operation.Work.OperationGroup == "Настройка").ToList();
+            List<TestAndTunesReportRecord> result = GetSummaryAndAverage(list);
+            return result;
+        }
+
+        private List<TestAndTunesReportRecord> GetSummaryAndAverage(List<JournalRecord> list)
+        {
+            var result = list
+                            .GroupBy(jr => new { jr.WorkArea, jr.DefectoscopeName })
+                            .Select(g => new TestAndTunesReportRecord
+                            {
+                                Defectoscope = g.Key.DefectoscopeName,
+                                Duration = Math.Round(g.Sum(jr => jr.Duration.TotalHours), 2),
+                                LineHeader = "Общее время",
+                                WorkArea = g.Key.WorkArea
+
+                            }).ToList();
+            result.AddRange(
+                list
+                .GroupBy(jr => new { jr.WorkArea, jr.DefectoscopeName })
+                .Select(g => new TestAndTunesReportRecord
+                {
+                    Defectoscope = g.Key.DefectoscopeName,
+                    Duration = Math.Round(g.Average(jr => jr.Duration.TotalHours), 2),
+                    LineHeader = "Среднее время",
+                    WorkArea = g.Key.WorkArea
+
+                }).ToList()
+                );
+            return result;
+        }
+
+        public ICollection<TestAndTunesReportRecord> GetTests(DateTime beginDate, DateTime endDate)
+        {
+            var list = _ctx.JournalRecords
+                .Where(jr => jr.Date >= beginDate && jr.Date < endDate && jr.Operation.Work.OperationGroup == "Проверка").ToList();
+            List<TestAndTunesReportRecord> result = GetSummaryAndAverage(list);
+            return result;
+        }
+
         private TotalsTable GenerateTotals(IEnumerable<JournalRecord> journalRecords)
         {
-            TotalsTable totals = new TotalsTable();            
+            TotalsTable totals = new TotalsTable();
             totals.Tunes = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Настройка"));
             totals.Tests = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Проверка"));
             totals.Repair = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Неисправность"));
@@ -61,7 +104,7 @@ namespace TestAndTunes
                     RecordHeader = g.Key.OperationGroup,
                     Shift = g.Key.Shift,
                     Quantity = g.Count(),
-                    Duration = g.Sum(jr=>Math.Round(jr.Duration.TotalHours,2)),
+                    Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),
                     Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
                     Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
 
@@ -82,7 +125,7 @@ namespace TestAndTunes
                     Shift = g.Key.Shift,
                     WorkArea = g.Key.WorkArea,
                     Quantity = g.Count(),
-                    Duration = g.Sum(jr=>Math.Round(jr.Duration.TotalHours,2)),
+                    Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),
                     Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
                     Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
                 }).ToList();

@@ -13,7 +13,7 @@ namespace TestAndTunes.Reports
         public MonthReportWindow(ReportType reportType)
         {
             InitializeComponent();
-            DataContext = new ShiftsReportWindowModel(reportType);            
+            DataContext = new MonthReportWindowModel(reportType);            
         }
 
         

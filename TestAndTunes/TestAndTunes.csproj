@@ -148,7 +148,9 @@
     <Compile Include="Reports\MonthReportWindow.xaml.cs">
       <DependentUpon>MonthReportWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Reports\ShiftsReportWindowModel.cs" />
+    <Compile Include="Reports\MonthReportWindowModel.cs" />
+    <Compile Include="Reports\TestAndTunesReportRecord.cs" />
+    <Compile Include="Reports\TestAndTunesReportViewModel.cs" />
     <Compile Include="SaveCommand.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Shift.cs">
@@ -159,15 +161,13 @@
     <Compile Include="ShiftService.cs" />
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
+    <Compile Include="Reports\ShowTestAndTunesReport.cs" />
     <Compile Include="Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="TotalsModel.cs" />
     <Compile Include="TotalsTableVM.cs" />
     <Compile Include="UncheckedRecord.cs" />
     <Compile Include="ViewModel.cs" />
-    <Compile Include="Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Work.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -205,10 +205,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -231,6 +227,7 @@
     <EmbeddedResource Include="Reports\Layouts\MonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftMonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\DailyMonthReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\TestAndTunesReport.rdlc" />
     <EntityDeploy Include="JournalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JournalModel.Designer.cs</LastGenOutput>
@@ -243,6 +240,7 @@
     <None Include="Properties\DataSources\ReportLine.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.MonthShiftReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftsReportRecord.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.TestAndTunesReportRecord.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

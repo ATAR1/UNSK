@@ -40,7 +40,7 @@
             </Grid.RowDefinitions>
             <Menu>
                 <MenuItem Header="Отчёты" DataContext="{Binding Menu}">
-                    <MenuItem Header="Время настроек и проверок" Click="Button_Click"/>
+                    <MenuItem Header="Время настроек и проверок" Command="{Binding ShowTestAndTunesReport}"/>
                     <MenuItem Header="Отчёт за месяц" Command="{Binding ShowMonthReport}"/>
                     <MenuItem Header="Посменный отчёт за месяц(подробный)" Command="{Binding ShowShiftsReport}"/>
                     <MenuItem Header="Посменный отчёт за месяц" Command="{Binding ShowMonthShiftReport}"/>
