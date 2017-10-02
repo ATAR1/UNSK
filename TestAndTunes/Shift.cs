@@ -9,9 +9,7 @@
 
 namespace TestAndTunes
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class Shift
     {
         public string Value { get; set; }

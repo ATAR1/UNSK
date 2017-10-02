@@ -9,9 +9,7 @@
 
 namespace TestAndTunes
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class Work
     {
         public string Name { get; set; }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestAndTunes.Reports
+﻿namespace TestAndTunes.Reports
 {
     public enum ReportType { DailyMonth, ShiftMonth, Month }
     public class ReportFactory

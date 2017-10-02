@@ -10,8 +10,7 @@
 namespace TestAndTunes
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Normative
     {
         public string WorkArea { get; set; }
