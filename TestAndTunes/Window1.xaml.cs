@@ -39,7 +39,7 @@ namespace TestAndTunes
 
         private void FillTable2()
         {
-            var t = _ctx.JournalRecords.Where(jr => jr.Date >= beginPicker.SelectedDate && jr.Date <= endPicker.SelectedDate).Join(_ctx.Works.Where(w=>w.OperationGroup=="Проверка чувствительности"),jr=>jr.OperationName,w=>w.Name,(jr,w)=>jr).ToList();
+            var t = _ctx.JournalRecords.Where(jr => jr.Date >= beginPicker.SelectedDate && jr.Date <= endPicker.SelectedDate).Join(_ctx.Works.Where(w=>w.OperationGroup=="Проверка"),jr=>jr.OperationName,w=>w.Name,(jr,w)=>jr).ToList();
             var total = t.GroupBy(t1 => new { t1.WorkArea, t1.DefectoscopeName }, (k, g) => new { WorkArea = k.WorkArea, Name = k.DefectoscopeName, Avg = g.Average(r => r.Duration.TotalMinutes), Sum = g.Sum(r => r.Duration.TotalMinutes) });
 
             if (total.Any(g => g.Name == "МДТ 6.1" && g.WorkArea == "ТО1")) table2.RowGroups[0].Rows[2].Cells[1].Blocks.Add(new Paragraph(new Run(total.Single(g => g.Name == "МДТ 6.1" && g.WorkArea == "ТО1").Avg.ToString())));

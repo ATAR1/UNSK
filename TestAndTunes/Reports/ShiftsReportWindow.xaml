@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="Файл">
-                <MenuItem Header="Сохранить" />
-                <MenuItem Header="Печать" />
+                <MenuItem Header="Сохранить" Click="MenuItem_Click" />
+                <MenuItem Header="Печать" Click="MenuItem_Click_1" />
             </MenuItem>
         </Menu>
         <DockPanel LastChildFill="False" Grid.Row="1">
@@ -30,7 +30,7 @@
             </Button>
         </DockPanel>
         <WindowsFormsHost Grid.Row="3" DataContext="{Binding Report}"  x:Name="reportViewerHost" DataContextChanged="reportViewerHost_DataContextChanged">
-            <rv:ReportViewer x:Name="reportViewer" Load="reportViewer_Load" />
+            <rv:ReportViewer x:Name="reportViewer"/>
         </WindowsFormsHost>
     </Grid>
 </Window>

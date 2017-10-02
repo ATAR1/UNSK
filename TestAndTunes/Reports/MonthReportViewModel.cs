@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Reporting.WinForms;
+using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
-    public class MonthReportViewModel:INotifyPropertyChanged
+    public class MonthReportViewModel:INotifyPropertyChanged,IReport
     {
+        public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
+
         private string _month= "МЕСЯЦ";
         private TotalsTableVM _summaryTO1 = new TotalsTableMonthView( new TotalsTable
         {
@@ -93,6 +94,29 @@ namespace TestAndTunes
         internal IEnumerable<MonthReportViewModel> GetLine()
         {
             yield return this;
+        }
+
+        public void FillDataSources(ReportDataSourceCollection dataSources)
+        {
+            dataSources.Add(new ReportDataSource("TO1DataSet"));
+            dataSources.Add(new ReportDataSource("TO2DataSet"));
+            dataSources.Add(new ReportDataSource("UOGTDataSet"));
+            dataSources.Add(new ReportDataSource("ReportDataSet"));
+
+            dataSources["TO1DataSet"].Value =   SummaryPerMonth.GetReportLines();
+            dataSources["TO2DataSet"].Value =   SummaryTO2.GetReportLines();
+            dataSources["UOGTDataSet"].Value =  SummaryUOGT.GetReportLines();
+            dataSources["ReportDataSet"].Value= GetLine();
+        }
+
+        public void Load(DateTime beginDate, DateTime endDate)
+        {
+            ReportService service = new ReportService();
+            SummaryPerMonth = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО1"));
+            SummaryTO2 = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО2"));
+            SummaryUOGT = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "УОГТ"));
+            Month = beginDate.ToString("MMMM");
+            Year = beginDate.Year; ;
         }
     }
 }

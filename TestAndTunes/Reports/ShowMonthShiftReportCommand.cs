@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace TestAndTunes
 {
-    internal class ShowShiftsReportCommand : ICommand
+    internal class ShowMonthShiftReportCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -14,7 +14,7 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            var reportWindow = new Reports.ShiftsReportWindow(Reports.ReportType.Type1);
+            var reportWindow = new Reports.ShiftsReportWindow(Reports.ReportType.ShiftMonth);
             reportWindow.ShowDialog();
         }
     }

@@ -8,9 +8,7 @@ using System.Windows.Input;
 
 namespace TestAndTunes.Reports
 {
-    public enum ReportType { Type1, Type2}
-
-    public class ShiftsReportWindowModel:IReportWindowModel,INotifyPropertyChanged
+    public class ShiftsReportWindowModel:IMonthReportWindowModel,INotifyPropertyChanged
     {
         private ICollection<string> _month = CultureInfo.GetCultureInfo("RU-ru").DateTimeFormat.MonthNames.Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
 
@@ -60,22 +58,9 @@ namespace TestAndTunes.Reports
             }
 
             var dateEnd = date.AddMonths(1);
-
-            ReportService service = new ReportService();
-            if (_reportType == ReportType.Type1)
-            {
-                this.Report = new ShiftsReportViewModel()
-                {
-                    ReportRecords = service.GetShiftsReport(date, dateEnd)
-                };
-            }
-            else
-            {
-                this.Report = new MonthShiftReportViewModel()
-                {
-                    ReportRecords = service.GetMonthShiftsReport(date, dateEnd)
-                };
-            }
+            var report = ReportFactory.CreateReportModel(_reportType);
+            report.Load(date, dateEnd);
+            Report = report;
         }
     }
 }

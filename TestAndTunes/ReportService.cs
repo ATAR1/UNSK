@@ -31,7 +31,7 @@ namespace TestAndTunes
         {
             TotalsTable totals = new TotalsTable();            
             totals.Tunes = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Настройка"));
-            totals.Tests = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Проверка чувствительности"));
+            totals.Tests = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Проверка"));
             totals.Repair = CreateTotalsLine(journalRecords.Where(jr => jr.Operation.Work.OperationGroup == "Неисправность"));
             totals.Totals = CreateTotalsLine(journalRecords);
             return totals;
@@ -60,7 +60,7 @@ namespace TestAndTunes
 
                     Date = g.Key.Date,
                     WorkArea = g.Key.WorkArea,
-                    RecordHeader = g.Key.OperationGroup=="Проверка чувствительности"?"Проверка": g.Key.OperationGroup,
+                    RecordHeader = g.Key.OperationGroup,
                     Shift = g.Key.Shift,
                     Quantity = g.Count(),
                     Duration = g.Sum(jr=>Math.Round(jr.Duration.TotalHours,2)),
@@ -78,7 +78,7 @@ namespace TestAndTunes
                 .GroupBy(jr => new { jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
                 .Select(g => new MonthShiftReportRecord
                 {
-                    RecordHeader = g.Key.OperationGroup=="Проверка чувствительности"?"Проверка": g.Key.OperationGroup,
+                    RecordHeader = g.Key.OperationGroup,
                     Month = g.First().Date.ToString("MMMM"),
                     Year = g.First().Date.ToString("yyyy"),
                     Shift = g.Key.Shift,

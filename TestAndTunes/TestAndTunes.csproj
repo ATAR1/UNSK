@@ -128,11 +128,8 @@
     <Compile Include="JournalRecordPartial.cs" />
     <Compile Include="JournalRecordViewModel.cs" />
     <Compile Include="MenuModel.cs" />
-    <Compile Include="MonthReportViewModel.cs" />
-    <Compile Include="MonthReportWindow.xaml.cs">
-      <DependentUpon>MonthReportWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MonthReportWindowModel.cs" />
+    <Compile Include="Reports\MonthReportViewModel.cs" />
+    <Compile Include="Reports\RefreshReportCommand.cs" />
     <Compile Include="Normative.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -145,6 +142,7 @@
     <Compile Include="Reports\IReport.cs" />
     <Compile Include="Reports\MonthShiftReportRecord.cs" />
     <Compile Include="Reports\MonthShiftReportViewModel.cs" />
+    <Compile Include="Reports\ReportFactory.cs" />
     <Compile Include="Reports\ShiftsReportRecord.cs" />
     <Compile Include="Reports\ShiftsReportViewModel.cs" />
     <Compile Include="Reports\ShiftsReportWindow.xaml.cs">
@@ -159,8 +157,8 @@
     <Compile Include="DateShift.cs" />
     <Compile Include="ShiftedTimeComparer.cs" />
     <Compile Include="ShiftService.cs" />
-    <Compile Include="ShowMonthShiftReportCommand.cs" />
-    <Compile Include="ShowShiftsReportCommand.cs" />
+    <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
+    <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="TotalsModel.cs" />
@@ -203,10 +201,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MonthReportWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Reports\ShiftsReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,9 +228,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report1.rdlc" />
-    <EmbeddedResource Include="Reports\MonthShiftReport.rdlc" />
-    <EmbeddedResource Include="Reports\ShiftsReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\MonthReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\ShiftMonthReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\DailyMonthReport.rdlc" />
     <EntityDeploy Include="JournalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JournalModel.Designer.cs</LastGenOutput>
