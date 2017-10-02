@@ -8,13 +8,13 @@ using System.Windows.Input;
 
 namespace TestAndTunes.Reports
 {
-    public class ShiftsReportWindowModel:IMonthReportWindowModel,INotifyPropertyChanged
+    public class ShiftsReportWindowModel:IReportWindowModel,INotifyPropertyChanged
     {
         private ICollection<string> _month = CultureInfo.GetCultureInfo("RU-ru").DateTimeFormat.MonthNames.Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private IReport _report;
+        private IReportViewModel _report;
 
         private readonly ICommand _refreshCommand;
         private ReportType _reportType;
@@ -33,7 +33,7 @@ namespace TestAndTunes.Reports
         
         public ICommand RefreshCommand => _refreshCommand;
 
-        public IReport Report
+        public IReportViewModel Report
         {
             get
             {

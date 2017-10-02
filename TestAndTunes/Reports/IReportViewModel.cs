@@ -4,7 +4,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace TestAndTunes.Reports
 {
-    public interface IReport
+    public interface IReportViewModel
     {
         string ReportEmbeddedResource { get; }
         

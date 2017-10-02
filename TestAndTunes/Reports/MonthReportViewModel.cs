@@ -6,7 +6,7 @@ using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
-    public class MonthReportViewModel:INotifyPropertyChanged,IReport
+    public class MonthReportViewModel:INotifyPropertyChanged,IReportViewModel
     {
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
 

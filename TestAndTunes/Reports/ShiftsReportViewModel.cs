@@ -4,7 +4,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace TestAndTunes.Reports
 {
-    public class ShiftsReportViewModel:IReport
+    public class ShiftsReportViewModel:IReportViewModel
     {
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.DailyMonthReport.rdlc";

@@ -121,7 +121,7 @@
     <Compile Include="Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="IReportWindowModel.cs" />
+    <Compile Include="Reports\IReportWindowModel.cs" />
     <Compile Include="JournalRecord.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -139,14 +139,14 @@
     <Compile Include="RefreshCommand.cs" />
     <Compile Include="ReportLine.cs" />
     <Compile Include="ReportService.cs" />
-    <Compile Include="Reports\IReport.cs" />
+    <Compile Include="Reports\IReportViewModel.cs" />
     <Compile Include="Reports\MonthShiftReportRecord.cs" />
     <Compile Include="Reports\MonthShiftReportViewModel.cs" />
     <Compile Include="Reports\ReportFactory.cs" />
     <Compile Include="Reports\ShiftsReportRecord.cs" />
     <Compile Include="Reports\ShiftsReportViewModel.cs" />
-    <Compile Include="Reports\ShiftsReportWindow.xaml.cs">
-      <DependentUpon>ShiftsReportWindow.xaml</DependentUpon>
+    <Compile Include="Reports\MonthReportWindow.xaml.cs">
+      <DependentUpon>MonthReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\ShiftsReportWindowModel.cs" />
     <Compile Include="SaveCommand.cs" />
@@ -201,7 +201,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Reports\ShiftsReportWindow.xaml">
+    <Page Include="Reports\MonthReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

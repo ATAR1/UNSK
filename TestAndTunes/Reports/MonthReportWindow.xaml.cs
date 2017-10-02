@@ -6,11 +6,11 @@ namespace TestAndTunes.Reports
     /// <summary>
     /// Логика взаимодействия для ShiftsReportWindow.xaml
     /// </summary>
-    public partial class ShiftsReportWindow : Window
+    public partial class MonthReportWindow : Window
     {
         
 
-        public ShiftsReportWindow(ReportType reportType)
+        public MonthReportWindow(ReportType reportType)
         {
             InitializeComponent();
             DataContext = new ShiftsReportWindowModel(reportType);            
@@ -22,7 +22,7 @@ namespace TestAndTunes.Reports
         {
             if (reportViewer == null) return;
             var localReport = reportViewer.LocalReport;
-            IReport reportViewModel = (IReport)e.NewValue;
+            IReportViewModel reportViewModel = (IReportViewModel)e.NewValue;
             if (reportViewModel != null && localReport != null)
             {
                 reportViewer.LocalReport.ReportEmbeddedResource = reportViewModel.ReportEmbeddedResource;

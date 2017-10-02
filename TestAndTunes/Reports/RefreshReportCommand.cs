@@ -12,9 +12,9 @@ namespace TestAndTunes
 {
     internal class RefreshReportCommand : ICommand
     {
-        IMonthReportWindowModel _windowModel;
+        IReportWindowModel _windowModel;
 
-        public RefreshReportCommand(IMonthReportWindowModel windowModel)
+        public RefreshReportCommand(IReportWindowModel windowModel)
         {
             _windowModel = windowModel;
         }

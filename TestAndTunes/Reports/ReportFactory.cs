@@ -5,7 +5,7 @@ namespace TestAndTunes.Reports
     public enum ReportType { DailyMonth, ShiftMonth, Month }
     public class ReportFactory
     {
-        public static IReport CreateReportModel(ReportType _reportType)
+        public static IReportViewModel CreateReportModel(ReportType _reportType)
         {
             switch (_reportType)
             {

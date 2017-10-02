@@ -14,7 +14,7 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            var reportWindow = new Reports.ShiftsReportWindow(Reports.ReportType.ShiftMonth);
+            var reportWindow = new Reports.MonthReportWindow(Reports.ReportType.ShiftMonth);
             reportWindow.ShowDialog();
         }
     }

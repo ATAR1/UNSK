@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAndTunes"
         mc:Ignorable="d"
-        Title="Window1" Height="300" Width="800" Loaded="Window_Loaded">
+        Title="Window1" Height="455.696" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

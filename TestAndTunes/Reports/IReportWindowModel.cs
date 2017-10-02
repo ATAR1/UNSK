@@ -4,17 +4,11 @@ using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
-    public interface IMonthReportWindowModel
+    public interface IReportWindowModel
     {
-        int Year { get; set; }
-
-        string Month { get; set; }
-
-        ICollection<string> Months { get; }
-
         ICommand RefreshCommand { get; }
 
-        IReport Report { get; }
+        IReportViewModel Report { get; }
 
         void RefreshReport();
     }
