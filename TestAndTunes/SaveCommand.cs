@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace TestAndTunes
 {
-    internal class SaveCommand : ICommand
+    public class SaveCommand : ICommand
     {
         private JournalDBEntities _ctx;
         private UncheckedRecord _uncheckedRecord;

@@ -11,14 +11,13 @@ namespace TestAndTunes
         private DateTime _date;
         private string _letter;
         private ShiftService _shiftService = new ShiftService();
-        private ICollection<string> _avaliableShifts=new List<string>();
+        private ICollection<string> _avaliableShifts=new ObservableCollection<string>();
 
         public DateShiftVM()
         {
             
             _shiftService = new ShiftService();
-            Date = DateTime.Today;
-            Letter = _shiftService.GetAvaliableShifts(Date).ToArray()[0];            
+            Date = DateTime.Today;           
         }
 
         public DateTime Date
@@ -30,23 +29,14 @@ namespace TestAndTunes
             set
             {
                 _date = value;
-
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
-                var shift = _letter;
-                UpdateAvaliableShiftsList();
-                _letter = shift;
+                var shift = Letter;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AvaliableShifts)));
+                if (AvaliableShifts.Contains(Letter)) Letter = shift;
+                else Letter = AvaliableShifts.First();
             }
         }
-
-        private void UpdateAvaliableShiftsList()
-        {
-            AvaliableShifts.Clear();
-            foreach (var shiftLetter in _shiftService.GetAvaliableShifts(Date))
-            {                
-                AvaliableShifts.Add(shiftLetter);                
-            }
-        }
-
+        
         public string Letter
         {
             get
@@ -60,14 +50,7 @@ namespace TestAndTunes
             }
         }
 
-        public ICollection<string> AvaliableShifts
-        {
-            get
-            {
-                return _avaliableShifts;
-            }
-        }
-
+        public ICollection<string> AvaliableShifts => _shiftService.GetAvaliableShifts(Date).ToList();
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

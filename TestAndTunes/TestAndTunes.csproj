@@ -161,7 +161,7 @@
     <Compile Include="Shift.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DateShift.cs" />
+    <Compile Include="DateShiftVM.cs" />
     <Compile Include="ShiftedTimeComparer.cs" />
     <Compile Include="ShiftService.cs" />
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />

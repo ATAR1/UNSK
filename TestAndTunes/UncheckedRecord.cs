@@ -12,7 +12,7 @@ namespace TestAndTunes
         public UncheckedRecord()
         {
             DateShift = new DateShiftVM();
-            DateShift.PropertyChanged += DateShiftPropertyChanged;
+            
 
         }
 
@@ -160,10 +160,11 @@ namespace TestAndTunes
             {
                 _model = value;
                 if (value != null)
-                {   
-                    //var shift = _model.Shift;
+                {
+                    DateShift.PropertyChanged -= DateShiftPropertyChanged;
                     DateShift.Date = _model.Date;
                     DateShift.Letter = _model.Shift;
+                    DateShift.PropertyChanged += DateShiftPropertyChanged;
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
 

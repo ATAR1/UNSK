@@ -46,7 +46,7 @@ namespace TestAndTunes
             set
             {
                 _uogt = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TO2)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(UOGT)));
             }
         }
 
