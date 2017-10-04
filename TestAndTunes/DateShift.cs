@@ -11,14 +11,14 @@ namespace TestAndTunes
         private DateTime _date;
         private string _letter;
         private ShiftService _shiftService = new ShiftService();
-        private ICollection<string> _avaliableShifts;
+        private ICollection<string> _avaliableShifts=new List<string>();
 
         public DateShiftVM()
         {
-            _date = DateTime.Today;
+            
             _shiftService = new ShiftService();
-            _letter = _shiftService.GetAvaliableShifts(Date).ToArray()[0];
-            _avaliableShifts = new ObservableCollection<string>();
+            Date = DateTime.Today;
+            Letter = _shiftService.GetAvaliableShifts(Date).ToArray()[0];            
         }
 
         public DateTime Date
@@ -32,7 +32,9 @@ namespace TestAndTunes
                 _date = value;
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
+                var shift = _letter;
                 UpdateAvaliableShiftsList();
+                _letter = shift;
             }
         }
 
@@ -40,8 +42,8 @@ namespace TestAndTunes
         {
             AvaliableShifts.Clear();
             foreach (var shiftLetter in _shiftService.GetAvaliableShifts(Date))
-            {
-                AvaliableShifts.Add(shiftLetter);
+            {                
+                AvaliableShifts.Add(shiftLetter);                
             }
         }
 

@@ -164,7 +164,8 @@ namespace TestAndTunes
             {
                 _model = value;
                 if (value != null)
-                {                    
+                {   
+                    //var shift = _model.Shift;
                     DateShift.Date = _model.Date;
                     DateShift.Letter = _model.Shift;
                 }

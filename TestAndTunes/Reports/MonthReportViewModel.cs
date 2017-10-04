@@ -97,15 +97,9 @@ namespace TestAndTunes
 
         public DateTime EndDate
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get;
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
