@@ -35,10 +35,6 @@ namespace TestAndTunes
             {
                 Errors.Add("Не выбран ни один дефектоскоп!");
             }
-            //if (String.IsNullOrWhiteSpace(_model.Employee))
-            //{
-            //    Errors.Add("Не выбран исполнитель!");
-            //}
             if (_model.Shift == null)
             {
                 Errors.Add("Не выбрана смена!");

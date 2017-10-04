@@ -7,31 +7,15 @@ namespace TestAndTunes
     public class Service
     {
         private JournalDBEntities _ctx;
-
-        public Service()
-        {
-
-        }
-
+        
         public Service(JournalDBEntities _ctx)
         {
             this._ctx = _ctx;
         }
-
-        private IEnumerable<JournalRecordViewModel> GetFrom(DateTime beginDate)
-        {
-            return _ctx.JournalRecords.Where(jr => jr.Date >= beginDate).ToList()
-                .OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer())
-                .Select(jr => new JournalRecordViewModel(jr))
-                .ToList();
-        }
-
-
+        
         internal IEnumerable<WorkArea> LoadWorkAreas()
         {
-
             return _ctx.WorkAreas;
-
         }
 
         internal IEnumerable<Work> LoadWorks()
