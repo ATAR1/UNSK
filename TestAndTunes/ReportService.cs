@@ -25,6 +25,11 @@ namespace TestAndTunes
             return totals;
         }
 
+        public IEnumerable<string> GetWorkAreas()
+        {
+            return _ctx.WorkAreas.Select(wa => wa.Name);
+        }
+
         public ICollection<TestAndTunesReportRecord> GetTunes(DateTime beginDate, DateTime endDate)
         {
             var list = _ctx.JournalRecords
@@ -58,6 +63,14 @@ namespace TestAndTunes
                 }).ToList()
                 );
             return result;
+        }
+
+
+        public IEnumerable<JournalRecord> GetForTheShift(DateTime date, string shiftLetter)
+        {
+            return _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shiftLetter).ToList()
+                .OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer())
+                .ToList();
         }
 
         public ICollection<TestAndTunesReportRecord> GetTests(DateTime beginDate, DateTime endDate)

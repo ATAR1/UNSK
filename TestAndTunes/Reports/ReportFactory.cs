@@ -9,7 +9,7 @@
     }
     public class ReportFactory
     {
-        public static IReportViewModel CreateReportModel(ReportType _reportType)
+        public static IPeriodReportViewModel CreateReportModel(ReportType _reportType)
         {
             switch (_reportType)
             {

@@ -26,14 +26,6 @@ namespace TestAndTunes
                 .ToList();
         }
 
-        private IEnumerable<JournalRecordViewModel> GetForTheShift(DateTime date, string shiftLetter)
-        {
-            return _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shiftLetter).ToList()
-                .OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer())
-                .Select(jr => new JournalRecordViewModel(jr))
-                .ToList();
-
-        }
 
         internal IEnumerable<WorkArea> LoadWorkAreas()
         {

@@ -6,7 +6,7 @@ using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
-    public class MonthReportViewModel:INotifyPropertyChanged,IReportViewModel
+    public class MonthReportViewModel:INotifyPropertyChanged, IPeriodReportViewModel
     {
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
 
@@ -87,7 +87,26 @@ namespace TestAndTunes
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ReportHeader)));
             }
         }
-        
+
+        public DateTime BeginDate
+        {
+            get;
+
+            set;
+        }
+
+        public DateTime EndDate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -109,7 +128,7 @@ namespace TestAndTunes
             dataSources["ReportDataSet"].Value= GetLine();
         }
 
-        public void Load(DateTime beginDate, DateTime endDate)
+        private void Load(DateTime beginDate, DateTime endDate)
         {
             ReportService service = new ReportService();
             SummaryPerMonth = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО1"));
@@ -117,6 +136,11 @@ namespace TestAndTunes
             SummaryUOGT = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "УОГТ"));
             Month = beginDate.ToString("MMMM");
             Year = beginDate.Year; ;
+        }
+
+        public void Load()
+        {
+            Load(BeginDate, EndDate);
         }
     }
 }

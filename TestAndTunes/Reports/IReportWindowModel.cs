@@ -1,9 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
-    public interface IReportWindowModel
+    public interface IReportWindowModel:INotifyPropertyChanged
     {
         ICommand RefreshCommand { get; }
 

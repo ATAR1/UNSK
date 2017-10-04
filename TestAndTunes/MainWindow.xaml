@@ -44,6 +44,7 @@
                     <MenuItem Header="Отчёт за месяц" Command="{Binding ShowMonthReport}"/>
                     <MenuItem Header="Посменный отчёт за месяц(подробный)" Command="{Binding ShowShiftsReport}"/>
                     <MenuItem Header="Посменный отчёт за месяц" Command="{Binding ShowMonthShiftReport}"/>
+                    <MenuItem Header="Отчёт за смену" Command="{Binding ShowShiftReport}"/>
                 </MenuItem>
             </Menu>
             <Grid Grid.Row="1">

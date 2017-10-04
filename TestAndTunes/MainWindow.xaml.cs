@@ -18,11 +18,7 @@ namespace TestAndTunes
             this.DataContext = new ViewModel();
         }
         
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var win = new Window1(new JournalDBEntities());
-            win.Show();
-        }
+        
 
         private void MaskedTextBox_GotFocus(object sender, RoutedEventArgs e)
         {

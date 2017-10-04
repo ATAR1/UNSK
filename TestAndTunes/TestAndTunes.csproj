@@ -143,6 +143,11 @@
     <Compile Include="Reports\MonthShiftReportRecord.cs" />
     <Compile Include="Reports\MonthShiftReportViewModel.cs" />
     <Compile Include="Reports\ReportFactory.cs" />
+    <Compile Include="Reports\ShiftReportViewModel.cs" />
+    <Compile Include="Reports\ShiftReportWindow.xaml.cs">
+      <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ShiftReportWindowModel.cs" />
     <Compile Include="Reports\ShiftsReportRecord.cs" />
     <Compile Include="Reports\ShiftsReportViewModel.cs" />
     <Compile Include="Reports\MonthReportWindow.xaml.cs">
@@ -162,6 +167,7 @@
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />
+    <Compile Include="ShowShiftReportCommand.cs" />
     <Compile Include="Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="TotalsModel.cs" />
@@ -205,6 +211,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Reports\ShiftReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -227,6 +237,8 @@
     <EmbeddedResource Include="Reports\Layouts\MonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftMonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\DailyMonthReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\ShiftReport.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\ShiftWorkAreaSubReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\TestAndTunesReport.rdlc" />
     <EntityDeploy Include="JournalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -236,10 +248,15 @@
       <DependentUpon>JournalModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\JournalRecord.datasource" />
+    <None Include="Properties\DataSources\JournalRecordViewModel.datasource" />
     <None Include="Properties\DataSources\MonthReportViewModel.datasource" />
     <None Include="Properties\DataSources\ReportLine.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.MonthShiftReportRecord.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftReportViewModel+Record.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftReportViewModel+Summary.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftsReportRecord.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftWorkAreaGroup.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.TestAndTunesReportRecord.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

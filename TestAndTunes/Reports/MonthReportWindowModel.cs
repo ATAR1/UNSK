@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace TestAndTunes.Reports
 {
-    public class MonthReportWindowModel:IReportWindowModel,INotifyPropertyChanged
+    public class MonthReportWindowModel:IReportWindowModel
     {
         private ICollection<string> _month = CultureInfo.GetCultureInfo("RU-ru").DateTimeFormat.MonthNames.Where(s => !String.IsNullOrWhiteSpace(s)).ToList();
 
@@ -56,10 +56,11 @@ namespace TestAndTunes.Reports
             {
                 MessageBox.Show("Что-то не так с выбраным годом!");
             }
-
             var dateEnd = date.AddMonths(1);
             var report = ReportFactory.CreateReportModel(_reportType);
-            report.Load(date, dateEnd);
+            report.BeginDate = date;
+            report.EndDate = dateEnd;
+            report.Load();
             Report = report;
         }
     }
