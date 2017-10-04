@@ -56,7 +56,8 @@ namespace TestAndTunes
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)
         {
             if (String.IsNullOrEmpty(Shift.Letter)) return;
-            RefreshTotals(Shift.Date, Shift.Letter);
+            RefreshJournalRecords();
+            RefreshTotals();
         }
 
         public void LoadCollections()
@@ -92,7 +93,16 @@ namespace TestAndTunes
             try
             {
                 JournalRecords.Clear();
-                var collection = _ctx.JournalRecords.ToList().OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer()).Select(jr => new JournalRecordViewModel(jr));
+                List<JournalRecord> list;
+                if (OnlySelectedShift)
+                {
+                    list = _ctx.JournalRecords.Where(jr=>jr.Date== Shift.Date&&jr.Shift==Shift.Letter).ToList();
+                }
+                else
+                {
+                    list = _ctx.JournalRecords.Where(jr => jr.Date >=FromTheDate).ToList();
+                }
+                var collection = list.OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer()).Select(jr => new JournalRecordViewModel(jr));
                 foreach (var viewModel in collection)
                 {
                     JournalRecords.Add(viewModel);
@@ -168,7 +178,7 @@ namespace TestAndTunes
             }
         }
 
-        public bool OnlyForCurrentShift
+        public bool OnlySelectedShift
         {
             get
             {
@@ -178,9 +188,14 @@ namespace TestAndTunes
             set
             {
                 onlyForCurrentShift = value;
+                RefreshJournalRecords();
+                RefreshTotals();
             }
         }
+        public DateTime FromTheDate { get; set; } = new DateTime(2017, 9, 1);
     }
+
+    
 
     public static class TimeSpanExtensions
     {

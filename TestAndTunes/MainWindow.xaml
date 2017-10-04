@@ -64,11 +64,11 @@
                           VerticalAlignment="Center" Margin="5"/>
                     </DockPanel>
                 </Border>
-                <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1" Visibility="Hidden">
+                <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1">
                     <DockPanel Margin="5" VerticalAlignment="Center">
-                        <RadioButton Margin="5" VerticalAlignment="Center" GroupName="single" Content="Только текущая смена" />
-                        <RadioButton Margin="5" VerticalAlignment="Center" GroupName="single" Content="Начиная с:" IsChecked="True"/>
-                        <DatePicker  Margin="5"/>
+                        <RadioButton Margin="5" VerticalAlignment="Center" GroupName="single" Content="Только выбранная смена" IsChecked="{Binding OnlySelectedShift}" />
+                        <RadioButton Margin="5" VerticalAlignment="Center" GroupName="single" Content="Начиная с:" IsChecked="True" Checked="RadioButton_Checked"/>
+                        <DatePicker  Margin="5" SelectedDate="{Binding FromTheDate}"/>
                     </DockPanel>
                 </Border>
             </Grid>
@@ -78,7 +78,7 @@
                 </Button>
                 <StackPanel/>
             </DockPanel>
-            <ListView Grid.Row="2" ItemsSource="{Binding JournalRecords}" SelectedItem="{Binding SelectedRecord}" SizeChanged="ListView_SizeChanged">
+            <ListView Grid.Row="2" ItemsSource="{Binding JournalRecords}" SelectedItem="{Binding SelectedRecord}" SizeChanged="ListView_SizeChanged" GridViewColumnHeader.Click="ListViewColumnHeaderClick" Name="lv">
                 <i:Interaction.Behaviors>
                     <local:AutoScrollToLastItemBehavior />
                 </i:Interaction.Behaviors>
