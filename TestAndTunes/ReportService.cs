@@ -11,7 +11,7 @@ namespace TestAndTunes
 
         public TotalsTable GenerateTotals(DateTime date, string shift, string workArea)
         {
-            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea).ToList();
+            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea&& jr.Operation.Work.OperationGroup != "Сопутствующие").ToList();
             TotalsTable totals = GenerateTotals(journalRecords);
             totals.Caption = workArea;
             return totals;
@@ -19,7 +19,7 @@ namespace TestAndTunes
 
         public TotalsTable GenerateTotals(DateTime dateBegin, DateTime dateEnd, string workArea)
         {
-            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date >= dateBegin && jr.Date < dateEnd && jr.WorkArea == workArea).ToList();
+            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date >= dateBegin && jr.Date < dateEnd && jr.WorkArea == workArea&& jr.Operation.Work.OperationGroup != "Сопутствующие").ToList();
             TotalsTable totals = GenerateTotals(journalRecords);
             totals.Caption = workArea;
             return totals;
