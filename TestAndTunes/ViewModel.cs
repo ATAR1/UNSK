@@ -192,7 +192,7 @@ namespace TestAndTunes
                 RefreshTotals();
             }
         }
-        public DateTime FromTheDate { get; set; } = new DateTime(2017, 9, 1);
+        public DateTime FromTheDate { get; set; } = DateTime.Today.AddMonths(-1);
     }
 
     
