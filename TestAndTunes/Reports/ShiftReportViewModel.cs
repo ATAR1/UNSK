@@ -36,7 +36,8 @@ namespace TestAndTunes.Reports
                     Normative=jr.Normative.TotalMinutes,
                     End = jr.End,
                     Start=jr.Start,
-                    Operation = jr.OperationName
+                    Operation = jr.OperationName,
+                    Description = jr.Description
                 })
                 .ToList();
 
@@ -97,6 +98,8 @@ namespace TestAndTunes.Reports
             public double Duration { get; set; }
 
             public double Normative { get; set; }
+
+            public string Description { get; set; }
 
             public double Deviation => Duration - Normative;
 
