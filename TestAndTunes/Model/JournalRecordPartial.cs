@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TestAndTunes
+namespace TestAndTunes.Model
 {
     public partial class JournalRecord
     {

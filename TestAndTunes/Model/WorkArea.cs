@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes
+namespace TestAndTunes.Model
 {
-
-    public partial class Shift
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class WorkArea
     {
-        public string Value { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public WorkArea()
+        {
+            this.Defectoscopes = new HashSet<Defectoscope>();
+        }
+    
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Defectoscope> Defectoscopes { get; set; }
     }
 }

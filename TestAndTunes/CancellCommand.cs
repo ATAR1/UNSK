@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Windows.Input;
+using TestAndTunes.Model;
 
 namespace TestAndTunes
 {

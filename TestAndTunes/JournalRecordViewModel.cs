@@ -1,4 +1,5 @@
 ﻿using System;
+using TestAndTunes.Model;
 
 namespace TestAndTunes
 {

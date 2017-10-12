@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes
+namespace TestAndTunes.Model
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class JournalDBEntities : DbContext
     {
         public JournalDBEntities()

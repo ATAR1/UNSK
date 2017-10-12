@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using TestAndTunes.Model;
 
 namespace TestAndTunes
 {

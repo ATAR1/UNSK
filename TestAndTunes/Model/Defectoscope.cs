@@ -7,22 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes
+namespace TestAndTunes.Model
 {
-
-    public partial class JournalRecord
-    {
-        public int Id { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.TimeSpan Start { get; set; }
-        public System.TimeSpan End { get; set; }
-        public string Description { get; set; }
-        public string WorkArea { get; set; }
-        public string DefectoscopeName { get; set; }
-        public string OperationName { get; set; }
-        public string Employee { get; set; }
-        public string Shift { get; set; }
+    using System;
+    using System.Collections.Generic;
     
-        public virtual Operation Operation { get; set; }
+    public partial class Defectoscope
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Defectoscope()
+        {
+            this.AvaliableOperations = new HashSet<Operation>();
+        }
+    
+        public string WorkArea { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Operation> AvaliableOperations { get; set; }
     }
 }

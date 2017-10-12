@@ -7,12 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes
+namespace TestAndTunes.Model
 {
-
-    public partial class Work
+    using System;
+    using System.Collections.Generic;
+    
+    public partial class Employee
     {
-        public string Name { get; set; }
-        public string OperationGroup { get; set; }
+        public string FullName { get; set; }
     }
 }
