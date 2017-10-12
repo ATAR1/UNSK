@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace TestAndTunes.Model
 {
-    internal class ShiftedTimeComparer : IComparer<Tuple<DateTime, TimeSpan>>
+    public class ShiftedTimeComparer : IComparer<Tuple<DateTime, TimeSpan>>
     {
         public int Compare(Tuple<DateTime, TimeSpan> x, Tuple<DateTime, TimeSpan> y)
         {
-            return GetStartDateTimeForSort(x).CompareTo(GetStartDateTimeForSort(y));
+            return ToShiftDateTimeByEightHours(x).CompareTo(ToShiftDateTimeByEightHours(y));
         }
 
-        private DateTime GetStartDateTimeForSort(Tuple<DateTime,TimeSpan> tuple)
+        private DateTime ToShiftDateTimeByEightHours(Tuple<DateTime,TimeSpan> tuple)
         {
             DateTime date = tuple.Item1;
             TimeSpan start = tuple.Item2;
             
             var dateTime = start - TimeSpan.FromHours(8);
-            return dateTime >= TimeSpan.FromHours(0) ? date + dateTime : date + dateTime + TimeSpan.FromHours(24);
+            return dateTime >= TimeSpan.Zero ? date + dateTime : date + dateTime + TimeSpan.FromHours(24);
             
         }
     }
