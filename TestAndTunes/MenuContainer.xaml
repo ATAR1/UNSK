@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="TestAndTunes.MenuContainer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestAndTunes"
+             mc:Ignorable="d" >
+    <Menu DataContext="{Binding}">
+        <MenuItem Header="Отчёты">
+            <MenuItem Header="Время настроек и проверок" Command="{Binding ShowTestAndTunesReport}"/>
+            <MenuItem Header="Отчёт за месяц" Command="{Binding ShowMonthReport}"/>
+            <MenuItem Header="Посменный отчёт за месяц(подробный)" Command="{Binding ShowShiftsReport}"/>
+            <MenuItem Header="Посменный отчёт за месяц" Command="{Binding ShowMonthShiftReport}"/>
+            <MenuItem Header="Отчёт за смену" Command="{Binding ShowShiftReport}"/>
+            <MenuItem Header="Отчёты за период">
+                <MenuItem Header="Суммарный отчёт за период" Command="{Binding ShowSummaryForPeriodReport}"/>
+            </MenuItem>
+        </MenuItem>
+    </Menu>
+</UserControl>

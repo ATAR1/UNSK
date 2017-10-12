@@ -8,7 +8,13 @@ namespace TestAndTunes
 {
     public class MonthReportViewModel:INotifyPropertyChanged, IPeriodReportViewModel
     {
-        public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
+        private string _layout = "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
+
+        public string ReportEmbeddedResource
+        {
+            get { return _layout; }
+            set { _layout = value; }
+        }
 
         private string _month= "МЕСЯЦ";
         private TotalsTableVM _summaryTO1 = new TotalsTableMonthView( new TotalsTable

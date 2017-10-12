@@ -11,6 +11,7 @@ namespace TestAndTunes
         private ICommand _showMonthShiftReport = new ShowMonthShiftReportCommand();
         private ICommand _showTestAndTunesReport = new ShowTestAndTunesReport();
         private ICommand _showShiftReport= new ShowShiftReportCommand();
+        private ICommand _showSummaryForPeriodReport = new ShowSummaryForPeriodReportCommand();
 
         public ICommand ShowMonthReport => _showMonthReport;
 
@@ -21,6 +22,9 @@ namespace TestAndTunes
         public ICommand ShowTestAndTunesReport => _showTestAndTunesReport;
 
         public ICommand ShowShiftReport => _showShiftReport;
+
+        public ICommand ShowSummaryForPeriodReport => _showSummaryForPeriodReport;
+
         private class ShowMonthReportCommand : ICommand
         {
             public event EventHandler CanExecuteChanged;

@@ -127,7 +127,7 @@ namespace TestAndTunes
 
         public ICollection<MonthShiftReportRecord> GetMonthShiftsReport(DateTime date, DateTime dateEnd)
         {
-            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd)
+            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd&&jr.Operation.Work.OperationGroup!="Сопутствующие")
                 .ToList()
                 .GroupBy(jr => new { jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
                 .Select(g => new MonthShiftReportRecord
