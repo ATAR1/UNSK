@@ -181,14 +181,14 @@
     <Compile Include="TotalsModel.cs" />
     <Compile Include="TotalsTableVM.cs" />
     <Compile Include="UncheckedRecord.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="DomainModel\Entities\Work.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DomainModel\Entities\WorkArea.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -211,7 +211,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JournalModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

@@ -51,9 +51,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Model\ShiftedTimeComparerTests.cs" />
+    <Compile Include="DomainModel\ShiftedTimeComparerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\ShiftServiceTests.cs" />
+    <Compile Include="DomainModel\ShiftServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestAndTunes\TestAndTunes.csproj">

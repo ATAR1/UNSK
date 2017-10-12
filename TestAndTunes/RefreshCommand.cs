@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
     internal class RefreshCommand : ICommand
     {
-        private ViewModel _viewModel;
+        private MainWindowModel _viewModel;
 
-        public RefreshCommand(ViewModel viewModel)
+        public RefreshCommand(MainWindowModel viewModel)
         {
             _viewModel = viewModel;
         }

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
@@ -10,10 +11,10 @@ namespace TestAndTunes
     {
         private JournalRecordViewModel _selectedRecord;
         private JournalDBEntities _ctx;
-        private ViewModel _viewModel;
+        private MainWindowModel _viewModel;
         private UncheckedRecord _uncheckedRecord;
 
-        public DeleteCommand(JournalDBEntities _ctx, ViewModel viewModel)
+        public DeleteCommand(JournalDBEntities _ctx, MainWindowModel viewModel)
         {
             
             this._ctx = _ctx;

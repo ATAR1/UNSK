@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
@@ -9,9 +10,9 @@ namespace TestAndTunes
     {
         private JournalDBEntities _ctx;
         private UncheckedRecord _uncheckedRecord;
-        private ViewModel _viewModel;
+        private MainWindowModel _viewModel;
 
-        public SaveCommand(UncheckedRecord uncheckedRecord, JournalDBEntities ctx, ViewModel vievModel)
+        public SaveCommand(UncheckedRecord uncheckedRecord, JournalDBEntities ctx, MainWindowModel vievModel)
         {
             this._uncheckedRecord = uncheckedRecord;
             this._ctx = ctx;

@@ -8,9 +8,9 @@ using System.Windows.Input;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
-namespace TestAndTunes
+namespace TestAndTunes.ViewModels
 {
-    public class ViewModel
+    public class MainWindowModel
     {
         private readonly ICommand _addCommand;
         private readonly ICommand _saveCommand;
@@ -28,7 +28,7 @@ namespace TestAndTunes
         private Service _service;
         private JournalDBEntities _ctx;
 
-        public ViewModel()
+        public MainWindowModel()
         {
             try
             {

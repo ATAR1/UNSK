@@ -5,8 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Interactivity;
+using TestAndTunes.ViewModels;
 
-namespace TestAndTunes
+namespace TestAndTunes.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -17,7 +18,7 @@ namespace TestAndTunes
         {
             InitializeComponent();
             this.Language = System.Windows.Markup.XmlLanguage.GetLanguage(CultureInfo.GetCultureInfo("ru-RU").IetfLanguageTag);
-            this.DataContext = new ViewModel();
+            this.DataContext = new MainWindowModel();
         }
 
 
