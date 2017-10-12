@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Windows.Input;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes
 {

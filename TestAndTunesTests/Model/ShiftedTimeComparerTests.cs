@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAndTunes.Model.Tests
+namespace TestAndTunes.DomainModel.Tests
 {
     [TestClass()]
     public class ShiftedTimeComparerTests

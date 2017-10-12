@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TestAndTunes.Model
+namespace TestAndTunes.DomainModel
 {
     /// <summary>
     /// Содержит операции для работы со сменами

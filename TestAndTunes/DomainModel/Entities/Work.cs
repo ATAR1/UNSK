@@ -7,23 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.Model
+namespace TestAndTunes.DomainModel.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Defectoscope
+    public partial class Work
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Defectoscope()
-        {
-            this.AvaliableOperations = new HashSet<Operation>();
-        }
-    
-        public string WorkArea { get; set; }
         public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operation> AvaliableOperations { get; set; }
+        public string OperationGroup { get; set; }
     }
 }

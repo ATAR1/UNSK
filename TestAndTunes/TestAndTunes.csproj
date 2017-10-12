@@ -113,22 +113,22 @@
     </ApplicationDefinition>
     <Compile Include="AddCommand.cs" />
     <Compile Include="CancellCommand.cs" />
-    <Compile Include="Model\Defectoscope.cs">
+    <Compile Include="DomainModel\Entities\Defectoscope.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DeleteCommand.cs" />
     <Compile Include="EditCommand.cs" />
-    <Compile Include="Model\Employee.cs">
+    <Compile Include="DomainModel\Entities\Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuContainer.xaml.cs">
       <DependentUpon>MenuContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\IReportWindowModel.cs" />
-    <Compile Include="Model\JournalRecord.cs">
+    <Compile Include="DomainModel\Entities\JournalRecord.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\JournalRecordPartial.cs" />
+    <Compile Include="DomainModel\Entities\JournalRecordPartial.cs" />
     <Compile Include="JournalRecordViewModel.cs" />
     <Compile Include="MenuModel.cs" />
     <Compile Include="Reports\MonthReportViewModel.cs" />
@@ -137,10 +137,10 @@
     </Compile>
     <Compile Include="Reports\PeriodReportWindowViewModel.cs" />
     <Compile Include="Reports\RefreshReportCommand.cs" />
-    <Compile Include="Model\Normative.cs">
+    <Compile Include="DomainModel\Entities\Normative.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Operation.cs">
+    <Compile Include="DomainModel\Entities\Operation.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RefreshCommand.cs" />
@@ -165,12 +165,12 @@
     <Compile Include="Reports\TestAndTunesReportViewModel.cs" />
     <Compile Include="SaveCommand.cs" />
     <Compile Include="Service.cs" />
-    <Compile Include="Model\Shift.cs">
+    <Compile Include="DomainModel\Entities\Shift.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DateShiftVM.cs" />
-    <Compile Include="Model\ShiftedTimeComparer.cs" />
-    <Compile Include="Model\ShiftService.cs" />
+    <Compile Include="DomainModel\ShiftedTimeComparer.cs" />
+    <Compile Include="DomainModel\ShiftService.cs" />
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />
@@ -182,10 +182,10 @@
     <Compile Include="TotalsTableVM.cs" />
     <Compile Include="UncheckedRecord.cs" />
     <Compile Include="ViewModel.cs" />
-    <Compile Include="Model\Work.cs">
+    <Compile Include="DomainModel\Entities\Work.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\WorkArea.cs">
+    <Compile Include="DomainModel\Entities\WorkArea.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -196,17 +196,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\JournalModel.Context.cs">
+    <Compile Include="DomainModel\Entities\JournalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JournalModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\JournalModel.cs">
+    <Compile Include="DomainModel\Entities\JournalModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\JournalModel.Designer.cs">
+    <Compile Include="DomainModel\Entities\JournalModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JournalModel.edmx</DependentUpon>
@@ -257,11 +257,11 @@
     <EmbeddedResource Include="Reports\Layouts\ShiftReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftWorkAreaSubReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\TestAndTunesReport.rdlc" />
-    <EntityDeploy Include="Model\JournalModel.edmx">
+    <EntityDeploy Include="DomainModel\Entities\JournalModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JournalModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\JournalModel.edmx.diagram">
+    <None Include="DomainModel\Entities\JournalModel.edmx.diagram">
       <DependentUpon>JournalModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -286,12 +286,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\112_RefreshArrow_Blue_48x48_72.png" />
-    <Content Include="Model\JournalModel.Context.tt">
+    <Content Include="DomainModel\Entities\JournalModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>JournalModel.edmx</DependentUpon>
       <LastGenOutput>JournalModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\JournalModel.tt">
+    <Content Include="DomainModel\Entities\JournalModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>JournalModel.edmx</DependentUpon>
       <LastGenOutput>JournalModel.cs</LastGenOutput>

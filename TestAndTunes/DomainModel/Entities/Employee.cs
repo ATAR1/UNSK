@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.Model
+namespace TestAndTunes.DomainModel.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Shift
+    public partial class Employee
     {
-        public string Value { get; set; }
+        public string FullName { get; set; }
     }
 }

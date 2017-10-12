@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 using TestAndTunes.Reports;
 
 namespace TestAndTunes

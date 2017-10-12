@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Linq;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes.Reports
 {

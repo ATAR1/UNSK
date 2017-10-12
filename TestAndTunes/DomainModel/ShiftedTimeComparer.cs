@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TestAndTunes.Model
+namespace TestAndTunes.DomainModel
 {
     public class ShiftedTimeComparer : IComparer<Tuple<DateTime, TimeSpan>>
     {

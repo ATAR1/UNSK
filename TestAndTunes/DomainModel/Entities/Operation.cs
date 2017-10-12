@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.Model
+namespace TestAndTunes.DomainModel.Entities
 {
     using System;
     using System.Collections.Generic;

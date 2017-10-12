@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes
 {

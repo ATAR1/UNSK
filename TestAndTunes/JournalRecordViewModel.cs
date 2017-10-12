@@ -1,5 +1,6 @@
 ﻿using System;
-using TestAndTunes.Model;
+using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes
 {
