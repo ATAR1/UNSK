@@ -170,7 +170,7 @@
     </Compile>
     <Compile Include="DateShiftVM.cs" />
     <Compile Include="Model\ShiftedTimeComparer.cs" />
-    <Compile Include="ShiftService.cs" />
+    <Compile Include="Model\ShiftService.cs" />
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />

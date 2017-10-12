@@ -52,7 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShiftServiceTests.cs" />
+    <Compile Include="Model\ShiftServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TestAndTunes\TestAndTunes.csproj">

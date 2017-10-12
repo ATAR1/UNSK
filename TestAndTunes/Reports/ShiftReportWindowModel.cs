@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Reporting.WinForms;
+using TestAndTunes.Model;
 
 namespace TestAndTunes.Reports
 {

@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestAndTunes.Model;
 
-namespace TestAndTunes.Tests
+namespace TestAndTunes.Model.Tests
 {
     [TestClass()]
     public class ShiftServiceTests
