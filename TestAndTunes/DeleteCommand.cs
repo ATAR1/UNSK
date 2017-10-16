@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 using TestAndTunes.ViewModels;
@@ -10,14 +11,14 @@ namespace TestAndTunes
     internal class DeleteCommand : ICommand
     {
         private JournalRecordViewModel _selectedRecord;
-        private JournalDBEntities _ctx;
+        private IJournalRepository _repository;
         private MainWindowModel _viewModel;
         private UncheckedRecord _uncheckedRecord;
 
-        public DeleteCommand(JournalDBEntities _ctx, MainWindowModel viewModel)
+        public DeleteCommand(IJournalRepository repository, MainWindowModel viewModel)
         {
             
-            this._ctx = _ctx;
+            this._repository = repository;
             _viewModel = viewModel;
             _uncheckedRecord = _viewModel.UncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
@@ -40,8 +41,8 @@ namespace TestAndTunes
         {
             if (MessageBox.Show("Удалить выбранную запись?","Внимание!",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                _ctx.JournalRecords.Remove(_selectedRecord.Model);
-                _ctx.SaveChanges();
+                _repository.Remove(_selectedRecord.Model);
+                _repository.SaveChanges();
                 _viewModel.RefreshJournalRecords();
                 _viewModel.RefreshTotals();
             }

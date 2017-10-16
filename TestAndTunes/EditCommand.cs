@@ -2,20 +2,20 @@
 using System.Windows.Input;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
     public class EditCommand:ICommand
     {
-        private JournalDBEntities _ctx;
+        
 
         private JournalRecordViewModel _selectedRecord;
 
         private UncheckedRecord _uncheckedRecord;
 
-        public EditCommand(JournalDBEntities _ctx, UncheckedRecord uncheckedRecord)
+        public EditCommand(UncheckedRecord uncheckedRecord)
         {
-            this._ctx = _ctx;
             _uncheckedRecord = uncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }

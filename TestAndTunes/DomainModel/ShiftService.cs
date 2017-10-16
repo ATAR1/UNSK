@@ -20,8 +20,8 @@ namespace TestAndTunes.DomainModel
         /// <returns>Доступные смены</returns>
         public IEnumerable<string> GetAvaliableShifts(DateTime date)
         {
-            int different = (int)(date - _startDate).TotalDays;
-            var positionInSheldue = (different % 4 + 4) % 4;
+            int difference = (int)(date - _startDate).TotalDays;
+            var positionInSheldue = (difference % 4 + 4) % 4;
             yield return _sheldue[positionInSheldue, 0];
             yield return _sheldue[positionInSheldue, 1];
         }

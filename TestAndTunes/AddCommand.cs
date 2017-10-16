@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
     internal class AddCommand : ICommand
     {
-        private JournalDBEntities _ctx;
+        private IJournalRepository _repository;
         private UncheckedRecord _uncheckedRecord;
 
-        public AddCommand(JournalDBEntities ctx, UncheckedRecord uncheckedRecord)
+        public AddCommand(IJournalRepository repository, UncheckedRecord uncheckedRecord)
         {
-            this._ctx = ctx;
+            this._repository = repository;
             _uncheckedRecord = uncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, args) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -33,7 +35,7 @@ namespace TestAndTunes
         {
             JournalRecord newRecord = new JournalRecord() { Date=StoredDate, Shift =StoredShift, WorkArea = StoredWorkArea };
             _uncheckedRecord.Model = newRecord;
-            _ctx.JournalRecords.Add(newRecord);
+            _repository.Add(newRecord);
         }
     }
 }

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
     internal class CancellCommand : ICommand
     {
         private UncheckedRecord _uncheckedRecord;
-        private JournalDBEntities _ctx;
+        private IJournalRepository _reporsitory;
 
-        public CancellCommand(JournalDBEntities ctx, UncheckedRecord uncheckedRecord)
+        public CancellCommand(IJournalRepository reporsitory, UncheckedRecord uncheckedRecord)
         {
-            this._ctx = ctx;
+            this._reporsitory = reporsitory;
             this._uncheckedRecord = uncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -27,17 +29,7 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            var entry = _ctx.Entry(_uncheckedRecord.Model);
-            switch(entry.State)
-            {
-                case EntityState.Modified:
-                    entry.CurrentValues.SetValues(entry.OriginalValues);
-                    entry.State = EntityState.Unchanged;
-                    break;
-                case EntityState.Added:
-                    entry.State = EntityState.Detached;
-                    break;
-            }
+            _reporsitory.CancellChanges(_uncheckedRecord.Model);            
             _uncheckedRecord.Model = null;
         }
     }

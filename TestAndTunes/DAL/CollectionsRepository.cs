@@ -4,13 +4,13 @@ using System.Linq;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
-namespace TestAndTunes
+namespace TestAndTunes.DAL
 {
-    public class Service
+    public class CollectionsRepository
     {
         private JournalDBEntities _ctx;
         
-        public Service(JournalDBEntities _ctx)
+        public CollectionsRepository(JournalDBEntities _ctx)
         {
             this._ctx = _ctx;
         }

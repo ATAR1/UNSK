@@ -164,7 +164,7 @@
     <Compile Include="Reports\TestAndTunesReportRecord.cs" />
     <Compile Include="Reports\TestAndTunesReportViewModel.cs" />
     <Compile Include="SaveCommand.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="DAL\CollectionsRepository.cs" />
     <Compile Include="DomainModel\Entities\Shift.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -181,6 +181,8 @@
     <Compile Include="TotalsModel.cs" />
     <Compile Include="TotalsTableVM.cs" />
     <Compile Include="UncheckedRecord.cs" />
+    <Compile Include="DAL\IJournalRepository.cs" />
+    <Compile Include="DAL\JournalRepository.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="DomainModel\Entities\Work.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 using TestAndTunes.ViewModels;
@@ -8,14 +9,14 @@ namespace TestAndTunes
 {
     public class SaveCommand : ICommand
     {
-        private JournalDBEntities _ctx;
+        private IJournalRepository _repository;
         private UncheckedRecord _uncheckedRecord;
         private MainWindowModel _viewModel;
 
-        public SaveCommand(UncheckedRecord uncheckedRecord, JournalDBEntities ctx, MainWindowModel vievModel)
+        public SaveCommand(UncheckedRecord uncheckedRecord, IJournalRepository repository, MainWindowModel vievModel)
         {
             this._uncheckedRecord = uncheckedRecord;
-            this._ctx = ctx;
+            this._repository = repository;
             _viewModel = vievModel;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -31,7 +32,7 @@ namespace TestAndTunes
         {            
             if (_uncheckedRecord.CheckModel())
             {
-                _ctx.SaveChanges();                
+                _repository.SaveChanges();                
                 ((AddCommand)_viewModel.AddCommand).StoredWorkArea = _uncheckedRecord.WorkArea;
                 ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.DateShift.Date;
                 ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.DateShift.Letter;

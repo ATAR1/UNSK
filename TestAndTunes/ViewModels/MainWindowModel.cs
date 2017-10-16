@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
@@ -16,32 +17,33 @@ namespace TestAndTunes.ViewModels
         private readonly ICommand _saveCommand;
         private readonly EditCommand _editCommand;
         private readonly DeleteCommand _deleteCommand;
-        private readonly ObservableCollection<Work> _operations = new ObservableCollection<Work>();
-        private readonly ObservableCollection<WorkArea> _areas = new ObservableCollection<WorkArea>();
-        private readonly ObservableCollection<Employee> _personal = new ObservableCollection<Employee>();
+        private readonly ICollection<Work> _operations = new ObservableCollection<Work>();
+        private readonly ICollection<WorkArea> _areas = new ObservableCollection<WorkArea>();
+        private readonly ICollection<Employee> _personal = new ObservableCollection<Employee>();
         private readonly ICommand _refreshCommand;
         
         private JournalRecordViewModel _selectedRecord;
         private ICommand _cancellCommand;
         private MenuModel _menu = new MenuModel();
         private bool onlyForCurrentShift;
-        private Service _service;
-        private JournalDBEntities _ctx;
+        private CollectionsRepository _service;
+        private IJournalRepository _journalRepository;
 
         public MainWindowModel()
         {
             try
             {
                 UncheckedRecord = new UncheckedRecord();
-                _ctx = new JournalDBEntities();
-                _service = new Service(_ctx);
-                _saveCommand = new SaveCommand(UncheckedRecord, _ctx, this);
-                _deleteCommand = new DeleteCommand(_ctx, this);
-                _editCommand = new EditCommand(_ctx, UncheckedRecord);
+                var ctx = new JournalDBEntities();
+                _journalRepository = new JournalRepository(ctx);
+                _service = new CollectionsRepository(ctx);
+                _saveCommand = new SaveCommand(UncheckedRecord, _journalRepository, this);
+                _deleteCommand = new DeleteCommand(_journalRepository, this);
+                _editCommand = new EditCommand(UncheckedRecord);
                 JournalRecords = new ObservableCollection<JournalRecordViewModel>();
                 _refreshCommand = new RefreshCommand(this);
-                _addCommand = new AddCommand(_ctx, UncheckedRecord);
-                _cancellCommand = new CancellCommand(_ctx, UncheckedRecord);
+                _addCommand = new AddCommand(_journalRepository, UncheckedRecord);
+                _cancellCommand = new CancellCommand(_journalRepository, UncheckedRecord);
                 
                 RefreshJournalRecords();
                 Shift = new DateShiftVM();
@@ -98,11 +100,11 @@ namespace TestAndTunes.ViewModels
                 List<JournalRecord> list;
                 if (OnlySelectedShift)
                 {
-                    list = _ctx.JournalRecords.Where(jr=>jr.Date== Shift.Date&&jr.Shift==Shift.Letter).ToList();
+                    list = _journalRepository.GetRecordsByDateAndShift(Shift.Date, Shift.Letter);
                 }
                 else
                 {
-                    list = _ctx.JournalRecords.Where(jr => jr.Date >=FromTheDate).ToList();
+                    list = _journalRepository.GetRecordsStartFrom(FromTheDate);
                 }
                 var collection = list.OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer()).Select(jr => new JournalRecordViewModel(jr));
                 foreach (var viewModel in collection)
