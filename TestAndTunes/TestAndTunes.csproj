@@ -117,11 +117,14 @@
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DeleteCommand.cs" />
+    <Compile Include="DomainModel\Entities\TotalsLine.cs" />
     <Compile Include="EditCommand.cs" />
     <Compile Include="DomainModel\Entities\Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MenuContainer.xaml.cs">
+    <Compile Include="Views\Fakes\SummaryFake.cs" />
+    <Compile Include="Views\Fakes\TotalsTableFake.cs" />
+    <Compile Include="Views\MenuContainer.xaml.cs">
       <DependentUpon>MenuContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\IReportWindowModel.cs" />
@@ -130,7 +133,7 @@
     </Compile>
     <Compile Include="DomainModel\Entities\JournalRecordPartial.cs" />
     <Compile Include="JournalRecordViewModel.cs" />
-    <Compile Include="MenuModel.cs" />
+    <Compile Include="ViewModels\MenuModel.cs" />
     <Compile Include="Reports\MonthReportViewModel.cs" />
     <Compile Include="Reports\PeriodReportWindow.xaml.cs">
       <DependentUpon>PeriodReportWindow.xaml</DependentUpon>
@@ -176,9 +179,9 @@
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />
     <Compile Include="ShowShiftReportCommand.cs" />
     <Compile Include="ShowSummaryForPeriodReportCommand.cs" />
-    <Compile Include="Summary.cs" />
+    <Compile Include="ViewModels\Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
-    <Compile Include="TotalsModel.cs" />
+    <Compile Include="DomainModel\Entities\TotalsTable.cs" />
     <Compile Include="TotalsTableVM.cs" />
     <Compile Include="UncheckedRecord.cs" />
     <Compile Include="DAL\IJournalRepository.cs" />
@@ -189,6 +192,12 @@
     </Compile>
     <Compile Include="DomainModel\Entities\WorkArea.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SummaryView.xaml.cs">
+      <DependentUpon>SummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TotalTableView.xaml.cs">
+      <DependentUpon>TotalTableView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -217,7 +226,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuContainer.xaml">
+    <Page Include="Views\MenuContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,6 +239,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Reports\ShiftReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TotalTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

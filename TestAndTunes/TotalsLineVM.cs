@@ -1,4 +1,5 @@
 ﻿using System;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes
 {
@@ -13,7 +14,7 @@ namespace TestAndTunes
 
         public int Quantity => Model.Quantity;
 
-        public abstract string Duration { get;  }// => Math.Round(_model.Duration.TotalHours, 2).ToString();
+        public abstract string Duration { get;  }
 
         public abstract string Normative { get; }
 

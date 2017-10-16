@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TestAndTunes.Views.SummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:TestAndTunes.Views"             
+             xmlns:entities ="clr-namespace:TestAndTunes.DomainModel.Entities"             
+             xmlns:fakes ="clr-namespace:TestAndTunes.Views.Fakes"
+             d:DataContext="{d:DesignInstance Type=fakes:SummaryFake, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d"
+             >
+    <Grid DataContext="{Binding}">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type entities:TotalsTable}">
+                <views:TotalTableView/>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ContentPresenter Margin="5" Content="{Binding TO1}"/>
+        <ContentPresenter Margin="5" Grid.Column="1" Content="{Binding TO2}"/>
+        <ContentPresenter Margin="5" Grid.Column="2" Content="{Binding UOGT}"/>
+    </Grid>
+</UserControl>

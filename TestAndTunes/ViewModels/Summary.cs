@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
+using TestAndTunes.DomainModel.Entities;
 
-namespace TestAndTunes
+namespace TestAndTunes.ViewModels
 {
     public class Summary:INotifyPropertyChanged
     {

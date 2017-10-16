@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Microsoft.Reporting.WinForms;
 using TestAndTunes.Reports;
+using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
@@ -17,14 +18,7 @@ namespace TestAndTunes
         }
 
         private string _month= "МЕСЯЦ";
-        private TotalsTableVM _summaryTO1 = new TotalsTableMonthView( new TotalsTable
-        {
-            Caption = "Участок",
-            Repair = new TotalsLine { Deviation = TimeSpan.FromMinutes(1) },
-            Tests = new TotalsLine { Deviation = TimeSpan.FromMinutes(1) },
-            Tunes = new TotalsLine { Deviation = TimeSpan.FromMinutes(1) },
-            Totals = new TotalsLine { Deviation = TimeSpan.FromMinutes(1) }
-        });
+        private TotalsTableVM _summaryTO1;
         private TotalsTableVM _summaryTO2;
         private TotalsTableVM _summaryUOGT;
         private int _year = 9999;

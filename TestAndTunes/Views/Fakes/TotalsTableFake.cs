@@ -1,8 +1,9 @@
 ﻿using System;
+using TestAndTunes.DomainModel.Entities;
 
-namespace TestAndTunes
+namespace TestAndTunes.Views.Fakes
 {
-    public class TotalsTable
+    public class TotalsTableFake
     {
         public string Caption { get; set; } = "test";
 
@@ -16,17 +17,4 @@ namespace TestAndTunes
 
     }
 
-    public class TotalsLine
-    {
-        public int Quantity { get; set; }
-
-        public TimeSpan Duration { get; set; }
-
-        public TimeSpan Normative { get; set; }
-
-        public TimeSpan Deviation { get; set; }
-
-        public bool TooLong => Duration > Normative;
-
-    }
 }

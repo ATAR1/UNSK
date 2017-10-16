@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TestAndTunes
+namespace TestAndTunes.ViewModels
 {
     public class MenuModel
     {

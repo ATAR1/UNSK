@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestAndTunes
+namespace TestAndTunes.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MenuContainer.xaml
+    /// Логика взаимодействия для SummaryView.xaml
     /// </summary>
-    public partial class MenuContainer : UserControl
+    public partial class SummaryView : UserControl
     {
-        public MenuContainer()
+        public SummaryView()
         {
             InitializeComponent();
         }
