@@ -9,14 +9,14 @@ namespace TestAndTunes
 {
     public class SaveCommand : ICommand
     {
-        private IJournalRepository _repository;
+        private IJournal _journal;
         private UncheckedRecord _uncheckedRecord;
         private MainWindowModel _viewModel;
 
-        public SaveCommand(UncheckedRecord uncheckedRecord, IJournalRepository repository, MainWindowModel vievModel)
+        public SaveCommand(UncheckedRecord uncheckedRecord, IJournal journal, MainWindowModel vievModel)
         {
             this._uncheckedRecord = uncheckedRecord;
-            this._repository = repository;
+            this._journal = journal;
             _viewModel = vievModel;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -32,7 +32,7 @@ namespace TestAndTunes
         {            
             if (_uncheckedRecord.CheckModel())
             {
-                _repository.SaveChanges();                
+                _journal.SaveChanges();                
                 ((AddCommand)_viewModel.AddCommand).StoredWorkArea = _uncheckedRecord.WorkArea;
                 ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.DateShift.Date;
                 ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.DateShift.Letter;

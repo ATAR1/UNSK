@@ -36,14 +36,15 @@ namespace TestAndTunes.ViewModels
                 UncheckedRecord = new UncheckedRecord();
                 var ctx = new JournalDBEntities();
                 _journalRepository = new JournalRepository(ctx);
+                var journal = new Journal(ctx);
                 _service = new CollectionsRepository(ctx);
-                _saveCommand = new SaveCommand(UncheckedRecord, _journalRepository, this);
-                _deleteCommand = new DeleteCommand(_journalRepository, this);
+                _saveCommand = new SaveCommand(UncheckedRecord, journal, this);
+                _deleteCommand = new DeleteCommand(journal, this);
                 _editCommand = new EditCommand(UncheckedRecord);
                 JournalRecords = new ObservableCollection<JournalRecordViewModel>();
                 _refreshCommand = new RefreshCommand(this);
-                _addCommand = new AddCommand(_journalRepository, UncheckedRecord);
-                _cancellCommand = new CancellCommand(_journalRepository, UncheckedRecord);
+                _addCommand = new AddCommand(journal, UncheckedRecord);
+                _cancellCommand = new CancellCommand(journal, UncheckedRecord);
                 
                 RefreshJournalRecords();
                 Shift = new DateShiftVM();

@@ -113,6 +113,8 @@
     </ApplicationDefinition>
     <Compile Include="AddCommand.cs" />
     <Compile Include="CancellCommand.cs" />
+    <Compile Include="DAL\IJournal.cs" />
+    <Compile Include="DAL\Journal.cs" />
     <Compile Include="DomainModel\Entities\Defectoscope.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>

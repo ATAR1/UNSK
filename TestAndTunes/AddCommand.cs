@@ -9,12 +9,12 @@ namespace TestAndTunes
 {
     internal class AddCommand : ICommand
     {
-        private IJournalRepository _repository;
+        private IJournal _journal;
         private UncheckedRecord _uncheckedRecord;
 
-        public AddCommand(IJournalRepository repository, UncheckedRecord uncheckedRecord)
+        public AddCommand(IJournal journal, UncheckedRecord uncheckedRecord)
         {
-            this._repository = repository;
+            this._journal = journal;
             _uncheckedRecord = uncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, args) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -35,7 +35,7 @@ namespace TestAndTunes
         {
             JournalRecord newRecord = new JournalRecord() { Date=StoredDate, Shift =StoredShift, WorkArea = StoredWorkArea };
             _uncheckedRecord.Model = newRecord;
-            _repository.Add(newRecord);
+            _journal.Add(newRecord);
         }
     }
 }

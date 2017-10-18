@@ -20,7 +20,7 @@ namespace TestAndTunes
 
         public IEnumerable<ReportLine> GetReportLines()
         {
-            yield return new ReportLine() { Header = "Настройки", Quantity=Tunes.Quantity, Duration=Tunes.Duration, Normative=Tunes.Normative, Deviation=Tunes.Deviation , TooLong = Tunes.TooLong };
+            yield return new ReportLine() { Header = "Настройки", Quantity = Tunes.Quantity, Duration = Tunes.Duration, Normative = Tunes.Normative, Deviation = Tunes.Deviation, TooLong = Tunes.TooLong };
 
             yield return new ReportLine() { Header = "Проверки", Deviation = Tests.Deviation, Normative = Tests.Normative, Duration = Tests.Duration, Quantity = Tests.Quantity, TooLong = Tests.TooLong };
 
@@ -32,22 +32,22 @@ namespace TestAndTunes
         }
     }
 
-    public class TotalsTableMonthView:TotalsTableVM
+    public class TotalsTableMonthView : TotalsTableVM
     {
         private TotalsLineVM _repair;
         private TotalsLineVM _tests;
         private TotalsLineVM _totals;
         private TotalsLineVM _tunes;
 
-        public TotalsTableMonthView(TotalsTable model):base(model)
+        public TotalsTableMonthView(TotalsTable model) : base(model)
         {
             _repair = new TotalLineForMonth(model.Repair);
             _tests = new TotalLineForMonth(model.Tests);
             _tunes = new TotalLineForMonth(model.Tunes);
             _totals = new TotalLineForMonth(model.Totals);
         }
-        
-        public override TotalsLineVM Repair=> _repair;
+
+        public override TotalsLineVM Repair => _repair;
 
         public override TotalsLineVM Tests => _tests;
 
