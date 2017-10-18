@@ -2,6 +2,7 @@
 using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.Linq;
+using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes.Reports
 {

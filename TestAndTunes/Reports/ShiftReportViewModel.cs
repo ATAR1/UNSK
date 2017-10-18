@@ -10,13 +10,13 @@ namespace TestAndTunes.Reports
     public class ShiftReportViewModel : IShiftReportViewModel
     {
         private ICollection<ShiftWorkAreaGroup> _groupHeaders;
-        private IEnumerable<JournalRecord> _lournalRecords;
+        private IEnumerable<JournalRecord> _journalRecords;
 
-        public DateTime Date { get;  set; }
+        public DateTime Date { get; set; }
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftReport.rdlc";
 
-        public string Shift { get;  set; }
+        public string Shift { get; set; }
 
         public ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
 
@@ -29,22 +29,22 @@ namespace TestAndTunes.Reports
             var shift = parameters["Shift"].Values[0];
             var workArea = parameters["WorkArea"].Values[0];
             e.DataSources.Add(new ReportDataSource("DataSet1"));
-            e.DataSources["DataSet1"].Value = _lournalRecords
+            e.DataSources["DataSet1"].Value = _journalRecords
                 .Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea)
                 .Select(jr => new Record
                 {
                     Defectoscope = jr.DefectoscopeName,
                     Duration = jr.Duration.TotalMinutes,
-                    Normative=jr.Normative.TotalMinutes,
+                    Normative = jr.Normative.TotalMinutes,
                     End = jr.End,
-                    Start=jr.Start,
+                    Start = jr.Start,
                     Operation = jr.OperationName,
                     Description = jr.Description
                 })
                 .ToList();
 
             e.DataSources.Add(new ReportDataSource("DataSet2"));
-            e.DataSources["DataSet2"].Value = _lournalRecords
+            e.DataSources["DataSet2"].Value = _journalRecords
                 .Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea)
                 .GroupBy(jr => jr.Operation.Work.OperationGroup)
                 .Select(g => new Summary
@@ -62,14 +62,14 @@ namespace TestAndTunes.Reports
             dataSources.Add(new ReportDataSource("DataSet1"));
             dataSources["DataSet1"].Value = GroupHeaders;
         }
-        
+
 
         public void Load()
         {
             ReportService service = new ReportService();
             var was = service.GetWorkAreas();
-            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = Date, Shift = Shift, WorkArea = wa }).ToList();            
-            _lournalRecords = service.GetForTheShift(Date, Shift);
+            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = Date, Shift = Shift, WorkArea = wa }).ToList();
+            _journalRecords = service.GetForTheShift(Date, Shift);
         }
 
         public class Summary
@@ -107,14 +107,15 @@ namespace TestAndTunes.Reports
 
             public bool TooLong => Deviation > 0;
         }
-        
-    }
-    public class ShiftWorkAreaGroup
-    {
-        public DateTime Date { get; set; }
 
-        public string Shift { get; set; }
 
-        public string WorkArea { get; set; }
+        public class ShiftWorkAreaGroup
+        {
+            public DateTime Date { get; set; }
+
+            public string Shift { get; set; }
+
+            public string WorkArea { get; set; }
+        }
     }
 }

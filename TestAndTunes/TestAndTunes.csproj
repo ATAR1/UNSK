@@ -152,7 +152,7 @@
     <Compile Include="ReportLine.cs" />
     <Compile Include="ReportService.cs" />
     <Compile Include="Reports\IReportViewModel.cs" />
-    <Compile Include="Reports\MonthShiftReportRecord.cs" />
+    <Compile Include="Reports\Models\MonthShiftReportRecord.cs" />
     <Compile Include="Reports\MonthShiftReportViewModel.cs" />
     <Compile Include="Reports\ReportFactory.cs" />
     <Compile Include="Reports\ShiftReportViewModel.cs" />
@@ -160,13 +160,13 @@
       <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\ShiftReportWindowModel.cs" />
-    <Compile Include="Reports\ShiftsReportRecord.cs" />
+    <Compile Include="Reports\Models\ShiftsReportRecord.cs" />
     <Compile Include="Reports\ShiftsReportViewModel.cs" />
     <Compile Include="Reports\MonthReportWindow.xaml.cs">
       <DependentUpon>MonthReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\MonthReportWindowModel.cs" />
-    <Compile Include="Reports\TestAndTunesReportRecord.cs" />
+    <Compile Include="Reports\Models\TestAndTunesReportRecord.cs" />
     <Compile Include="Reports\TestAndTunesReportViewModel.cs" />
     <Compile Include="SaveCommand.cs" />
     <Compile Include="DAL\CollectionsRepository.cs" />

@@ -4,6 +4,7 @@ using System.Linq;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 using TestAndTunes.Reports;
+using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes
 {

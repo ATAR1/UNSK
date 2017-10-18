@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
+using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes.Reports
 {

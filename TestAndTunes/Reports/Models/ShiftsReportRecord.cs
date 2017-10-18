@@ -1,14 +1,13 @@
-﻿namespace TestAndTunes.Reports
-{
-    public class MonthShiftReportRecord
-    {
-        public string Month { get; set; }
+﻿using System;
 
-        public string Year { get; set; }
+namespace TestAndTunes.Reports.Models
+{
+    public class ShiftsReportRecord
+    {
+        public DateTime Date { get; set; }
+        public string WorkArea { get; set; }
 
         public string Shift { get; set; }
-
-        public string WorkArea { get; set; }
 
         public string RecordHeader { get; set; }
 
@@ -18,6 +17,6 @@
 
         public double Normative { get; internal set; }
 
-        public int Quantity { get; internal set; }
+        public int Quantity { get; internal set; }        
     }
 }
