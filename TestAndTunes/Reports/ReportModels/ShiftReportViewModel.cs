@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Linq;
-using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes.Reports
@@ -11,6 +10,11 @@ namespace TestAndTunes.Reports
     {
         private ICollection<ShiftWorkAreaGroup> _groupHeaders;
         private IEnumerable<JournalRecord> _journalRecords;
+
+        public ShiftReportViewModel(DateTime date, string shift)
+        {
+            
+        }
 
         public DateTime Date { get; set; }
 
@@ -24,7 +28,7 @@ namespace TestAndTunes.Reports
 
         private void SubreportProcessingHandler(object sender, SubreportProcessingEventArgs e)
         {
-            var parameters = e.Parameters;
+            var parameters = e.Parameters;            
             var date = DateTime.Parse(parameters["Date"].Values[0]);
             var shift = parameters["Shift"].Values[0];
             var workArea = parameters["WorkArea"].Values[0];
@@ -70,6 +74,11 @@ namespace TestAndTunes.Reports
             var was = service.GetWorkAreas();
             _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = Date, Shift = Shift, WorkArea = wa }).ToList();
             _journalRecords = service.GetForTheShift(Date, Shift);
+        }
+
+        public void SetReportParameters(LocalReport localReport)
+        {
+            throw new NotImplementedException();
         }
 
         public class Summary

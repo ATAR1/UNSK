@@ -1,19 +1,28 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace TestAndTunes.Reports
+namespace TestAndTunes.Reports.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ShiftReportWindow.xaml
+    /// Логика взаимодействия для ReportViewerHost.xaml
     /// </summary>
-    public partial class ShiftReportWindow : Window
+    public partial class ReportViewerHost : UserControl
     {
-
-        public ShiftReportWindow()
+        public ReportViewerHost()
         {
             InitializeComponent();
-            var shiftReportWindowModel = new ShiftReportWindowModel();            
-            shiftReportWindowModel.RefreshCommand = new  CreateShiftReportCommand(shiftReportWindowModel);
-            this.DataContext = shiftReportWindowModel;
         }
 
         private void reportViewerHost_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -23,8 +32,9 @@ namespace TestAndTunes.Reports
             IReportViewModel reportViewModel = (IReportViewModel)e.NewValue;
             if (reportViewModel != null && localReport != null)
             {
-                reportViewer.LocalReport.ReportEmbeddedResource = reportViewModel.ReportEmbeddedResource;
+                localReport.ReportEmbeddedResource = reportViewModel.ReportEmbeddedResource;
                 reportViewModel.FillDataSources(localReport.DataSources);
+                reportViewModel.SetReportParameters(localReport);
                 if (reportViewModel.SubreportProcessing != null)
                 {
                     reportViewer.LocalReport.SubreportProcessing += reportViewModel.SubreportProcessing;

@@ -102,6 +102,8 @@ namespace TestAndTunes
             set;
         }
 
+        public SubreportProcessingEventHandler SubreportProcessing => null;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         internal IEnumerable<MonthReportViewModel> GetLine()
@@ -135,6 +137,11 @@ namespace TestAndTunes
         public void Load()
         {
             Load(BeginDate, EndDate);
+        }
+
+        public void SetReportParameters(LocalReport localReport)
+        {
+            throw new NotImplementedException();
         }
     }
 }

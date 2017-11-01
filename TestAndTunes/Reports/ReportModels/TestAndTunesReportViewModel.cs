@@ -27,6 +27,8 @@ namespace TestAndTunes.Reports
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.TestAndTunesReport.rdlc";
 
+        public SubreportProcessingEventHandler SubreportProcessing => null;
+
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {
             dataSources.Add(new ReportDataSource("DataSet1"));
@@ -38,6 +40,11 @@ namespace TestAndTunes.Reports
         public void Load()
         {
             Load(BeginDate, EndDate);
+        }
+
+        public void SetReportParameters(LocalReport localReport)
+        {
+            throw new NotImplementedException();
         }
 
         private void Load(DateTime beginDate, DateTime endDate)
