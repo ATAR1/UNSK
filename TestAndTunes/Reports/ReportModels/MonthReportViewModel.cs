@@ -7,7 +7,7 @@ using TestAndTunes.ViewModels;
 
 namespace TestAndTunes
 {
-    public class MonthReportViewModel:INotifyPropertyChanged, IPeriodReportViewModel
+    public class MonthReportViewModel : IReportViewModel
     {
         private string _layout = "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
 
@@ -17,131 +17,39 @@ namespace TestAndTunes
             set { _layout = value; }
         }
 
-        private string _month= "МЕСЯЦ";
         private TotalsTableVM _summaryTO1;
         private TotalsTableVM _summaryTO2;
         private TotalsTableVM _summaryUOGT;
-        private int _year = 9999;
 
-        public string Month
+        public MonthReportViewModel(DateTime beginDate, DateTime endDate)
         {
-            get
-            {
-                return _month;
-            }
-            set
-            {
-                _month = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ReportHeader)));
-            }
+            Load(beginDate,endDate);
         }
-
-        public string ReportHeader => $"Простои оборудования УНСК за {Month} {Year} года.";
-
-        public TotalsTableVM SummaryPerMonth
-        {
-            get { return _summaryTO1; }
-            set
-            {
-                _summaryTO1 = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SummaryPerMonth)));
-            }
-        }
-
-
-        public TotalsTableVM SummaryTO2
-        {
-            get
-            {
-                return _summaryTO2;
-            }
-            set
-            {
-                _summaryTO2 = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SummaryTO2)));
-            }
-        }
-
-
-        public TotalsTableVM SummaryUOGT
-        {
-            get
-            {
-                return _summaryUOGT;
-            }
-            set
-            {
-                _summaryUOGT = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SummaryUOGT)));
-            }
-        }
-
-
-        public int Year
-        {
-            get { return _year; }
-            set
-            {
-                _year = value;
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ReportHeader)));
-            }
-        }
-
-        public DateTime BeginDate
-        {
-            get;
-
-            set;
-        }
-
-        public DateTime EndDate
-        {
-            get;
-
-            set;
-        }
-
+        //public string ReportHeader => $"Простои оборудования УНСК за {Month} {Year} года.";
+        
         public SubreportProcessingEventHandler SubreportProcessing => null;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Action<LocalReport> SetReportParameters { get; set; }
 
-        internal IEnumerable<MonthReportViewModel> GetLine()
-        {
-            yield return this;
-        }
 
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {
             dataSources.Add(new ReportDataSource("TO1DataSet"));
             dataSources.Add(new ReportDataSource("TO2DataSet"));
             dataSources.Add(new ReportDataSource("UOGTDataSet"));
-            dataSources.Add(new ReportDataSource("ReportDataSet"));
 
-            dataSources["TO1DataSet"].Value =   SummaryPerMonth.GetReportLines();
-            dataSources["TO2DataSet"].Value =   SummaryTO2.GetReportLines();
-            dataSources["UOGTDataSet"].Value =  SummaryUOGT.GetReportLines();
-            dataSources["ReportDataSet"].Value= GetLine();
+            dataSources["TO1DataSet"].Value = _summaryTO1.GetReportLines();
+            dataSources["TO2DataSet"].Value = _summaryTO2.GetReportLines();
+            dataSources["UOGTDataSet"].Value = _summaryUOGT.GetReportLines();
         }
 
         private void Load(DateTime beginDate, DateTime endDate)
         {
             ReportService service = new ReportService();
-            SummaryPerMonth = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО1"));
-            SummaryTO2 = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО2"));
-            SummaryUOGT = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "УОГТ"));
-            Month = beginDate.ToString("MMMM");
-            Year = beginDate.Year; ;
+            _summaryTO1 = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО1"));
+            _summaryTO2 = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "ТО2"));
+            _summaryUOGT = new TotalsTableMonthView(service.GenerateTotals(beginDate, endDate, "УОГТ"));            
         }
-
-        public void Load()
-        {
-            Load(BeginDate, EndDate);
-        }
-
-        public void SetReportParameters(LocalReport localReport)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

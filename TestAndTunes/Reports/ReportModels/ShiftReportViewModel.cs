@@ -6,23 +6,27 @@ using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes.Reports
 {
-    public class ShiftReportViewModel : IShiftReportViewModel
+    public class ShiftReportViewModel : IReportViewModel
     {
         private ICollection<ShiftWorkAreaGroup> _groupHeaders;
         private IEnumerable<JournalRecord> _journalRecords;
+        private DateTime _date;
+        private string _shift;
 
         public ShiftReportViewModel(DateTime date, string shift)
         {
-            
+            _date = date;
+            _shift = shift;
+            Load();
         }
-
-        public DateTime Date { get; set; }
+        
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftReport.rdlc";
+        
 
-        public string Shift { get; set; }
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
 
-        public ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
+        private ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
 
         public SubreportProcessingEventHandler SubreportProcessing => SubreportProcessingHandler;
 
@@ -68,18 +72,14 @@ namespace TestAndTunes.Reports
         }
 
 
-        public void Load()
+        private void Load()
         {
             ReportService service = new ReportService();
             var was = service.GetWorkAreas();
-            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = Date, Shift = Shift, WorkArea = wa }).ToList();
-            _journalRecords = service.GetForTheShift(Date, Shift);
+            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = _date, Shift = _shift, WorkArea = wa }).ToList();
+            _journalRecords = service.GetForTheShift(_date, _shift);
         }
-
-        public void SetReportParameters(LocalReport localReport)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public class Summary
         {

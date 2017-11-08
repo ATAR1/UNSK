@@ -13,6 +13,9 @@ namespace TestAndTunes
         public void Execute(object parameter)
         {
             var window = new PeriodReportWindow();
+            var periodReportWindowViewModel = new PeriodReportWindowViewModel();
+            periodReportWindowViewModel.RefreshCommand = new GenerateSummaryForPeriodReportCommand(periodReportWindowViewModel);
+            window.DataContext = periodReportWindowViewModel;
             window.ShowDialog();
         }
     }

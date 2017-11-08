@@ -431,7 +431,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!ReportHeader.Value, "ReportDataSet")</Value>
+                <Value>=Parameters!ReportHeader.Value</Value>
                 <Style>
                   <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1534,43 +1534,6 @@
         <rd:DataSetName>TestAndTunes</rd:DataSetName>
         <rd:TableName>ReportLine</rd:TableName>
         <rd:ObjectDataSourceType>TestAndTunes.ReportLine, TestAndTunes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-    <DataSet Name="ReportDataSet">
-      <Query>
-        <DataSourceName>TestAndTunes</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <Fields>
-        <Field Name="Month">
-          <DataField>Month</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ReportHeader">
-          <DataField>ReportHeader</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="SummaryPerMonth">
-          <DataField>SummaryPerMonth</DataField>
-          <rd:TypeName>TestAndTunes.TotalsTableVM</rd:TypeName>
-        </Field>
-        <Field Name="SummaryTO2">
-          <DataField>SummaryTO2</DataField>
-          <rd:TypeName>TestAndTunes.TotalsTableVM</rd:TypeName>
-        </Field>
-        <Field Name="SummaryUOGT">
-          <DataField>SummaryUOGT</DataField>
-          <rd:TypeName>TestAndTunes.TotalsTableVM</rd:TypeName>
-        </Field>
-        <Field Name="Year">
-          <DataField>Year</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>TestAndTunes</rd:DataSetName>
-        <rd:TableName>MonthReportViewModel</rd:TableName>
-        <rd:ObjectDataSourceType>TestAndTunes.MonthReportViewModel, TestAndTunes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

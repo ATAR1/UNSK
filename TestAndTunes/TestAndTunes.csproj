@@ -124,6 +124,11 @@
     <Compile Include="DomainModel\Entities\Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\GenerateSummaryForPeriodReportCommand.cs" />
+    <Compile Include="Reports\CreateShiftReportCommand.cs" />
+    <Compile Include="Reports\GenerateMonthShiftReportCommand.cs" />
+    <Compile Include="Reports\GenerateShiftsReportCommand.cs" />
+    <Compile Include="Reports\GenerateTestAndTunesReportCommand.cs" />
     <Compile Include="Reports\Views\ReportViewerHost.xaml.cs">
       <DependentUpon>ReportViewerHost.xaml</DependentUpon>
     </Compile>
@@ -144,7 +149,6 @@
       <DependentUpon>PeriodReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\PeriodReportWindowViewModel.cs" />
-    <Compile Include="Reports\RefreshReportCommand.cs" />
     <Compile Include="DomainModel\Entities\Normative.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -157,7 +161,6 @@
     <Compile Include="Reports\IReportViewModel.cs" />
     <Compile Include="Reports\Models\MonthShiftReportRecord.cs" />
     <Compile Include="Reports\ReportModels\MonthShiftReportViewModel.cs" />
-    <Compile Include="Reports\ReportFactory.cs" />
     <Compile Include="Reports\ReportModels\ShiftReportViewModel.cs" />
     <Compile Include="Reports\ShiftReportWindow.xaml.cs">
       <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
@@ -183,7 +186,7 @@
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />
     <Compile Include="ShowShiftReportCommand.cs" />
-    <Compile Include="ShowSummaryForPeriodReportCommand.cs" />
+    <Compile Include="Reports\ShowSummaryForPeriodReportCommand.cs" />
     <Compile Include="ViewModels\Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="DomainModel\Entities\TotalsTable.cs" />

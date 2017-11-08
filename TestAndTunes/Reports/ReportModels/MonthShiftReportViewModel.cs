@@ -5,21 +5,14 @@ using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes.Reports
 {
-    class MonthShiftReportViewModel: IPeriodReportViewModel
-    {
-        public DateTime BeginDate
+    class MonthShiftReportViewModel: IReportViewModel
+    {   
+        public MonthShiftReportViewModel(DateTime beginDate, DateTime endDate)
         {
-            get;
-
-            set;
+            Load(beginDate,endDate);
         }
 
-        public DateTime EndDate
-        {
-            get;
-
-            set;
-        }
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftMonthReport.rdlc";
 
@@ -32,17 +25,7 @@ namespace TestAndTunes.Reports
             dataSources.Add(new ReportDataSource("DataSet1"));
             dataSources["DataSet1"].Value = ReportRecords;
         }
-
-        public void Load()
-        {
-            Load(BeginDate, EndDate);
-        }
-
-        public void SetReportParameters(LocalReport localReport)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private void Load(DateTime beginDate, DateTime endDate)
         {
             ReportService service = new ReportService();

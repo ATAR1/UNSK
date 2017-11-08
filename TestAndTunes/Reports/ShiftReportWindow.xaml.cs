@@ -10,27 +10,7 @@ namespace TestAndTunes.Reports
 
         public ShiftReportWindow()
         {
-            InitializeComponent();
-            var shiftReportWindowModel = new ShiftReportWindowModel();            
-            shiftReportWindowModel.RefreshCommand = new  CreateShiftReportCommand(shiftReportWindowModel);
-            this.DataContext = shiftReportWindowModel;
-        }
-
-        private void reportViewerHost_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (reportViewer == null) return;
-            var localReport = reportViewer.LocalReport;
-            IReportViewModel reportViewModel = (IReportViewModel)e.NewValue;
-            if (reportViewModel != null && localReport != null)
-            {
-                reportViewer.LocalReport.ReportEmbeddedResource = reportViewModel.ReportEmbeddedResource;
-                reportViewModel.FillDataSources(localReport.DataSources);
-                if (reportViewModel.SubreportProcessing != null)
-                {
-                    reportViewer.LocalReport.SubreportProcessing += reportViewModel.SubreportProcessing;
-                }
-            }
-            reportViewer.RefreshReport();
-        }
+            InitializeComponent();            
+        }        
     }
 }

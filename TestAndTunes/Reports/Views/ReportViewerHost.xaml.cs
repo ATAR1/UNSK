@@ -34,7 +34,7 @@ namespace TestAndTunes.Reports.Views
             {
                 localReport.ReportEmbeddedResource = reportViewModel.ReportEmbeddedResource;
                 reportViewModel.FillDataSources(localReport.DataSources);
-                reportViewModel.SetReportParameters(localReport);
+                reportViewModel.SetReportParameters?.Invoke(localReport);
                 if (reportViewModel.SubreportProcessing != null)
                 {
                     reportViewer.LocalReport.SubreportProcessing += reportViewModel.SubreportProcessing;

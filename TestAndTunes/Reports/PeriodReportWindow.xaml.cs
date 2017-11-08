@@ -11,12 +11,7 @@ namespace TestAndTunes.Reports
         public PeriodReportWindow()
         {
             InitializeComponent();
-            DataContext = new PeriodReportWindowViewModel(reportViewer);
         }
-
-        private void reportViewerHost_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            
-        }
+        
     }
 }

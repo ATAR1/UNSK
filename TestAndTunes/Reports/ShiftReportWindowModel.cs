@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Reporting.WinForms;
 using TestAndTunes.DomainModel;
 
 namespace TestAndTunes.Reports
@@ -61,7 +60,7 @@ namespace TestAndTunes.Reports
                 return _report;
             }
             
-            private set
+            set
             {
                 if(_report!=value)
                 {
@@ -70,19 +69,8 @@ namespace TestAndTunes.Reports
                 }
             }
         }
-
-        public SubreportProcessingEventHandler SubreportProcessing { get; private set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-
-        //public void RefreshReport()
-        //{
-        //    var report = new ShiftReportViewModel(Date,Shift);
-        //    report.Date = Date;
-        //    report.Shift = Shift;
-        //    report.Load();
-        //    SubreportProcessing = report.SubreportProcessing;
-        //    Report = report;
-        //}
+        
     }
 }

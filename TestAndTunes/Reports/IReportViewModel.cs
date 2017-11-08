@@ -11,21 +11,21 @@ namespace TestAndTunes.Reports
 
         SubreportProcessingEventHandler SubreportProcessing { get; }
 
-        void Load();
+        //void Load();
 
-        void SetReportParameters(LocalReport localReport);
+        Action<LocalReport> SetReportParameters { get; set; }
     }
 
-    public interface IPeriodReportViewModel : IReportViewModel
-    {
-        DateTime BeginDate { get; set; }
-        DateTime EndDate { get; set; }
-    }
+    //public interface IPeriodReportViewModel : IReportViewModel
+    //{
+    //    DateTime BeginDate { get; }
+    //    DateTime EndDate { get; }
+    //}
 
-    public interface IShiftReportViewModel : IReportViewModel
-    {
-        DateTime Date { get; set; }
+    //public interface IShiftReportViewModel : IReportViewModel
+    //{
+    //    DateTime Date { get; }
 
-        string Shift { get; set; }
-    }
+    //    string Shift { get; }
+    //}
 }

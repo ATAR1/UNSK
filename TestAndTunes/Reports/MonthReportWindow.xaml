@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAndTunes.Reports"
         mc:Ignorable="d"
-        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+        xmlns:views ="clr-namespace:TestAndTunes.Reports.Views"
         Title="ShiftsReportWindow" Height="600" Width="800">
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="Файл">
-                <MenuItem Header="Сохранить" Click="MenuItem_Click" />
-                <MenuItem Header="Печать" Click="MenuItem_Click_1" />
+                <MenuItem Header="Сохранить" />
+                <MenuItem Header="Печать" />
             </MenuItem>
         </Menu>
         <DockPanel LastChildFill="False" Grid.Row="1">
@@ -29,8 +29,6 @@
                 <Image Source="../Images/112_RefreshArrow_Blue_48x48_72.png" />
             </Button>
         </DockPanel>
-        <WindowsFormsHost Grid.Row="3" DataContext="{Binding Report}"  x:Name="reportViewerHost" DataContextChanged="reportViewerHost_DataContextChanged">
-            <rv:ReportViewer x:Name="reportViewer"/>
-        </WindowsFormsHost>
+        <views:ReportViewerHost Grid.Row="3" DataContext="{Binding Report}"  x:Name="reportViewerHost"/>
     </Grid>
 </Window>
