@@ -4,6 +4,9 @@ using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
+    /// <summary>
+    /// Комманда показать сменный рапорт
+    /// </summary>
     internal class ShowShiftReportCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
