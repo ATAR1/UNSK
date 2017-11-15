@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Reporting.WinForms;
 using TestAndTunes.DomainModel;
 
 namespace TestAndTunes.Reports
 {
     internal class ShiftReportWindowModel:IReportWindowModel
     {
-        private ICommand _refreshCommand;
         private IReportViewModel _report;
         private ShiftService _shiftService = new ShiftService();
         private DateTime _date = DateTime.Today;
         private string _shift;
+        
 
-        public ShiftReportWindowModel()
-        {
-            _refreshCommand = new RefreshReportCommand(this);
-        }
-
-        public ICommand RefreshCommand => _refreshCommand;
+        public ICommand RefreshCommand { get; set; }
 
         public ICollection<string> Shifts
         {
@@ -66,7 +60,7 @@ namespace TestAndTunes.Reports
                 return _report;
             }
             
-            private set
+            set
             {
                 if(_report!=value)
                 {
@@ -75,19 +69,8 @@ namespace TestAndTunes.Reports
                 }
             }
         }
-
-        public SubreportProcessingEventHandler SubreportProcessing { get; private set; }
         
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void RefreshReport()
-        {
-            var report = new ShiftReportViewModel();
-            report.Date = Date;
-            report.Shift = Shift;
-            report.Load();
-            SubreportProcessing = report.SubreportProcessing;
-            Report = report;
-        }
+        
     }
 }

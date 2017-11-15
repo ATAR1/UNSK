@@ -5,36 +5,27 @@ using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes.Reports
 {
-    public class ShiftsReportViewModel: IPeriodReportViewModel
+    public class ShiftsReportViewModel: IReportViewModel
     {
-        public DateTime BeginDate
+        public ShiftsReportViewModel(DateTime beginDate, DateTime endDate)
         {
-            get;
-            set;
+            Load(beginDate,endDate);
         }
-
-        public DateTime EndDate
-        {
-            get;
-
-            set;
-        }
+        
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.DailyMonthReport.rdlc";
 
         public ICollection<ShiftsReportRecord> ReportRecords { get; set; }
+
+        public SubreportProcessingEventHandler SubreportProcessing => null;
 
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {
             dataSources.Add(new ReportDataSource("ShiftReportDataSet"));
             dataSources["ShiftReportDataSet"].Value = ReportRecords;
         }
-
-        public void Load()
-        {
-            Load(BeginDate, EndDate);
-        }
-
+         
         private void Load(DateTime beginDate, DateTime endDate)
         {
             ReportService service = new ReportService();

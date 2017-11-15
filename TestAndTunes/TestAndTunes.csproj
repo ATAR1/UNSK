@@ -124,6 +124,14 @@
     <Compile Include="DomainModel\Entities\Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\GenerateSummaryForPeriodReportCommand.cs" />
+    <Compile Include="Reports\CreateShiftReportCommand.cs" />
+    <Compile Include="Reports\GenerateMonthShiftReportCommand.cs" />
+    <Compile Include="Reports\GenerateShiftsReportCommand.cs" />
+    <Compile Include="Reports\GenerateTestAndTunesReportCommand.cs" />
+    <Compile Include="Reports\Views\ReportViewerHost.xaml.cs">
+      <DependentUpon>ReportViewerHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Fakes\SummaryFake.cs" />
     <Compile Include="Views\Fakes\TotalsTableFake.cs" />
     <Compile Include="Views\MenuContainer.xaml.cs">
@@ -136,12 +144,11 @@
     <Compile Include="DomainModel\Entities\JournalRecordPartial.cs" />
     <Compile Include="JournalRecordViewModel.cs" />
     <Compile Include="ViewModels\MenuModel.cs" />
-    <Compile Include="Reports\MonthReportViewModel.cs" />
+    <Compile Include="Reports\ReportModels\MonthReportViewModel.cs" />
     <Compile Include="Reports\PeriodReportWindow.xaml.cs">
       <DependentUpon>PeriodReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\PeriodReportWindowViewModel.cs" />
-    <Compile Include="Reports\RefreshReportCommand.cs" />
     <Compile Include="DomainModel\Entities\Normative.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
@@ -153,21 +160,20 @@
     <Compile Include="ReportService.cs" />
     <Compile Include="Reports\IReportViewModel.cs" />
     <Compile Include="Reports\Models\MonthShiftReportRecord.cs" />
-    <Compile Include="Reports\MonthShiftReportViewModel.cs" />
-    <Compile Include="Reports\ReportFactory.cs" />
-    <Compile Include="Reports\ShiftReportViewModel.cs" />
+    <Compile Include="Reports\ReportModels\MonthShiftReportViewModel.cs" />
+    <Compile Include="Reports\ReportModels\ShiftReportViewModel.cs" />
     <Compile Include="Reports\ShiftReportWindow.xaml.cs">
       <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\ShiftReportWindowModel.cs" />
     <Compile Include="Reports\Models\ShiftsReportRecord.cs" />
-    <Compile Include="Reports\ShiftsReportViewModel.cs" />
+    <Compile Include="Reports\ReportModels\ShiftsReportViewModel.cs" />
     <Compile Include="Reports\MonthReportWindow.xaml.cs">
       <DependentUpon>MonthReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\MonthReportWindowModel.cs" />
     <Compile Include="Reports\Models\TestAndTunesReportRecord.cs" />
-    <Compile Include="Reports\TestAndTunesReportViewModel.cs" />
+    <Compile Include="Reports\ReportModels\TestAndTunesReportViewModel.cs" />
     <Compile Include="SaveCommand.cs" />
     <Compile Include="DAL\CollectionsRepository.cs" />
     <Compile Include="DomainModel\Entities\Shift.cs">
@@ -180,7 +186,7 @@
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
     <Compile Include="Reports\ShowTestAndTunesReport.cs" />
     <Compile Include="ShowShiftReportCommand.cs" />
-    <Compile Include="ShowSummaryForPeriodReportCommand.cs" />
+    <Compile Include="Reports\ShowSummaryForPeriodReportCommand.cs" />
     <Compile Include="ViewModels\Summary.cs" />
     <Compile Include="TotalsLineVM.cs" />
     <Compile Include="DomainModel\Entities\TotalsTable.cs" />
@@ -201,6 +207,10 @@
     <Compile Include="Views\TotalTableView.xaml.cs">
       <DependentUpon>TotalTableView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Reports\Views\ReportViewerHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using TestAndTunes.Reports;
 
 namespace TestAndTunes
 {
@@ -14,7 +15,11 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            var reportWindow = new Reports.MonthReportWindow(Reports.ReportType.DailyMonth);
+            var reportWindow = new Reports.MonthReportWindow();
+            var monthReportWindowModel = new MonthReportWindowModel();
+            monthReportWindowModel.RefreshCommand = new GenerateShiftsReportCommand(monthReportWindowModel);
+            reportWindow.DataContext = monthReportWindowModel;
+
             reportWindow.ShowDialog();
         }
     }

@@ -10,6 +10,6 @@ namespace TestAndTunes
 
         IReportViewModel Report { get; }
 
-        void RefreshReport();
+        //void RefreshReport();
     }
 }

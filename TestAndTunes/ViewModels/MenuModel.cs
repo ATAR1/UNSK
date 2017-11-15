@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using TestAndTunes.Reports;
 
 namespace TestAndTunes.ViewModels
 {
@@ -36,7 +37,10 @@ namespace TestAndTunes.ViewModels
 
             public void Execute(object parameter)
             {
-                var reportWindow = new Reports.MonthReportWindow(Reports.ReportType.Month);
+                var reportWindow = new Reports.MonthReportWindow();
+                var monthReportWindowModel = new MonthReportWindowModel();
+                monthReportWindowModel.RefreshCommand = new GenerateMonthReportCommand(monthReportWindowModel);
+                reportWindow.DataContext = monthReportWindowModel;
                 reportWindow.ShowDialog();
             }
         }

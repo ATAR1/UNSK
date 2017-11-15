@@ -6,22 +6,26 @@ namespace TestAndTunes.Reports
     public interface IReportViewModel
     {
         string ReportEmbeddedResource { get; }
-        
+
         void FillDataSources(ReportDataSourceCollection dataSources);
 
-        void Load();
+        SubreportProcessingEventHandler SubreportProcessing { get; }
+
+        //void Load();
+
+        Action<LocalReport> SetReportParameters { get; set; }
     }
 
-    public interface IPeriodReportViewModel:IReportViewModel
-    {
-        DateTime BeginDate { get; set; }
-        DateTime EndDate { get; set; }
-    }
+    //public interface IPeriodReportViewModel : IReportViewModel
+    //{
+    //    DateTime BeginDate { get; }
+    //    DateTime EndDate { get; }
+    //}
 
-    public interface IShiftReportViewModel:IReportViewModel
-    {
-        DateTime Date { get; set; }
+    //public interface IShiftReportViewModel : IReportViewModel
+    //{
+    //    DateTime Date { get; }
 
-        string Shift { get; set; }
-    }
+    //    string Shift { get; }
+    //}
 }

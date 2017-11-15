@@ -6,26 +6,21 @@ using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes.Reports
 {
-    internal class TestAndTunesReportViewModel : IPeriodReportViewModel
+    internal class TestAndTunesReportViewModel : IReportViewModel
     {
         private ICollection<TestAndTunesReportRecord> _testsRecords;
         private ICollection<TestAndTunesReportRecord> _tunesRecords;
 
-        public DateTime BeginDate
+        public TestAndTunesReportViewModel(DateTime beginDate, DateTime endDate)
         {
-            get;
-
-            set;
+            Load(beginDate,endDate);
         }
-
-        public DateTime EndDate
-        {
-            get;
-
-            set;
-        }
+        
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.TestAndTunesReport.rdlc";
+
+        public SubreportProcessingEventHandler SubreportProcessing => null;
 
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {
@@ -35,11 +30,7 @@ namespace TestAndTunes.Reports
             dataSources["DataSet2"].Value = _testsRecords;
         }
 
-        public void Load()
-        {
-            Load(BeginDate, EndDate);
-        }
-
+        
         private void Load(DateTime beginDate, DateTime endDate)
         {
             ReportService service = new ReportService();

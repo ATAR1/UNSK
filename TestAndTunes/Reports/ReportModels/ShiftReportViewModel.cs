@@ -2,29 +2,37 @@
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Linq;
-using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes.Reports
 {
-    public class ShiftReportViewModel : IShiftReportViewModel
+    public class ShiftReportViewModel : IReportViewModel
     {
         private ICollection<ShiftWorkAreaGroup> _groupHeaders;
         private IEnumerable<JournalRecord> _journalRecords;
+        private DateTime _date;
+        private string _shift;
 
-        public DateTime Date { get; set; }
+        public ShiftReportViewModel(DateTime date, string shift)
+        {
+            _date = date;
+            _shift = shift;
+            Load();
+        }
+        
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftReport.rdlc";
+        
 
-        public string Shift { get; set; }
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
 
-        public ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
+        private ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
 
         public SubreportProcessingEventHandler SubreportProcessing => SubreportProcessingHandler;
 
         private void SubreportProcessingHandler(object sender, SubreportProcessingEventArgs e)
         {
-            var parameters = e.Parameters;
+            var parameters = e.Parameters;            
             var date = DateTime.Parse(parameters["Date"].Values[0]);
             var shift = parameters["Shift"].Values[0];
             var workArea = parameters["WorkArea"].Values[0];
@@ -64,13 +72,14 @@ namespace TestAndTunes.Reports
         }
 
 
-        public void Load()
+        private void Load()
         {
             ReportService service = new ReportService();
             var was = service.GetWorkAreas();
-            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = Date, Shift = Shift, WorkArea = wa }).ToList();
-            _journalRecords = service.GetForTheShift(Date, Shift);
+            _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = _date, Shift = _shift, WorkArea = wa }).ToList();
+            _journalRecords = service.GetForTheShift(_date, _shift);
         }
+        
 
         public class Summary
         {
@@ -86,7 +95,9 @@ namespace TestAndTunes.Reports
 
             public bool TooLong => Deviation > 0;
         }
-
+        /// <summary>
+        /// запись отчёта 
+        /// </summary>
         public class Record
         {
             public TimeSpan Start { get; set; }

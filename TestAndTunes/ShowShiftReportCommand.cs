@@ -16,6 +16,9 @@ namespace TestAndTunes
         public void Execute(object parameter)
         {
             var window = new ShiftReportWindow();
+            var shiftReportWindowModel = new ShiftReportWindowModel();
+            shiftReportWindowModel.RefreshCommand = new CreateShiftReportCommand(shiftReportWindowModel);
+            window.DataContext = shiftReportWindowModel;
             window.ShowDialog();
         }
     }

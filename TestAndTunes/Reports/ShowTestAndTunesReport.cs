@@ -15,7 +15,11 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            var window = new MonthReportWindow(ReportType.TestAndTunes);
+            var window = new MonthReportWindow();
+            var monthReportWindowModel = new MonthReportWindowModel();
+            monthReportWindowModel.RefreshCommand = new GenerateTestAndTunesReportCommand(monthReportWindowModel);
+            window.DataContext = monthReportWindowModel;
+
             window.ShowDialog();
         }
     }

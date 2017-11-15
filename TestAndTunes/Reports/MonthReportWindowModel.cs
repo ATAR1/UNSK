@@ -16,13 +16,11 @@ namespace TestAndTunes.Reports
 
         private IReportViewModel _report;
 
-        private readonly ICommand _refreshCommand;
-        private ReportType _reportType;
 
-        public MonthReportWindowModel(ReportType reportType)
+        public MonthReportWindowModel()
         {
-            _refreshCommand = new RefreshReportCommand(this);
-            _reportType = reportType;
+            //_refreshCommand = new RefreshReportCommand(this);
+            //_reportType = reportType;
         }
          
         public int Year { get; set; } = DateTime.Today.Year;
@@ -31,7 +29,7 @@ namespace TestAndTunes.Reports
         
         public ICollection<string> Months => _month;
         
-        public ICommand RefreshCommand => _refreshCommand;
+        public ICommand RefreshCommand { get; set; }
 
         public IReportViewModel Report
         {
@@ -39,7 +37,7 @@ namespace TestAndTunes.Reports
             {
                 return _report;
             }
-            private set
+            set
             {
                 if(_report!=value)
                 {
@@ -49,19 +47,19 @@ namespace TestAndTunes.Reports
             }
         }
 
-        public void RefreshReport()
-        {
-            DateTime date = default(DateTime);
-            if (!DateTime.TryParse($"1 {Month} {Year}", new CultureInfo("ru-Ru"), DateTimeStyles.None, out date))
-            {
-                MessageBox.Show("Что-то не так с выбраным годом!");
-            }
-            var dateEnd = date.AddMonths(1);
-            var report = ReportFactory.CreateReportModel(_reportType);
-            report.BeginDate = date;
-            report.EndDate = dateEnd;
-            report.Load();
-            Report = report;
-        }
+        //public void RefreshReport()
+        //{
+        //    DateTime date = default(DateTime);
+        //    if (!DateTime.TryParse($"1 {Month} {Year}", new CultureInfo("ru-Ru"), DateTimeStyles.None, out date))
+        //    {
+        //        MessageBox.Show("Что-то не так с выбраным годом!");
+        //    }
+        //    var dateEnd = date.AddMonths(1);
+        //    var report = ReportFactory.CreateReportModel(_reportType);
+        //    report.BeginDate = date;
+        //    report.EndDate = dateEnd;
+        //    report.Load();
+        //    Report = report;
+        //}
     }
 }
