@@ -95,9 +95,7 @@ namespace TestAndTunes.Reports
 
             public bool TooLong => Deviation > 0;
         }
-        /// <summary>
-        /// запись отчёта 
-        /// </summary>
+
         public class Record
         {
             public TimeSpan Start { get; set; }
