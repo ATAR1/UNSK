@@ -109,7 +109,7 @@ namespace TestAndTunes.ViewModels
                     list = _journalRepository.GetRecordsStartFrom(FromTheDate);
                 }
                 var collection = list.OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer()).Select(jr => new JournalRecordViewModel(jr));
-                JournalRecords.InsertRange(collection);                
+                JournalRecords.AddRange(collection);                
             }
             catch(Exception e)
             {

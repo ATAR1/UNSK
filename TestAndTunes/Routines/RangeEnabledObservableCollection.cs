@@ -6,7 +6,7 @@ namespace TestAndTunes.Routines
 {
     public class RangeEnabledObservableCollection<T> : ObservableCollection<T>
     {
-        public void InsertRange(IEnumerable<T> items)
+        public void AddRange(IEnumerable<T> items)
         {
             this.CheckReentrancy();
             foreach (var item in items)
