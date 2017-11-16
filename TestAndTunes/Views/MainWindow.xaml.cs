@@ -123,7 +123,7 @@ namespace TestAndTunes.Views
 
         private void collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add)
+            if (e.Action == NotifyCollectionChangedAction.Add||e.Action==NotifyCollectionChangedAction.Reset)
             {
                 ScrollToLastItem();
             }

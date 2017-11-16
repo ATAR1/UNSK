@@ -132,6 +132,7 @@
     <Compile Include="Reports\Views\ReportViewerHost.xaml.cs">
       <DependentUpon>ReportViewerHost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Routines\RangeEnabledObservableCollection.cs" />
     <Compile Include="Views\Fakes\SummaryFake.cs" />
     <Compile Include="Views\Fakes\TotalsTableFake.cs" />
     <Compile Include="Views\MenuContainer.xaml.cs">

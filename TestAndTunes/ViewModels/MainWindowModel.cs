@@ -8,6 +8,7 @@ using System.Windows.Input;
 using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes.ViewModels
 {
@@ -41,7 +42,7 @@ namespace TestAndTunes.ViewModels
                 _saveCommand = new SaveCommand(UncheckedRecord, journal, this);
                 _deleteCommand = new DeleteCommand(journal, this);
                 _editCommand = new EditCommand(UncheckedRecord);
-                JournalRecords = new ObservableCollection<JournalRecordViewModel>();
+                JournalRecords = new RangeEnabledObservableCollection<JournalRecordViewModel>();
                 _refreshCommand = new RefreshCommand(this);
                 _addCommand = new AddCommand(journal, UncheckedRecord);
                 _cancellCommand = new CancellCommand(journal, UncheckedRecord);
@@ -108,10 +109,7 @@ namespace TestAndTunes.ViewModels
                     list = _journalRepository.GetRecordsStartFrom(FromTheDate);
                 }
                 var collection = list.OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer()).Select(jr => new JournalRecordViewModel(jr));
-                foreach (var viewModel in collection)
-                {
-                    JournalRecords.Add(viewModel);
-                }
+                JournalRecords.InsertRange(collection);                
             }
             catch(Exception e)
             {
@@ -166,7 +164,7 @@ namespace TestAndTunes.ViewModels
 
         public ICollection<Employee> Personal => _personal;
 
-        public ICollection<JournalRecordViewModel> JournalRecords { get; private set; }
+        public RangeEnabledObservableCollection<JournalRecordViewModel> JournalRecords { get; private set; }
         public JournalRecordViewModel SelectedRecord {
             get
             {
