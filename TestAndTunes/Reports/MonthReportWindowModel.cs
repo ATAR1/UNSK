@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes.Reports
 {
@@ -15,14 +16,15 @@ namespace TestAndTunes.Reports
         public event PropertyChangedEventHandler PropertyChanged;
 
         private IReportViewModel _report;
+        private readonly ICommand _showOptionsCommand;
+        private IEnumerable<IOption> _options;
 
-
-        public MonthReportWindowModel()
+        public MonthReportWindowModel(IEnumerable<IOption> reportOptions)
         {
-            //_refreshCommand = new RefreshReportCommand(this);
-            //_reportType = reportType;
+            _options = reportOptions;
+            _showOptionsCommand = new ShowOptionsCommand(_options);
         }
-         
+
         public int Year { get; set; } = DateTime.Today.Year;
 
         public string Month { get; set; } = DateTime.Today.ToString("MMMM", CultureInfo.GetCultureInfo("RU-ru"));
@@ -30,6 +32,10 @@ namespace TestAndTunes.Reports
         public ICollection<string> Months => _month;
         
         public ICommand RefreshCommand { get; set; }
+
+        public ICommand ShowOptionsCommand => _showOptionsCommand;
+
+        public IEnumerable<IOption> Options => _options;
 
         public IReportViewModel Report
         {
@@ -46,20 +52,5 @@ namespace TestAndTunes.Reports
                 }
             }
         }
-
-        //public void RefreshReport()
-        //{
-        //    DateTime date = default(DateTime);
-        //    if (!DateTime.TryParse($"1 {Month} {Year}", new CultureInfo("ru-Ru"), DateTimeStyles.None, out date))
-        //    {
-        //        MessageBox.Show("Что-то не так с выбраным годом!");
-        //    }
-        //    var dateEnd = date.AddMonths(1);
-        //    var report = ReportFactory.CreateReportModel(_reportType);
-        //    report.BeginDate = date;
-        //    report.EndDate = dateEnd;
-        //    report.Load();
-        //    Report = report;
-        //}
     }
 }

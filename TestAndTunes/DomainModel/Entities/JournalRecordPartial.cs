@@ -28,5 +28,7 @@ namespace TestAndTunes.DomainModel.Entities
         }
 
         public TimeSpan Deviation => Duration - Normative;
+
+        public string OperationGroup => this.Operation.Work.OperationGroup;
     }
 }

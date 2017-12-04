@@ -555,7 +555,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Sum(Fields!Deviation.Value)</Value>
-                              <Style />
+                              <Style>
+                                <Format>f2</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -835,7 +837,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.89641cm</Top>
         <Height>3.6cm</Height>
-        <Width>16cm</Width>
+        <Width>15.99999cm</Width>
         <Style>
           <Border>
             <Style>None</Style>

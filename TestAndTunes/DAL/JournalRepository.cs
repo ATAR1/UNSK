@@ -25,5 +25,9 @@ namespace TestAndTunes.DAL
             return _ctx.JournalRecords.Where(jr => jr.Date >=fromTheDate).ToList();
         }
 
+        public ICollection<JournalRecord> GetRecordsForPeriod(DateTime beginDate, DateTime endDate)
+        {
+            return _ctx.JournalRecords.Where(jr => jr.Date >= beginDate && jr.Date < endDate).ToList();
+        }
     }
 }

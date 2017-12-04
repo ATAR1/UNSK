@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.Reporting.WinForms;
+using System.Collections.Generic;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes.Reports
 {
@@ -11,21 +13,6 @@ namespace TestAndTunes.Reports
 
         SubreportProcessingEventHandler SubreportProcessing { get; }
 
-        //void Load();
-
         Action<LocalReport> SetReportParameters { get; set; }
     }
-
-    //public interface IPeriodReportViewModel : IReportViewModel
-    //{
-    //    DateTime BeginDate { get; }
-    //    DateTime EndDate { get; }
-    //}
-
-    //public interface IShiftReportViewModel : IReportViewModel
-    //{
-    //    DateTime Date { get; }
-
-    //    string Shift { get; }
-    //}
 }

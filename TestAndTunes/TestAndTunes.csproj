@@ -115,11 +115,21 @@
     <Compile Include="CancellCommand.cs" />
     <Compile Include="DAL\IJournal.cs" />
     <Compile Include="DAL\Journal.cs" />
+    <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeRepair.cs" />
+    <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeСoncomitant.cs" />
+    <Compile Include="Reports\OptionsWindow.xaml.cs">
+      <DependentUpon>OptionsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ShowOptionsCommand.cs" />
+    <Compile Include="Routines\IOption.cs" />
+    <Compile Include="DAL\JournalRecordsSelectionCriterias\JournalRecordSelectionCriteria.cs" />
+    <Compile Include="DAL\JournalRecordsSelectionCriterias\SetOfCriteriaForSelectingJournalRecords.cs" />
     <Compile Include="DomainModel\Entities\Defectoscope.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DeleteCommand.cs" />
     <Compile Include="DomainModel\Entities\TotalsLine.cs" />
+    <Compile Include="DomainModel\JournalRecordsBeginTimeComparer.cs" />
     <Compile Include="EditCommand.cs" />
     <Compile Include="DomainModel\Entities\Employee.cs">
       <DependentUpon>JournalModel.tt</DependentUpon>
@@ -181,7 +191,6 @@
       <DependentUpon>JournalModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DateShiftVM.cs" />
-    <Compile Include="DomainModel\ShiftedTimeComparer.cs" />
     <Compile Include="DomainModel\ShiftService.cs" />
     <Compile Include="Reports\ShowMonthShiftReportCommand.cs" />
     <Compile Include="Reports\ShowShiftsReportCommand.cs" />
@@ -208,6 +217,10 @@
     <Compile Include="Views\TotalTableView.xaml.cs">
       <DependentUpon>TotalTableView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Reports\OptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Reports\Views\ReportViewerHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

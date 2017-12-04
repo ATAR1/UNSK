@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Microsoft.Reporting.WinForms;
 using TestAndTunes.Reports;
-using TestAndTunes.ViewModels;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes
 {
+    /// <summary>
+    /// Модель отчёта "Простои оборудования за месяц"
+    /// </summary>
     public class MonthReportViewModel : IReportViewModel
     {
         private string _layout = "TestAndTunes.Reports.Layouts.MonthReport.rdlc";
@@ -30,7 +32,6 @@ namespace TestAndTunes
         public SubreportProcessingEventHandler SubreportProcessing => null;
 
         public Action<LocalReport> SetReportParameters { get; set; }
-
 
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {

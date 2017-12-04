@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TestAndTunes.DAL;
+using TestAndTunes.DAL.JournalRecordsSelectionCriterias;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
-using TestAndTunes.Reports;
 using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes
@@ -72,7 +73,7 @@ namespace TestAndTunes
         public IEnumerable<JournalRecord> GetForTheShift(DateTime date, string shiftLetter)
         {
             return _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shiftLetter).ToList()
-                .OrderBy(jr => new Tuple<DateTime, TimeSpan>(jr.Date, jr.Start), new ShiftedTimeComparer())
+                .OrderBy(jr => jr, new JournalRecordsBeginTimeComparer())
                 .ToList();
         }
 
@@ -109,7 +110,7 @@ namespace TestAndTunes
 
         public ICollection<ShiftsReportRecord> GetShiftsReport(DateTime date, DateTime dateEnd)
         {
-            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd)
+            return new JournalRepository(_ctx).GetRecordsForPeriod(date, dateEnd)
                 .ToList()
                 .GroupBy(jr => new { jr.Date, jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
                 .Select(g => new ShiftsReportRecord
@@ -122,16 +123,17 @@ namespace TestAndTunes
                     Quantity = g.Count(),
                     Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),
                     Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
-                    Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
+                    Deviation = Math.Round(g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)) - g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)), 2),
 
                 }
                 ).ToList();
         }
 
-        public ICollection<MonthShiftReportRecord> GetMonthShiftsReport(DateTime date, DateTime dateEnd)
+        public ICollection<MonthShiftReportRecord> GetMonthShiftsReport(DateTime date, DateTime dateEnd,SetOfCriteriaForSelectingJournalRecords criterias)
         {
-            return _ctx.JournalRecords.Where(jr => jr.Date >= date && jr.Date < dateEnd&&jr.Operation.Work.OperationGroup!="Сопутствующие")
-                .ToList()
+            var journalRecords = new JournalRepository(_ctx).GetRecordsForPeriod(date, dateEnd);
+            journalRecords = criterias.ApplyAllCriterias(journalRecords);  
+            return journalRecords
                 .GroupBy(jr => new { jr.Shift, jr.WorkArea, jr.Operation.Work.OperationGroup })
                 .Select(g => new MonthShiftReportRecord
                 {
@@ -143,7 +145,7 @@ namespace TestAndTunes
                     Quantity = g.Count(),
                     Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),
                     Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
-                    Deviation = g.Sum(jr => Math.Round(jr.Deviation.TotalHours, 2)),
+                    Deviation = Math.Round(g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2))- g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),2),
                 }).ToList();
         }
     }

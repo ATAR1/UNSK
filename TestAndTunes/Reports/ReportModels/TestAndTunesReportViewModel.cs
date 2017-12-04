@@ -3,6 +3,7 @@ using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.Linq;
 using TestAndTunes.Reports.Models;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes.Reports
 {
@@ -17,7 +18,7 @@ namespace TestAndTunes.Reports
         }
         
         Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
-
+        
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.TestAndTunesReport.rdlc";
 
         public SubreportProcessingEventHandler SubreportProcessing => null;

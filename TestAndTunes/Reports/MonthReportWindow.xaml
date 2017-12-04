@@ -19,6 +19,7 @@
                 <MenuItem Header="Сохранить" />
                 <MenuItem Header="Печать" />
             </MenuItem>
+            <MenuItem Header="Опции" Command="{Binding ShowOptionsCommand}" />
         </Menu>
         <DockPanel LastChildFill="False" Grid.Row="1">
             <Label Content="Год:"/>

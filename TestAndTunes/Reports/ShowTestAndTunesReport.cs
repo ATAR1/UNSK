@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using TestAndTunes.Reports;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes
 {
@@ -16,7 +18,8 @@ namespace TestAndTunes
         public void Execute(object parameter)
         {
             var window = new MonthReportWindow();
-            var monthReportWindowModel = new MonthReportWindowModel();
+            ICollection<IOption> reportOptions = null;
+            var monthReportWindowModel = new MonthReportWindowModel(reportOptions);
             monthReportWindowModel.RefreshCommand = new GenerateTestAndTunesReportCommand(monthReportWindowModel);
             window.DataContext = monthReportWindowModel;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using TestAndTunes.Reports.Models;
+using TestAndTunes.Routines;
 
 namespace TestAndTunes.Reports
 {
@@ -17,6 +18,7 @@ namespace TestAndTunes.Reports
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.DailyMonthReport.rdlc";
 
         public ICollection<ShiftsReportRecord> ReportRecords { get; set; }
+        
 
         public SubreportProcessingEventHandler SubreportProcessing => null;
 
