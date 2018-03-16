@@ -14,6 +14,16 @@ namespace TestAndTunes.DomainModel.Entities
     
     public partial class Shift
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Shift()
+        {
+            this.SheldueRecord = new HashSet<SheldueRecord>();
+        }
+    
         public string Value { get; set; }
+        public string Lat_letter { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SheldueRecord> SheldueRecord { get; set; }
     }
 }

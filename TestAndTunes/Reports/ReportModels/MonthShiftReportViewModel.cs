@@ -26,7 +26,7 @@ namespace TestAndTunes.Reports
             Load(beginDate,endDate);            
         }
 
-        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; }
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftMonthReport.rdlc";
 

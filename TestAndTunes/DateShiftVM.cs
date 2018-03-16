@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes
 {
@@ -11,13 +13,12 @@ namespace TestAndTunes
     {
         private DateTime _date;
         private string _letter;
-        private ShiftService _shiftService = new ShiftService();
+        private readonly ShiftService _shiftService;
         private ICollection<string> _avaliableShifts=new ObservableCollection<string>();
 
-        public DateShiftVM()
-        {
-            
-            _shiftService = new ShiftService();
+        public DateShiftVM(IEnumerable<SheldueRecord> sheldue)
+        {            
+            _shiftService = new ShiftService(sheldue);
             Date = DateTime.Today;           
         }
 
@@ -29,15 +30,21 @@ namespace TestAndTunes
             }
             set
             {
-                _date = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
                 var shift = Letter;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AvaliableShifts)));
-                if (AvaliableShifts.Contains(Letter)) Letter = shift;
-                else Letter = AvaliableShifts.First();
+                _date = value;
+                UpdateAvaliableShiftsCollection(_date);
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
+                UpdateSelectedShift(shift);
             }
         }
-        
+
+        private void UpdateSelectedShift(string shift)
+        {
+            
+            if (AvaliableShifts.Any(sr => sr.Value == shift)) Letter = shift;
+            else Letter = AvaliableShifts.First().Value;
+        }
+
         public string Letter
         {
             get
@@ -51,8 +58,19 @@ namespace TestAndTunes
             }
         }
 
-        public ICollection<string> AvaliableShifts => _shiftService.GetAvaliableShifts(Date).ToList();
+
+
+        public ObservableCollection<Shift> AvaliableShifts { get; private set; } = new ObservableCollection<Shift>();
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void UpdateAvaliableShiftsCollection(DateTime date)
+        {
+            AvaliableShifts.Clear();
+            foreach(var sr in _shiftService.GetAvaliableShifts1(Date))
+            {
+                AvaliableShifts.Add(sr);
+            }            
+        }
     }
 }

@@ -13,6 +13,6 @@ namespace TestAndTunes.Reports
 
         SubreportProcessingEventHandler SubreportProcessing { get; }
 
-        Action<LocalReport> SetReportParameters { get; set; }
+        Action<LocalReport> SetReportParameters { get; }
     }
 }

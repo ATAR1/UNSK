@@ -34,11 +34,11 @@ namespace TestAndTunes.ViewModels
         {
             try
             {
-                UncheckedRecord = new UncheckedRecord();
                 var ctx = new JournalDBEntities();
                 _journalRepository = new JournalRepository(ctx);
                 var journal = new Journal(ctx);
                 _service = new CollectionsRepository(ctx);
+                UncheckedRecord = new UncheckedRecord(_service.LoadSheldue().ToList());
                 _saveCommand = new SaveCommand(UncheckedRecord, journal, this);
                 _deleteCommand = new DeleteCommand(journal, this);
                 _editCommand = new EditCommand(UncheckedRecord);
@@ -47,16 +47,33 @@ namespace TestAndTunes.ViewModels
                 _addCommand = new AddCommand(journal, UncheckedRecord);
                 _cancellCommand = new CancellCommand(journal, UncheckedRecord);
                 
+                
                 RefreshJournalRecords();
-                Shift = new DateShiftVM();
+                Shift = new DateShiftVM(_service.LoadSheldue().ToList());
                 Shift.PropertyChanged += CurrentShiftChanged;
                 RefreshTotals();
                 LoadCollections();
+                InitializeMenuItems();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        private void InitializeMenuItems()
+        {
+
+            var menuItems = new ObservableCollection<MenuItemModel>();
+            _menu.MenuItems.Add(new MenuItemModel("Отчёты", menuItems));
+            menuItems.Add(new MenuItemModel("Отчёт за смену", new ShowShiftReportCommand(_service.LoadSheldue())));
+            menuItems.Add(new MenuItemModel("Время настроек и проверок", new ShowTestAndTunesReport()));
+            menuItems.Add(new MenuItemModel("Отчёт за месяц", new ShowMonthShiftReportCommand()));
+            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц(подробный)", new ShowShiftsReportCommand()));
+            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц", new ShowMonthShiftReportCommand()));
+            var scndLvlMnu = new ObservableCollection<MenuItemModel>();
+            menuItems.Add(new MenuItemModel("Отчёты за период", scndLvlMnu));
+            scndLvlMnu.Add(new MenuItemModel("Суммарный отчёт за период", new ShowSummaryForPeriodReportCommand()));
         }
 
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)

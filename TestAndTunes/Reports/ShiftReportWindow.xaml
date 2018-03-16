@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAndTunes.Reports"
+        xmlns:models ="clr-namespace:TestAndTunes.DomainModel.Entities"
         xmlns:views ="clr-namespace:TestAndTunes.Reports.Views"
         mc:Ignorable="d"
         Title="ShiftReportWindow">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type models:Shift}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Value}"/>
+                <TextBlock Text=" (" Foreground="Blue"/>
+                <TextBlock Text="{Binding Lat_letter}" Foreground="Blue"/>
+                <TextBlock Text=")" Foreground="Blue"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +35,7 @@
             <Label Content="Дата:"/>
             <DatePicker SelectedDate="{Binding Date}"/>
             <Label Content="Смена:"/>
-            <ComboBox  Width="100" Margin="2" ItemsSource="{Binding Shifts}" SelectedItem="{Binding Shift}"/>
+            <ComboBox  Width="100" Margin="2" ItemsSource="{Binding Shifts}" SelectedValue="{Binding Shift}" SelectedValuePath="Value"/>
             <Button  Width="25" Height="25" Margin="2" Command="{Binding RefreshCommand}" >
                 <Image Source="../Images/112_RefreshArrow_Blue_48x48_72.png" />
             </Button>

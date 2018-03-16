@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
+using TestAndTunes.DomainModel.Entities;
 
 namespace TestAndTunes.Reports
 {
     internal class ShiftReportWindowModel:IReportWindowModel
     {
         private IReportViewModel _report;
-        private ShiftService _shiftService = new ShiftService();
+        private readonly ShiftService _shiftService;
         private DateTime _date = DateTime.Today;
         private string _shift;
-        
+
+
+        public ShiftReportWindowModel(IEnumerable<SheldueRecord> sheldue)
+        {
+            _shiftService = new ShiftService(sheldue);
+        }
 
         public ICommand RefreshCommand { get; set; }
 
-        public ICollection<string> Shifts
+        public ICollection<Shift> Shifts
         {
             get
             {
-                return _shiftService.GetAvaliableShifts(Date).ToList();
+                return _shiftService.GetAvaliableShifts1(Date).ToList();
             }
         }
 

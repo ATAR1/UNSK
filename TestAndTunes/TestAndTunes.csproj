@@ -117,10 +117,15 @@
     <Compile Include="DAL\Journal.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeRepair.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeСoncomitant.cs" />
+    <Compile Include="DomainModel\Entities\SheldueRecord.cs">
+      <DependentUpon>JournalModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ReportModels\JournalReportViewModel.cs" />
     <Compile Include="Reports\ShowOptionsCommand.cs" />
+    <Compile Include="Reports\ShowWindowCommand.cs" />
     <Compile Include="Routines\IOption.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\JournalRecordSelectionCriteria.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\SetOfCriteriaForSelectingJournalRecords.cs" />
@@ -143,6 +148,7 @@
       <DependentUpon>ReportViewerHost.xaml</DependentUpon>
     </Compile>
     <Compile Include="Routines\RangeEnabledObservableCollection.cs" />
+    <Compile Include="ViewModels\MenuItemModel.cs" />
     <Compile Include="Views\Fakes\SummaryFake.cs" />
     <Compile Include="Views\Fakes\TotalsTableFake.cs" />
     <Compile Include="Views\MenuContainer.xaml.cs">
@@ -295,6 +301,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Layouts\Journal.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\SummaryReportForPeriod.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\MonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftMonthReport.rdlc" />
@@ -314,6 +321,7 @@
     <None Include="Properties\DataSources\JournalRecordViewModel.datasource" />
     <None Include="Properties\DataSources\MonthReportViewModel.datasource" />
     <None Include="Properties\DataSources\ReportLine.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.Models.ShiftsReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.MonthShiftReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftReportViewModel+Record.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftReportViewModel+Summary.datasource" />

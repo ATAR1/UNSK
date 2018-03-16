@@ -33,5 +33,6 @@ namespace TestAndTunes.DomainModel.Entities
         public virtual DbSet<WorkArea> WorkAreas { get; set; }
         public virtual DbSet<Operation> Operation { get; set; }
         public virtual DbSet<Normative> Normatives { get; set; }
+        public virtual DbSet<SheldueRecord> SheldueRecords { get; set; }
     }
 }

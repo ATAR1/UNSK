@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAndTunes"
         xmlns:views="clr-namespace:TestAndTunes.Views"
+        xmlns:models ="clr-namespace:TestAndTunes.DomainModel.Entities"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="TestAndTunes.Views.MainWindow"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1280"  x:Name="MainWindow1" FontSize="{Binding Value, ElementName=FontSizeUpDown}" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>        
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <DataTemplate DataType="{x:Type models:Shift}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Value}"/>
+                <TextBlock Text=" (" Foreground="Blue"/>
+                <TextBlock Text="{Binding Lat_letter}" Foreground="Blue"/>
+                <TextBlock Text=")" Foreground="Blue"/>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>    
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -54,7 +63,9 @@
                         <ComboBox Grid.Column="3" Width="100" 
                           SelectedValue="{Binding Letter}"
                           ItemsSource="{Binding AvaliableShifts}"
-                          VerticalAlignment="Center" Margin="5"/>
+                          VerticalAlignment="Center" Margin="5"                          
+                          SelectedValuePath="Value">
+                        </ComboBox>
                     </DockPanel>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1">
@@ -160,7 +171,8 @@
                 <ComboBox Grid.Column="3" Width="100" 
                           SelectedValue="{Binding Letter}" 
                           ItemsSource="{Binding AvaliableShifts}" 
-                          VerticalAlignment="Center" Margin="5"/>
+                          VerticalAlignment="Center" Margin="5"
+                          SelectedValuePath="Value"/>
             </DockPanel>
             <Grid Grid.Row="1" HorizontalAlignment="Left">
                 <Grid.ColumnDefinitions>

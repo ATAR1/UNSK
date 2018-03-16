@@ -35,5 +35,10 @@ namespace TestAndTunes.DAL
         {
             return _ctx.ShiftSet;
         }
+
+        internal IEnumerable<SheldueRecord> LoadSheldue()
+        {
+            return _ctx.SheldueRecords;
+        }
     }
 }

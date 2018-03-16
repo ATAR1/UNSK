@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 
@@ -11,9 +12,9 @@ namespace TestAndTunes
     {
         private JournalRecord _model;
 
-        public UncheckedRecord()
+        public UncheckedRecord(IEnumerable<SheldueRecord> sheldue)
         {
-            DateShift = new DateShiftVM();
+            DateShift = new DateShiftVM(sheldue);
             
 
         }

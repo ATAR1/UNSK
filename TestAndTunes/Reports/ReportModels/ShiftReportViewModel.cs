@@ -20,12 +20,12 @@ namespace TestAndTunes.Reports
             _shift = shift;
             Load();
         }
-        
+
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftReport.rdlc";
-        
 
-        Action<LocalReport> IReportViewModel.SetReportParameters { get; set; }
+
+        Action<LocalReport> IReportViewModel.SetReportParameters { get; }
 
         private ICollection<ShiftWorkAreaGroup> GroupHeaders => _groupHeaders;
 
@@ -33,7 +33,7 @@ namespace TestAndTunes.Reports
 
         private void SubreportProcessingHandler(object sender, SubreportProcessingEventArgs e)
         {
-            var parameters = e.Parameters;            
+            var parameters = e.Parameters;
             var date = DateTime.Parse(parameters["Date"].Values[0]);
             var shift = parameters["Shift"].Values[0];
             var workArea = parameters["WorkArea"].Values[0];
@@ -80,52 +80,52 @@ namespace TestAndTunes.Reports
             _groupHeaders = was.Select(wa => new ShiftWorkAreaGroup { Date = _date, Shift = _shift, WorkArea = wa }).ToList();
             _journalRecords = service.GetForTheShift(_date, _shift);
         }
-        
-
-        public class Summary
-        {
-            public string OperationType { get; set; }
-
-            public int Quantity { get; set; }
-
-            public double Duration { get; set; }
-
-            public double Normative { get; set; }
-
-            public double Deviation { get; set; }
-
-            public bool TooLong => Deviation > 0;
-        }
-
-        public class Record
-        {
-            public TimeSpan Start { get; set; }
-
-            public TimeSpan End { get; set; }
-
-            public string Defectoscope { get; set; }
-
-            public string Operation { get; set; }
-
-            public double Duration { get; set; }
-
-            public double Normative { get; set; }
-
-            public string Description { get; set; }
-
-            public double Deviation => Duration - Normative;
-
-            public bool TooLong => Deviation > 0;
-        }
-
-
-        public class ShiftWorkAreaGroup
-        {
-            public DateTime Date { get; set; }
-
-            public string Shift { get; set; }
-
-            public string WorkArea { get; set; }
-        }
     }
+
+    public class Summary
+    {
+        public string OperationType { get; set; }
+
+        public int Quantity { get; set; }
+
+        public double Duration { get; set; }
+
+        public double Normative { get; set; }
+
+        public double Deviation { get; set; }
+
+        public bool TooLong => Deviation > 0;
+    }
+
+    public class Record
+    {
+        public TimeSpan Start { get; set; }
+
+        public TimeSpan End { get; set; }
+
+        public string Defectoscope { get; set; }
+
+        public string Operation { get; set; }
+
+        public double Duration { get; set; }
+
+        public double Normative { get; set; }
+
+        public string Description { get; set; }
+
+        public double Deviation => Duration - Normative;
+
+        public bool TooLong => Deviation > 0;
+    }
+
+
+    public class ShiftWorkAreaGroup
+    {
+        public DateTime Date { get; set; }
+
+        public string Shift { get; set; }
+
+        public string WorkArea { get; set; }
+    }
+
 }

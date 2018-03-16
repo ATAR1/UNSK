@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using TestAndTunes.Reports;
 using TestAndTunes.Routines;
@@ -7,14 +9,16 @@ using TestAndTunes.Routines;
 namespace TestAndTunes.ViewModels
 {
     public class MenuModel
-    {
+    {                
         private ICommand _showMonthReport = new ShowMonthReportCommand();
 
         private readonly ICommand _showShiftsReportCommand = new ShowShiftsReportCommand();
         private ICommand _showMonthShiftReport = new ShowMonthShiftReportCommand();
         private ICommand _showTestAndTunesReport = new ShowTestAndTunesReport();
-        private ICommand _showShiftReport= new ShowShiftReportCommand();
+        //todo private ICommand _showShiftReport= new ShowShiftReportCommand();
         private ICommand _showSummaryForPeriodReport = new ShowSummaryForPeriodReportCommand();
+
+        public ObservableCollection<MenuItemModel> MenuItems { get; } = new ObservableCollection<MenuItemModel>();
 
         public ICommand ShowMonthReport => _showMonthReport;
 
@@ -24,7 +28,7 @@ namespace TestAndTunes.ViewModels
 
         public ICommand ShowTestAndTunesReport => _showTestAndTunesReport;
 
-        public ICommand ShowShiftReport => _showShiftReport;
+        //public ICommand ShowShiftReport => _showShiftReport;
 
         public ICommand ShowSummaryForPeriodReport => _showSummaryForPeriodReport;
 
