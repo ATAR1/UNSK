@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="JournalDBModel.Employee" Width="1.5" PointX="3" PointY="0.875" />
         <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Employee1" />
         <EntityTypeShape EntityType="JournalDBModel.Shift" Width="1.5" PointX="0.875" PointY="7.125" />
-        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Shift" />
         <EntityTypeShape EntityType="JournalDBModel.Defectoscope" Width="1.5" PointX="7" PointY="1" />
         <EntityTypeShape EntityType="JournalDBModel.Work" Width="1.5" PointX="12" PointY="5.625" />
         <EntityTypeShape EntityType="JournalDBModel.WorkArea" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -24,6 +23,7 @@
         <AssociationConnector Association="JournalDBModel.FK_Normative_Operation" />
         <EntityTypeShape EntityType="JournalDBModel.SheldueRecord" Width="1.5" PointX="5.25" PointY="7.75" />
         <AssociationConnector Association="JournalDBModel.FK_SheldueRecord_Shift" />
+        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Shift" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

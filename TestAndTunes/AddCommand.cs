@@ -22,7 +22,7 @@ namespace TestAndTunes
         public string StoredWorkArea { get; set; }
 
         public DateTime StoredDate { get; set; } = DateTime.Today;
-        public string StoredShift { get;  set; }
+        public Shift StoredShift { get;  set; }
 
         public event EventHandler CanExecuteChanged;
 

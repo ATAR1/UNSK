@@ -12,7 +12,7 @@ namespace TestAndTunes
     public class DateShiftVM : INotifyPropertyChanged
     {
         private DateTime _date;
-        private string _letter;
+        private Shift _shift;
         private readonly ShiftService _shiftService;
         private ICollection<string> _avaliableShifts=new ObservableCollection<string>();
 
@@ -30,7 +30,7 @@ namespace TestAndTunes
             }
             set
             {
-                var shift = Letter;
+                var shift = Shift;
                 _date = value;
                 UpdateAvaliableShiftsCollection(_date);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Date)));
@@ -38,23 +38,23 @@ namespace TestAndTunes
             }
         }
 
-        private void UpdateSelectedShift(string shift)
+        private void UpdateSelectedShift(Shift shift)
         {
             
-            if (AvaliableShifts.Any(sr => sr.Value == shift)) Letter = shift;
-            else Letter = AvaliableShifts.First().Value;
+            if (shift!=null && AvaliableShifts.Any(sr => sr == shift)) Shift = shift;
+            else Shift = AvaliableShifts.First();
         }
 
-        public string Letter
+        public Shift Shift
         {
             get
             {
-                return _letter;
+                return _shift;
             }
             set
             {
-                _letter = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Letter)));
+                _shift = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Shift)));
             }
         }
 

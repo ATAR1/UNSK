@@ -39,7 +39,7 @@ namespace TestAndTunes.Reports
             var workArea = parameters["WorkArea"].Values[0];
             e.DataSources.Add(new ReportDataSource("DataSet1"));
             e.DataSources["DataSet1"].Value = _journalRecords
-                .Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea)
+                .Where(jr => jr.Date == date && jr.Shift.Value == shift && jr.WorkArea == workArea)
                 .Select(jr => new Record
                 {
                     Defectoscope = jr.DefectoscopeName,
@@ -54,7 +54,7 @@ namespace TestAndTunes.Reports
 
             e.DataSources.Add(new ReportDataSource("DataSet2"));
             e.DataSources["DataSet2"].Value = _journalRecords
-                .Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea)
+                .Where(jr => jr.Date == date && jr.Shift.Value == shift && jr.WorkArea == workArea)
                 .GroupBy(jr => jr.Operation.Work.OperationGroup)
                 .Select(g => new Summary
                 {

@@ -266,8 +266,8 @@
           <Property Name="DefectoscopeName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="OperationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Employee" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Shift" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Operation" Relationship="JournalDBModel.JournalRecordOperation" FromRole="JournalRecord" ToRole="Operation" />
+          <NavigationProperty Name="Shift" Relationship="JournalDBModel.FK_JournalRecord_Shift" FromRole="JournalRecord" ToRole="Shift" />
           </EntityType>
         <EntityContainer Name="JournalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="JournalRecords" EntityType="JournalDBModel.JournalRecord" />
@@ -277,10 +277,6 @@
             <End Role="JournalRecord" EntitySet="JournalRecords" />
           </AssociationSet>
           <EntitySet Name="ShiftSet" EntityType="JournalDBModel.Shift" />
-          <AssociationSet Name="FK_JournalRecord_Shift" Association="JournalDBModel.FK_JournalRecord_Shift">
-            <End Role="Shift" EntitySet="ShiftSet" />
-            <End Role="JournalRecord" EntitySet="JournalRecords" />
-          </AssociationSet>
           <EntitySet Name="Defectoscope" EntityType="JournalDBModel.Defectoscope" />
           <EntitySet Name="Works" EntityType="JournalDBModel.Work" />
           <EntitySet Name="WorkAreas" EntityType="JournalDBModel.WorkArea" />
@@ -311,6 +307,10 @@
             <End Role="Shift" EntitySet="ShiftSet" />
             <End Role="SheldueRecord" EntitySet="SheldueRecords" />
           </AssociationSet>
+          <AssociationSet Name="FK_JournalRecord_Shift" Association="JournalDBModel.FK_JournalRecord_Shift">
+            <End Role="Shift" EntitySet="ShiftSet" />
+            <End Role="JournalRecord" EntitySet="JournalRecords" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Employee">
           <Key>
@@ -338,18 +338,6 @@
           <Property Name="Lat_letter" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="SheldueRecord" Relationship="JournalDBModel.FK_SheldueRecord_Shift" FromRole="Shift" ToRole="SheldueRecord" />
         </EntityType>
-        <Association Name="FK_JournalRecord_Shift">
-          <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
-          <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shift">
-              <PropertyRef Name="Value" />
-            </Principal>
-            <Dependent Role="JournalRecord">
-              <PropertyRef Name="Shift" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Defectoscope">
           <Key>
             <PropertyRef Name="WorkArea" />
@@ -481,6 +469,10 @@
           <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
           <End Type="JournalDBModel.SheldueRecord" Role="SheldueRecord" Multiplicity="*" />
         </Association>
+        <Association Name="FK_JournalRecord_Shift">
+          <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -490,7 +482,6 @@
           <EntitySetMapping Name="JournalRecords">
             <EntityTypeMapping TypeName="IsTypeOf(JournalDBModel.JournalRecord)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
               <MappingFragment StoreEntitySet="JournalRecord">
-                <ScalarProperty Name="Shift" ColumnName="Shift" />
                 <ScalarProperty Name="Employee" ColumnName="Employee" />
                 <ScalarProperty Name="DefectoscopeName" ColumnName="DefectoscopeName" />
                 <ScalarProperty Name="WorkArea" ColumnName="WorkArea" />
@@ -572,6 +563,14 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="FK_SheldueRecord_Shift" TypeName="JournalDBModel.FK_SheldueRecord_Shift" StoreEntitySet="SheldueRecord">
             <EndProperty Name="SheldueRecord">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Shift">
+              <ScalarProperty Name="Value" ColumnName="Shift" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_JournalRecord_Shift" TypeName="JournalDBModel.FK_JournalRecord_Shift" StoreEntitySet="JournalRecord">
+            <EndProperty Name="JournalRecord">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
             <EndProperty Name="Shift">

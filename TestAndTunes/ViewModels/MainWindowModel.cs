@@ -78,7 +78,7 @@ namespace TestAndTunes.ViewModels
 
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (String.IsNullOrEmpty(Shift.Letter)) return;
+            if (Shift.Shift==null) return;
             RefreshJournalRecords();
             RefreshTotals();
         }
@@ -119,7 +119,7 @@ namespace TestAndTunes.ViewModels
                 List<JournalRecord> list;
                 if (OnlySelectedShift)
                 {
-                    list = _journalRepository.GetRecordsByDateAndShift(Shift.Date, Shift.Letter);
+                    list = _journalRepository.GetRecordsByDateAndShift(Shift.Date, Shift.Shift.Value);
                 }
                 else
                 {
@@ -136,8 +136,8 @@ namespace TestAndTunes.ViewModels
 
         public void RefreshTotals()
         {
-            if (String.IsNullOrEmpty(Shift.Letter)) MessageBox.Show("Не выбранна смена!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            RefreshTotals(Shift.Date, Shift.Letter);
+            if (Shift.Shift==null) MessageBox.Show("Не выбранна смена!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            RefreshTotals(Shift.Date, Shift.Shift.Value);
         }
 
         public void RefreshTotals(DateTime date, string shift)

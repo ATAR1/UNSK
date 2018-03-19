@@ -23,8 +23,8 @@ namespace TestAndTunes.DomainModel.Entities
         public string DefectoscopeName { get; set; }
         public string OperationName { get; set; }
         public string Employee { get; set; }
-        public string Shift { get; set; }
     
         public virtual Operation Operation { get; set; }
+        public virtual Shift Shift { get; set; }
     }
 }

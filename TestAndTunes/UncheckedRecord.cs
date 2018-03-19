@@ -25,9 +25,9 @@ namespace TestAndTunes
             {
                 _model.Date = DateShift.Date;
             }
-            if (e.PropertyName == nameof(DateShift.Letter))
+            if (e.PropertyName == nameof(DateShift.Shift))
             {
-                _model.Shift = DateShift.Letter;
+                _model.Shift = DateShift.Shift;
             }
         }
 
@@ -166,7 +166,7 @@ namespace TestAndTunes
                 {
                     DateShift.PropertyChanged -= DateShiftPropertyChanged;
                     DateShift.Date = _model.Date;
-                    DateShift.Letter = _model.Shift;
+                    DateShift.Shift = _model.Shift;
                     DateShift.PropertyChanged += DateShiftPropertyChanged;
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));

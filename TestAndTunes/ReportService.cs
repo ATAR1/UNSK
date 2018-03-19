@@ -15,7 +15,7 @@ namespace TestAndTunes
 
         public TotalsTable GenerateTotals(DateTime date, string shift, string workArea)
         {
-            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shift && jr.WorkArea == workArea&& jr.Operation.Work.OperationGroup != "Сопутствующие").ToList();
+            var journalRecords = _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift.Value == shift && jr.WorkArea == workArea&& jr.Operation.Work.OperationGroup != "Сопутствующие").ToList();
             TotalsTable totals = GenerateTotals(journalRecords);
             totals.Caption = workArea;
             return totals;
@@ -72,7 +72,7 @@ namespace TestAndTunes
 
         public IEnumerable<JournalRecord> GetForTheShift(DateTime date, string shiftLetter)
         {
-            return _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift == shiftLetter).ToList()
+            return _ctx.JournalRecords.Where(jr => jr.Date == date && jr.Shift.Value == shiftLetter).ToList()
                 .OrderBy(jr => jr, new JournalRecordsBeginTimeComparer())
                 .ToList();
         }
@@ -119,7 +119,7 @@ namespace TestAndTunes
                     Date = g.Key.Date,
                     WorkArea = g.Key.WorkArea,
                     RecordHeader = g.Key.OperationGroup,
-                    Shift = g.Key.Shift,
+                    Shift = g.Key.Shift.Value,
                     Quantity = g.Count(),
                     Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),
                     Normative = g.Sum(jr => Math.Round(jr.Normative.TotalHours, 2)),
@@ -140,7 +140,7 @@ namespace TestAndTunes
                     RecordHeader = g.Key.OperationGroup,
                     Month = g.First().Date.ToString("MMMM"),
                     Year = g.First().Date.ToString("yyyy"),
-                    Shift = g.Key.Shift,
+                    Shift = g.Key.Shift.Value,
                     WorkArea = g.Key.WorkArea,
                     Quantity = g.Count(),
                     Duration = g.Sum(jr => Math.Round(jr.Duration.TotalHours, 2)),

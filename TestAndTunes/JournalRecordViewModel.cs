@@ -22,7 +22,7 @@ namespace TestAndTunes
 
         public string End => _jr.End.ToShortSignedString();
 
-        public string Shift => _jr.Shift;
+        public Shift Shift => _jr.Shift;
 
         public string Start => _jr.Start.ToShortSignedString();
 

@@ -73,7 +73,14 @@ namespace TestAndTunes.Views
                         }
                     }
 
-                    string header = ((Binding)headerClicked.Column.DisplayMemberBinding).Path.Path as string;
+                    string header = null;
+
+                    if (headerClicked.Column.DisplayMemberBinding != null)
+                    {
+                        header = ((Binding)headerClicked.Column.DisplayMemberBinding).Path.Path as string;                        
+                    }
+                    if (((string)headerClicked.Content) == "Смена")
+                        header = "Shift";
                     Sort(header, direction);
 
                     _lastHeaderClicked = headerClicked;

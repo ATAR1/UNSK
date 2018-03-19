@@ -17,7 +17,7 @@ namespace TestAndTunes.DAL
         
         public List<JournalRecord> GetRecordsByDateAndShift(DateTime date, string letter)
         {
-            return _ctx.JournalRecords.Where(jr=>jr.Date== date&&jr.Shift==letter).ToList();
+            return _ctx.JournalRecords.Where(jr=>jr.Date== date&&jr.Shift.Value==letter).ToList();
         }
 
         public List<JournalRecord> GetRecordsStartFrom(DateTime fromTheDate)
