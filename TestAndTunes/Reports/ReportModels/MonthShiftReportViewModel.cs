@@ -28,7 +28,7 @@ namespace TestAndTunes.Reports
 
         Action<LocalReport> IReportViewModel.SetReportParameters { get; }
 
-        public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftMonthReport.rdlc";
+        string IReportViewModel.ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftMonthReport.rdlc";
 
         public ICollection<MonthShiftReportRecord> ReportRecords { get; set; }
 
@@ -36,7 +36,7 @@ namespace TestAndTunes.Reports
 
         public static IReadOnlyCollection<IOption> Options => criterias.Members;
 
-        public void FillDataSources(ReportDataSourceCollection dataSources)
+        public virtual void FillDataSources(ReportDataSourceCollection dataSources)
         {
             dataSources.Add(new ReportDataSource("DataSet1"));
             dataSources["DataSet1"].Value = ReportRecords;

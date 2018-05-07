@@ -64,16 +64,7 @@ namespace TestAndTunes.ViewModels
         private void InitializeMenuItems()
         {
 
-            var menuItems = new ObservableCollection<MenuItemModel>();
-            _menu.MenuItems.Add(new MenuItemModel("Отчёты", menuItems));
-            menuItems.Add(new MenuItemModel("Отчёт за смену", new ShowShiftReportCommand(_service.LoadSheldue())));
-            menuItems.Add(new MenuItemModel("Время настроек и проверок", new ShowTestAndTunesReport()));
-            menuItems.Add(new MenuItemModel("Отчёт за месяц", new ShowMonthShiftReportCommand()));
-            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц(подробный)", new ShowShiftsReportCommand()));
-            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц", new ShowMonthShiftReportCommand()));
-            var scndLvlMnu = new ObservableCollection<MenuItemModel>();
-            menuItems.Add(new MenuItemModel("Отчёты за период", scndLvlMnu));
-            scndLvlMnu.Add(new MenuItemModel("Суммарный отчёт за период", new ShowSummaryForPeriodReportCommand()));
+            
         }
 
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)

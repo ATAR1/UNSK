@@ -1,55 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
-using TestAndTunes.Reports;
-using TestAndTunes.Routines;
+﻿using System.Collections.ObjectModel;
+using TestAndTunes.DAL;
 
 namespace TestAndTunes.ViewModels
 {
     public class MenuModel
-    {                
-        private ICommand _showMonthReport = new ShowMonthReportCommand();
-
-        private readonly ICommand _showShiftsReportCommand = new ShowShiftsReportCommand();
-        private ICommand _showMonthShiftReport = new ShowMonthShiftReportCommand();
-        private ICommand _showTestAndTunesReport = new ShowTestAndTunesReport();
-        //todo private ICommand _showShiftReport= new ShowShiftReportCommand();
-        private ICommand _showSummaryForPeriodReport = new ShowSummaryForPeriodReportCommand();
+    {
+        public MenuModel()
+        {            
+            var menuItems = new ObservableCollection<MenuItemModel>();
+            MenuItems.Add(new MenuItemModel("Отчёты", menuItems));
+            menuItems.Add(new MenuItemModel("Отчёт за смену", new ShowShiftReportCommand(new CollectionsRepository().LoadSheldue())));
+            menuItems.Add(new MenuItemModel("Время настроек и проверок", new ShowTestAndTunesReport()));
+            menuItems.Add(new MenuItemModel("Отчёт за месяц", new ShowMonthShiftReportCommand()));
+            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц(подробный)", new ShowShiftsReportCommand()));
+            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц", new ShowMonthShiftReportCommand()));
+            menuItems.Add(new MenuItemModel("Справка в БОТ", new ShowShortMonthReportWindowCommand()));
+            var scndLvlMnu = new ObservableCollection<MenuItemModel>();
+            menuItems.Add(new MenuItemModel("Отчёты за период", scndLvlMnu));
+            scndLvlMnu.Add(new MenuItemModel("Суммарный отчёт за период", new ShowSummaryForPeriodReportCommand()));
+        }
 
         public ObservableCollection<MenuItemModel> MenuItems { get; } = new ObservableCollection<MenuItemModel>();
 
-        public ICommand ShowMonthReport => _showMonthReport;
-
-        public ICommand ShowShiftsReport => _showShiftsReportCommand;
-
-        public ICommand ShowMonthShiftReport => _showMonthShiftReport;
-
-        public ICommand ShowTestAndTunesReport => _showTestAndTunesReport;
-
-        //public ICommand ShowShiftReport => _showShiftReport;
-
-        public ICommand ShowSummaryForPeriodReport => _showSummaryForPeriodReport;
-
-        private class ShowMonthReportCommand : ICommand
-        {
-            public event EventHandler CanExecuteChanged;
-
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public void Execute(object parameter)
-            {
-                var reportWindow = new Reports.MonthReportWindow();
-                ICollection<IOption> reportOptions = null;
-                var monthReportWindowModel = new MonthReportWindowModel(reportOptions);
-                monthReportWindowModel.RefreshCommand = new GenerateMonthReportCommand(monthReportWindowModel);
-                reportWindow.DataContext = monthReportWindowModel;
-                reportWindow.ShowDialog();
-            }
-        }
+        
     }
 }

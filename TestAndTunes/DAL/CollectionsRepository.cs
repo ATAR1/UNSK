@@ -9,7 +9,12 @@ namespace TestAndTunes.DAL
     public class CollectionsRepository
     {
         private JournalDBEntities _ctx;
-        
+
+        public CollectionsRepository()
+        {
+            this._ctx = new JournalDBEntities();
+        }
+
         public CollectionsRepository(JournalDBEntities _ctx)
         {
             this._ctx = _ctx;

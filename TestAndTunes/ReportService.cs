@@ -42,6 +42,24 @@ namespace TestAndTunes
             return result;
         }
 
+        public object GetShortMonthReport(DateTime beginDate, DateTime dateEnd)
+        {
+            var journalRecords = new JournalRepository(_ctx).GetRecordsForPeriod(beginDate, dateEnd);
+            //journalRecords = criterias.ApplyAllCriterias(journalRecords);
+            return journalRecords
+                .GroupBy(jr => new { jr.Shift })
+                .Select(gr=> new MonthReportShortModel()
+                {
+                    StartDate = beginDate
+                    ,Quantity = gr.Count()
+                    ,DurationInHour = gr.Sum(i=>i.Duration.TotalHours)
+                    ,Deviation = gr.Sum(i=>i.Deviation.TotalHours)
+                    
+
+                });
+
+        }
+
         private List<TestAndTunesReportRecord> GetSummaryAndAverage(List<JournalRecord> list)
         {
             var result = list

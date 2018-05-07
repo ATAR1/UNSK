@@ -27,7 +27,6 @@ namespace TestAndTunes
         {
             Load(beginDate,endDate);
         }
-        //public string ReportHeader => $"Простои оборудования УНСК за {Month} {Year} года.";
         
         public SubreportProcessingEventHandler SubreportProcessing => null;
 

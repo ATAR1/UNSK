@@ -16,16 +16,6 @@
             <HierarchicalDataTemplate DataType="{x:Type models:MenuItemModel}" ItemsSource="{Binding Path=MenuItems}">
                 <TextBlock Text="{Binding Header}"/>
             </HierarchicalDataTemplate>
-        </Menu.ItemTemplate>
-        <!--<MenuItem Header="Отчёты">
-            <MenuItem Header="Время настроек и проверок" Command="{Binding ShowTestAndTunesReport}"/>
-            <MenuItem Header="Отчёт за месяц" Command="{Binding ShowMonthReport}"/>
-            <MenuItem Header="Посменный отчёт за месяц(подробный)" Command="{Binding ShowShiftsReport}"/>
-            <MenuItem Header="Посменный отчёт за месяц" Command="{Binding ShowMonthShiftReport}"/>
-            <MenuItem Header="Отчёт за смену" Command="{Binding ShowShiftReport}"/>
-            <MenuItem Header="Отчёты за период">
-                <MenuItem Header="Суммарный отчёт за период" Command="{Binding ShowSummaryForPeriodReport}"/>
-            </MenuItem>
-        </MenuItem>-->
+        </Menu.ItemTemplate>        
     </Menu>
 </UserControl>
