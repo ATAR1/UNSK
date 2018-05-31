@@ -1,49 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
-using TestAndTunes.DAL.JournalRecordsSelectionCriterias;
+using TestAndTunes.Reports;
 using TestAndTunes.Reports.Models;
-using TestAndTunes.Routines;
+using System.Collections.Generic;
+using TestAndTunes.DAL.JournalRecordsSelectionCriterias;
 
-namespace TestAndTunes.Reports
+namespace TestAndTunes.ViewModels
 {
-    /// <summary>
-    /// Модель отчёта "Просстои оборудования за период, по сменам".
-    /// </summary>
-    class MonthShiftReportViewModel: IReportViewModel
+    internal class ShortMonthReportViewModel : IReportViewModel
     {
         private static SetOfCriteriaForSelectingJournalRecords criterias;
-        static MonthShiftReportViewModel()
+        static ShortMonthReportViewModel()
         {
             criterias = new SetOfCriteriaForSelectingJournalRecords();
             criterias.AddCriteria(new ExcludeСoncomitant() { IsEnabled = true });
             criterias.AddCriteria(new ExcludeRepair() { IsEnabled = true });
         }
 
-        public MonthShiftReportViewModel(DateTime beginDate, DateTime endDate)
+        public ShortMonthReportViewModel(DateTime beginDate, DateTime dateEnd)
         {
-            
-            Load(beginDate,endDate);            
+            Load(beginDate, dateEnd);
         }
 
-        Action<LocalReport> IReportViewModel.SetReportParameters { get; }
+        public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShortMonthReport.rdlc";
 
-        public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShiftMonthReport.rdlc";
+        public Action<LocalReport> SetReportParameters{ get; }
 
         public ICollection<MonthShiftReportRecord> ReportRecords { get; set; }
 
         public SubreportProcessingEventHandler SubreportProcessing => null;
-
-        public static IReadOnlyCollection<IOption> Options => criterias.Members;
 
         public void FillDataSources(ReportDataSourceCollection dataSources)
         {
             dataSources.Add(new ReportDataSource("DataSet1"));
             dataSources["DataSet1"].Value = ReportRecords;
         }
-        
+
         private void Load(DateTime beginDate, DateTime endDate)
         {
+
             ReportService service = new ReportService();
             ReportRecords = service.GetMonthShiftsReport(beginDate, endDate, criterias);
         }

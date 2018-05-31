@@ -167,7 +167,10 @@
       <DependentUpon>ReportViewerHost.xaml</DependentUpon>
     </Compile>
     <Compile Include="Routines\RangeEnabledObservableCollection.cs" />
+    <Compile Include="ViewModels\GenerateShortMonthReportCommand.cs" />
     <Compile Include="ViewModels\MenuItemModel.cs" />
+    <Compile Include="ViewModels\ShortMonthReportViewModel.cs" />
+    <Compile Include="ViewModels\ShowShortMonthCommand.cs" />
     <Compile Include="Views\Fakes\SummaryFake.cs" />
     <Compile Include="Views\Fakes\TotalsTableFake.cs" />
     <Compile Include="Views\MenuContainer.xaml.cs">
@@ -303,6 +306,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Layouts\Journal.rdlc" />
+    <EmbeddedResource Include="Reports\Layouts\ShortMonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\SummaryReportForPeriod.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\MonthReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftMonthReport.rdlc" />
@@ -322,6 +326,7 @@
     <None Include="Properties\DataSources\JournalRecordViewModel.datasource" />
     <None Include="Properties\DataSources\MonthReportViewModel.datasource" />
     <None Include="Properties\DataSources\ReportLine.datasource" />
+    <None Include="Properties\DataSources\TestAndTunes.Reports.Models.MonthShiftReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.Models.ShiftsReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.MonthShiftReportRecord.datasource" />
     <None Include="Properties\DataSources\TestAndTunes.Reports.ShiftReportViewModel+Record.datasource" />
