@@ -17,7 +17,7 @@ namespace TestAndTunes.Reports
         {
             criterias = new SetOfCriteriaForSelectingJournalRecords();
             criterias.AddCriteria(new ExcludeСoncomitant() { IsEnabled = true });
-            criterias.AddCriteria(new ExcludeRepair());
+            criterias.AddCriteria(new ExcludeRepair() { IsEnabled = true });
         }
 
         public MonthShiftReportViewModel(DateTime beginDate, DateTime endDate)
