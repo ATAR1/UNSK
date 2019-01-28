@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAndTunes.DomainModel.Entities
+namespace TestAndTunes.Entities
 {
     public partial class Shift : IComparable<Shift>,IComparable
     {

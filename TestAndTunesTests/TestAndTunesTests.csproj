@@ -56,6 +56,10 @@
     <Compile Include="DomainModel\ShiftServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TestAndTunes.Entities\TestAndTunes.Entities.csproj">
+      <Project>{0BA1A5A5-673E-464A-B56C-985D2090BE2C}</Project>
+      <Name>TestAndTunes.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestAndTunes\TestAndTunes.csproj">
       <Project>{D1B260CB-FDC4-45EB-AFEB-09616827FF44}</Project>
       <Name>TestAndTunes</Name>

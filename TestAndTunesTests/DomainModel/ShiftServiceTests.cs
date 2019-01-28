@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
 using System.Collections;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.DomainModel.Tests
 {

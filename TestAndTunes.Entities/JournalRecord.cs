@@ -7,13 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.DomainModel.Entities
+namespace TestAndTunes.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class JournalRecord
     {
-        public string FullName { get; set; }
+        public int Id { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.TimeSpan Start { get; set; }
+        public System.TimeSpan End { get; set; }
+        public string Description { get; set; }
+        public string WorkArea { get; set; }
+        public string DefectoscopeName { get; set; }
+        public string OperationName { get; set; }
+        public string Employee { get; set; }
+    
+        public virtual Operation Operation { get; set; }
+        public virtual Shift Shift { get; set; }
     }
 }

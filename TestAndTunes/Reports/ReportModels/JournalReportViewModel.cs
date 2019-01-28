@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.Reports.ReportModels
 {

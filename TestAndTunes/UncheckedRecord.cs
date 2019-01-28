@@ -5,6 +5,7 @@ using System.ComponentModel;
 using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes
 {

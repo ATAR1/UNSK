@@ -51,11 +51,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -117,34 +117,6 @@
     <Compile Include="DAL\Journal.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeRepair.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeСoncomitant.cs" />
-    <Compile Include="DomainModel\Entities\Defectoscope.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\Employee.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\JournalRecord.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\Normative.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\Operation.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\SheldueRecord.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\Shift.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\ShiftPartial.cs" />
-    <Compile Include="DomainModel\Entities\Work.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\WorkArea.cs">
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -177,7 +149,6 @@
       <DependentUpon>MenuContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Reports\IReportWindowModel.cs" />
-    <Compile Include="DomainModel\Entities\JournalRecordPartial.cs" />
     <Compile Include="JournalRecordViewModel.cs" />
     <Compile Include="ViewModels\MenuModel.cs" />
     <Compile Include="Reports\ReportModels\MonthReportViewModel.cs" />
@@ -243,21 +214,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DomainModel\Entities\JournalModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JournalModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\JournalModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JournalModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DomainModel\Entities\JournalModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JournalModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -314,13 +270,6 @@
     <EmbeddedResource Include="Reports\Layouts\ShiftReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\ShiftWorkAreaSubReport.rdlc" />
     <EmbeddedResource Include="Reports\Layouts\TestAndTunesReport.rdlc" />
-    <EntityDeploy Include="DomainModel\Entities\JournalModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JournalModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DomainModel\Entities\JournalModel.edmx.diagram">
-      <DependentUpon>JournalModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\JournalRecord.datasource" />
     <None Include="Properties\DataSources\JournalRecordViewModel.datasource" />
@@ -345,16 +294,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\112_RefreshArrow_Blue_48x48_72.png" />
-    <Content Include="DomainModel\Entities\JournalModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JournalModel.edmx</DependentUpon>
-      <LastGenOutput>JournalModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DomainModel\Entities\JournalModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JournalModel.edmx</DependentUpon>
-      <LastGenOutput>JournalModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -371,7 +310,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TestAndTunes.Entities\TestAndTunes.Entities.csproj">
+      <Project>{0BA1A5A5-673E-464A-B56C-985D2090BE2C}</Project>
+      <Name>TestAndTunes.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

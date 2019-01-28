@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.DAL
 {

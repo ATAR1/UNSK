@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.DAL
 {

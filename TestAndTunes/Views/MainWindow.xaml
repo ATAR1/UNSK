@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TestAndTunes"
         xmlns:views="clr-namespace:TestAndTunes.Views"
-        xmlns:models ="clr-namespace:TestAndTunes.DomainModel.Entities"
+        xmlns:models ="clr-namespace:TestAndTunes.Entities;assembly=TestAndTunes.Entities"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="TestAndTunes.Views.MainWindow"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"

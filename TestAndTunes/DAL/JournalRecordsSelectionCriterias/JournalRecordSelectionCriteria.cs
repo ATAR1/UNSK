@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 using TestAndTunes.Routines;
 
 namespace TestAndTunes.DAL.JournalRecordsSelectionCriterias

@@ -7,16 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.DomainModel.Entities
+namespace TestAndTunes.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class SheldueRecord
+    public partial class Operation
     {
-        public int Id { get; set; }
-        public int Group { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Operation()
+        {
+            this.Normatives = new HashSet<Normative>();
+        }
     
-        public virtual Shift Shift { get; set; }
+        public string WorkArea { get; set; }
+        public string DefectoscopeName { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Normative> Normatives { get; set; }
+        public virtual Work Work { get; set; }
     }
 }

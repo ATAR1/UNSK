@@ -4,6 +4,7 @@ using Microsoft.Reporting.WinForms;
 using System.Linq;
 using TestAndTunes.DomainModel.Entities;
 using TestAndTunes.Routines;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.Reports
 {

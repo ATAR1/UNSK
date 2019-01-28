@@ -1,4 +1,5 @@
 ﻿using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.DAL
 {

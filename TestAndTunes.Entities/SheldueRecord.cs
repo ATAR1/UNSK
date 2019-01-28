@@ -7,22 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.DomainModel.Entities
+namespace TestAndTunes.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkArea
+    public partial class SheldueRecord
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WorkArea()
-        {
-            this.Defectoscopes = new HashSet<Defectoscope>();
-        }
+        public int Id { get; set; }
+        public int Group { get; set; }
     
-        public string Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Defectoscope> Defectoscopes { get; set; }
+        public virtual Shift Shift { get; set; }
     }
 }

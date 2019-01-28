@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAndTunes", "TestAndTune
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAndTunesTests", "TestAndTunesTests\TestAndTunesTests.csproj", "{6424988B-C939-4C6B-9179-C442BABE0432}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAndTunes.Entities", "TestAndTunes.Entities\TestAndTunes.Entities.csproj", "{0BA1A5A5-673E-464A-B56C-985D2090BE2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6424988B-C939-4C6B-9179-C442BABE0432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6424988B-C939-4C6B-9179-C442BABE0432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6424988B-C939-4C6B-9179-C442BABE0432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA1A5A5-673E-464A-B56C-985D2090BE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA1A5A5-673E-464A-B56C-985D2090BE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA1A5A5-673E-464A-B56C-985D2090BE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA1A5A5-673E-464A-B56C-985D2090BE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

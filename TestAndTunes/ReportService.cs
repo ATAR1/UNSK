@@ -5,6 +5,7 @@ using TestAndTunes.DAL;
 using TestAndTunes.DAL.JournalRecordsSelectionCriterias;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 using TestAndTunes.Reports.Models;
 
 namespace TestAndTunes

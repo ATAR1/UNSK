@@ -6,6 +6,7 @@ using System.Windows.Input;
 using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 
 namespace TestAndTunes.Reports
 {

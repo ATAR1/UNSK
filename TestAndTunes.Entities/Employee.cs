@@ -7,18 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestAndTunes.DomainModel.Entities
+namespace TestAndTunes.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Normative
+    public partial class Employee
     {
-        public string WorkArea { get; set; }
-        public string DefectoscopeName { get; set; }
-        public string Operation { get; set; }
-        public System.DateTime BeginDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public System.TimeSpan Value { get; set; }
+        public string FullName { get; set; }
     }
 }

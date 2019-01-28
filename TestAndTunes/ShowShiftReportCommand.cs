@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 using TestAndTunes.Reports;
 
 namespace TestAndTunes

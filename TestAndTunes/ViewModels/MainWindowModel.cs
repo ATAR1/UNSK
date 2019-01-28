@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using TestAndTunes.DAL;
 using TestAndTunes.DomainModel;
-using TestAndTunes.DomainModel.Entities;
+using TestAndTunes.Entities;
 using TestAndTunes.Routines;
 
 namespace TestAndTunes.ViewModels
