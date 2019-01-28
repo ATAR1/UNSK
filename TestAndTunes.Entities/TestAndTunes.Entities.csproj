@@ -106,6 +106,7 @@
       <DependentUpon>JournalModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="TestAndTunes.Entities.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JournalModel.Context.tt">
