@@ -24,7 +24,15 @@ namespace TestAndTunes.ViewModels
 
         public string ReportEmbeddedResource => "TestAndTunes.Reports.Layouts.ShortMonthReport.rdlc";
 
-        public Action<LocalReport> SetReportParameters{ get; }
+        public Action<LocalReport> SetReportParameters => SetReportParametersAction;
+
+        private void SetReportParametersAction(LocalReport report)
+        {
+            report.SetParameters(new ReportParameter("Signatory1Position", Properties.Settings.Default.ReportSignatory1Position));
+            report.SetParameters(new ReportParameter("Signatory2Position", Properties.Settings.Default.ReportSignatory2Position));
+            report.SetParameters(new ReportParameter("Signatory1FullName", Properties.Settings.Default.ReportSignatory1FullName));
+            report.SetParameters(new ReportParameter("Signatory2FullName", Properties.Settings.Default.ReportSignatory2FullName));
+        }
 
         public ICollection<MonthShiftReportRecord> ReportRecords { get; set; }
 

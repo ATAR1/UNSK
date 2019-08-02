@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TestAndTunes.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ReportSignatory1Position" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Заместитель начальника цеха по энергооборудованию</Value>
+    </Setting>
+    <Setting Name="ReportSignatory2Position" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Начальник участка неразрущающих средств контроля</Value>
+    </Setting>
+    <Setting Name="ReportSignatory1FullName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">А.Н. Елькин</Value>
+    </Setting>
+    <Setting Name="ReportSignatory2FullName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">С.А. Медведев</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
