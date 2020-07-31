@@ -13,7 +13,7 @@
             </Style>
         </Menu.ItemContainerStyle>
         <Menu.ItemTemplate>
-            <HierarchicalDataTemplate DataType="{x:Type models:MenuItemModel}" ItemsSource="{Binding Path=MenuItems}">
+            <HierarchicalDataTemplate DataType="{x:Type models:MenuItemContainerModel}" ItemsSource="{Binding Path=MenuItems}">
                 <TextBlock Text="{Binding Header}"/>
             </HierarchicalDataTemplate>
         </Menu.ItemTemplate>

@@ -18,7 +18,7 @@ namespace TestAndTunes.Views
         {
             InitializeComponent();
             this.Language = System.Windows.Markup.XmlLanguage.GetLanguage(CultureInfo.GetCultureInfo("ru-RU").IetfLanguageTag);
-            this.DataContext = new MainWindowModel();
+            
         }
 
 

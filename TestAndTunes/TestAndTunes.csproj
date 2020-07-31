@@ -138,6 +138,8 @@
     </Compile>
     <Compile Include="Routines\RangeEnabledObservableCollection.cs" />
     <Compile Include="ViewModels\GenerateShortMonthReportCommand.cs" />
+    <Compile Include="ViewModels\MenuItemContainerModel.cs" />
+    <Compile Include="ViewModels\MenuItemWithCommandModel.cs" />
     <Compile Include="ViewModels\MenuItemModel.cs" />
     <Compile Include="ViewModels\ShortMonthReportViewModel.cs" />
     <Compile Include="ViewModels\ShowShortMonthCommand.cs" />

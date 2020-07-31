@@ -25,20 +25,19 @@ namespace TestAndTunes.ViewModels
         
         private JournalRecordViewModel _selectedRecord;
         private ICommand _cancellCommand;
-        private MenuModel _menu = new MenuModel();
+        private MenuModel _menu;
         private bool onlyForCurrentShift;
-        private CollectionsRepository _service;
+        private CollectionsRepository _collectionsRepository;
         private IJournalRepository _journalRepository;
 
-        public MainWindowModel()
+        public MainWindowModel(IJournalRepository journalRepository, CollectionsRepository collectionsRepository, MenuModel menu)
         {
             try
             {
-                var ctx = new JournalDBEntities();
-                _journalRepository = new JournalRepository(ctx);
-                
-                _service = new CollectionsRepository(ctx);
-                UncheckedRecord = new UncheckedRecord(_service.LoadSheldue().ToList());
+                _menu = menu;
+                _journalRepository = journalRepository;
+                _collectionsRepository = collectionsRepository;
+                UncheckedRecord = new UncheckedRecord(_collectionsRepository.LoadSheldue().ToList());
                 _saveCommand = new SaveCommand(UncheckedRecord, _journalRepository, this);
                 _deleteCommand = new DeleteCommand(_journalRepository, this);
                 _editCommand = new EditCommand(UncheckedRecord);
@@ -46,36 +45,18 @@ namespace TestAndTunes.ViewModels
                 _refreshCommand = new RefreshCommand(this);
                 _addCommand = new AddCommand(UncheckedRecord);
                 _cancellCommand = new CancellCommand(UncheckedRecord);
-                
-                
                 RefreshJournalRecords();
-                Shift = new DateShiftVM(_service.LoadSheldue().ToList());
+                Shift = new DateShiftVM(_collectionsRepository.LoadSheldue().ToList());
                 Shift.PropertyChanged += CurrentShiftChanged;
                 RefreshTotals();
                 LoadCollections();
-                InitializeMenuItems();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
         }
-
-        private void InitializeMenuItems()
-        {
-
-            var menuItems = new ObservableCollection<MenuItemModel>();
-            _menu.MenuItems.Add(new MenuItemModel("Отчёты", menuItems));
-            menuItems.Add(new MenuItemModel("Отчёт за смену", new ShowShiftReportCommand(_service.LoadSheldue())));
-            menuItems.Add(new MenuItemModel("Время настроек и проверок", new ShowTestAndTunesReport()));
-            menuItems.Add(new MenuItemModel("Отчёт за месяц", new ShowMonthShiftReportCommand()));
-            menuItems.Add(new MenuItemModel("Отчёт за месяц краткий", new ShowShortMonthCommand()));
-            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц(подробный)", new ShowShiftsReportCommand()));
-            menuItems.Add(new MenuItemModel("Посменный отчёт за месяц", new ShowMonthShiftReportCommand()));
-            var scndLvlMnu = new ObservableCollection<MenuItemModel>();
-            menuItems.Add(new MenuItemModel("Отчёты за период", scndLvlMnu));
-            scndLvlMnu.Add(new MenuItemModel("Суммарный отчёт за период", new ShowSummaryForPeriodReportCommand()));
-        }
+        
 
         private void CurrentShiftChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -91,22 +72,22 @@ namespace TestAndTunes.ViewModels
             Personal.Clear();
             Shifts.Clear();
 
-            foreach (var area in _service.LoadWorkAreas())
+            foreach (var area in _collectionsRepository.LoadWorkAreas())
             {
                 Areas.Add(area);
             }
 
-            foreach (var operation in _service.LoadWorks())
+            foreach (var operation in _collectionsRepository.LoadWorks())
             {
                 Operations.Add(operation);
             }
 
-            foreach (var employee in _service.LoadPersonal())
+            foreach (var employee in _collectionsRepository.LoadPersonal())
             {
                 Personal.Add(employee);
             }
 
-            foreach (var shift in _service.LoadShiftSet())
+            foreach (var shift in _collectionsRepository.LoadShiftSet())
             {
                 Shifts.Add(shift);
             }
@@ -137,7 +118,7 @@ namespace TestAndTunes.ViewModels
 
         public void RefreshTotals()
         {
-            if (Shift.Shift==null) MessageBox.Show("Не выбранна смена!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (Shift.Shift==null) MessageBox.Show("Не выбрана смена!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             RefreshTotals(Shift.Date, Shift.Shift.Value);
         }
 
