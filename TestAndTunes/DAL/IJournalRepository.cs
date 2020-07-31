@@ -9,5 +9,8 @@ namespace TestAndTunes.DAL
     {
         List<JournalRecord> GetRecordsByDateAndShift(DateTime date, string letter);
         List<JournalRecord> GetRecordsStartFrom(DateTime fromTheDate);
+        void Add(JournalRecord newRecord);
+        void Remove(JournalRecord model);
+        void Save(JournalRecord oldRecord, JournalRecord newRecord);
     }
 }
