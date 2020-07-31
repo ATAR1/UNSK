@@ -269,8 +269,8 @@
           <Property Name="OperationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Employee" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Operation" Relationship="JournalDBModel.JournalRecordOperation" FromRole="JournalRecord" ToRole="Operation" />
+          <Property Name="ShiftValue" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Shift" Relationship="JournalDBModel.FK_JournalRecord_Shift" FromRole="JournalRecord" ToRole="Shift" />
-          <Property Name="ShiftValue" Type="String" Nullable="false" />
           </EntityType>
         <EntityContainer Name="JournalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="JournalRecords" EntityType="JournalDBModel.JournalRecord" />
@@ -310,12 +310,12 @@
             <End Role="Shift" EntitySet="ShiftSet" />
             <End Role="SheldueRecord" EntitySet="SheldueRecords" />
           </AssociationSet>
-          <AssociationSet Name="FK_JournalRecord_Shift" Association="JournalDBModel.FK_JournalRecord_Shift">
-            <End Role="Shift" EntitySet="ShiftSet" />
-            <End Role="JournalRecord" EntitySet="JournalRecords" />
-          </AssociationSet>
           <AssociationSet Name="FK_JournalRecord_WorkArea" Association="JournalDBModel.FK_JournalRecord_WorkArea">
             <End Role="WorkArea" EntitySet="WorkAreas" />
+            <End Role="JournalRecord" EntitySet="JournalRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalRecord_Shift" Association="JournalDBModel.FK_JournalRecord_Shift">
+            <End Role="Shift" EntitySet="ShiftSet" />
             <End Role="JournalRecord" EntitySet="JournalRecords" />
           </AssociationSet>
           </EntityContainer>
@@ -476,10 +476,6 @@
           <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
           <End Type="JournalDBModel.SheldueRecord" Role="SheldueRecord" Multiplicity="*" />
         </Association>
-        <Association Name="FK_JournalRecord_Shift">
-          <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
-          <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
-        </Association>
         <Association Name="FK_JournalRecord_WorkArea">
           <End Type="JournalDBModel.WorkArea" Role="WorkArea" Multiplicity="1" />
           <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
@@ -489,6 +485,18 @@
             </Principal>
             <Dependent Role="JournalRecord">
               <PropertyRef Name="WorkArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JournalRecord_Shift">
+          <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
+          <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift">
+              <PropertyRef Name="Value" />
+            </Principal>
+            <Dependent Role="JournalRecord">
+              <PropertyRef Name="ShiftValue" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -583,14 +591,6 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="FK_SheldueRecord_Shift" TypeName="JournalDBModel.FK_SheldueRecord_Shift" StoreEntitySet="SheldueRecord">
             <EndProperty Name="SheldueRecord">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <EndProperty Name="Shift">
-              <ScalarProperty Name="Value" ColumnName="Shift" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_JournalRecord_Shift" TypeName="JournalDBModel.FK_JournalRecord_Shift" StoreEntitySet="JournalRecord">
-            <EndProperty Name="JournalRecord">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
             <EndProperty Name="Shift">

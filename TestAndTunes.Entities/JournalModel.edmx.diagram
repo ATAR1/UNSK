@@ -23,8 +23,8 @@
         <AssociationConnector Association="JournalDBModel.FK_Normative_Operation" />
         <EntityTypeShape EntityType="JournalDBModel.SheldueRecord" Width="1.5" PointX="5.25" PointY="7.75" />
         <AssociationConnector Association="JournalDBModel.FK_SheldueRecord_Shift" />
-        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Shift" />
         <AssociationConnector Association="JournalDBModel.FK_JournalRecord_WorkArea" />
+        <AssociationConnector Association="JournalDBModel.FK_JournalRecord_Shift" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
