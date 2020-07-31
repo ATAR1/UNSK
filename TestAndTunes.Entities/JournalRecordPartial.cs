@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TestAndTunes.Entities
 {
-    public partial class JournalRecord
+    public partial class JournalRecord:ICloneable
     {
         public TimeSpan Duration => EndDate - StartDate;
 
@@ -23,5 +23,15 @@ namespace TestAndTunes.Entities
         public TimeSpan Deviation => Duration - Normative;
 
         public string OperationGroup => this.Operation.Work.OperationGroup;
+
+        object ICloneable.Clone()
+        {
+            return this.Clone();
+        }
+
+        public JournalRecord Clone()
+        {
+            return (JournalRecord)this.MemberwiseClone();
+        }
     }
 }

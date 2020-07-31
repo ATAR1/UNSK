@@ -23,6 +23,7 @@ namespace TestAndTunes.Entities
         public string DefectoscopeName { get; set; }
         public string OperationName { get; set; }
         public string Employee { get; set; }
+        public string ShiftValue { get; set; }
     
         public virtual Operation Operation { get; set; }
         public virtual Shift Shift { get; set; }

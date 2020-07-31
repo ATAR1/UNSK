@@ -164,8 +164,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6037: Ограничение внешнего ключа "FK_JournalRecord_WorkArea" отсутствует в модели хранения. Столбец "WorkArea" таблицы "Хранилище JournalDBModel.JournalRecord" является внешним ключом, участвующим в нескольких связях. Модель сущностей "один к одному" не пройдет проверку, поскольку возможна несогласованность данных.
         <Association Name="FK_JournalRecord_WorkArea">
           <End Role="WorkArea" Type="Self.WorkArea" Multiplicity="1" />
           <End Role="JournalRecord" Type="Self.JournalRecord" Multiplicity="*" />
@@ -177,7 +175,7 @@
               <PropertyRef Name="WorkArea" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>-->
+        </Association>
         <Association Name="FK_Normative_Operation">
           <End Role="Operation" Type="Self.Operation" Multiplicity="1" />
           <End Role="Normative" Type="Self.Normative" Multiplicity="*" />
@@ -240,6 +238,10 @@
             <End Role="Shift" EntitySet="Shift" />
             <End Role="JournalRecord" EntitySet="JournalRecord" />
           </AssociationSet>
+          <AssociationSet Name="FK_JournalRecord_WorkArea" Association="Self.FK_JournalRecord_WorkArea">
+            <End Role="WorkArea" EntitySet="WorkArea" />
+            <End Role="JournalRecord" EntitySet="JournalRecord" />
+          </AssociationSet>
           <AssociationSet Name="FK_Normative_Operation" Association="Self.FK_Normative_Operation">
             <End Role="Operation" EntitySet="Operation" />
             <End Role="Normative" EntitySet="Normative" />
@@ -268,6 +270,7 @@
           <Property Name="Employee" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Operation" Relationship="JournalDBModel.JournalRecordOperation" FromRole="JournalRecord" ToRole="Operation" />
           <NavigationProperty Name="Shift" Relationship="JournalDBModel.FK_JournalRecord_Shift" FromRole="JournalRecord" ToRole="Shift" />
+          <Property Name="ShiftValue" Type="String" Nullable="false" />
           </EntityType>
         <EntityContainer Name="JournalDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="JournalRecords" EntityType="JournalDBModel.JournalRecord" />
@@ -309,6 +312,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_JournalRecord_Shift" Association="JournalDBModel.FK_JournalRecord_Shift">
             <End Role="Shift" EntitySet="ShiftSet" />
+            <End Role="JournalRecord" EntitySet="JournalRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JournalRecord_WorkArea" Association="JournalDBModel.FK_JournalRecord_WorkArea">
+            <End Role="WorkArea" EntitySet="WorkAreas" />
             <End Role="JournalRecord" EntitySet="JournalRecords" />
           </AssociationSet>
           </EntityContainer>
@@ -473,6 +480,18 @@
           <End Type="JournalDBModel.Shift" Role="Shift" Multiplicity="1" />
           <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
         </Association>
+        <Association Name="FK_JournalRecord_WorkArea">
+          <End Type="JournalDBModel.WorkArea" Role="WorkArea" Multiplicity="1" />
+          <End Type="JournalDBModel.JournalRecord" Role="JournalRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkArea">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="JournalRecord">
+              <PropertyRef Name="WorkArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -482,6 +501,7 @@
           <EntitySetMapping Name="JournalRecords">
             <EntityTypeMapping TypeName="IsTypeOf(JournalDBModel.JournalRecord)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
               <MappingFragment StoreEntitySet="JournalRecord">
+                <ScalarProperty Name="ShiftValue" ColumnName="Shift" />
                 <ScalarProperty Name="Employee" ColumnName="Employee" />
                 <ScalarProperty Name="DefectoscopeName" ColumnName="DefectoscopeName" />
                 <ScalarProperty Name="WorkArea" ColumnName="WorkArea" />
@@ -592,7 +612,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
