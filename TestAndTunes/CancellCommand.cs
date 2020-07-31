@@ -11,11 +11,9 @@ namespace TestAndTunes
     internal class CancellCommand : ICommand
     {
         private UncheckedRecord _uncheckedRecord;
-        private IJournal _journal;
 
-        public CancellCommand(IJournal journal, UncheckedRecord uncheckedRecord)
+        public CancellCommand( UncheckedRecord uncheckedRecord)
         {
-            this._journal = journal;
             this._uncheckedRecord = uncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -29,7 +27,6 @@ namespace TestAndTunes
 
         public void Execute(object parameter)
         {
-            _journal.CancellChanges(_uncheckedRecord.Model);            
             _uncheckedRecord.Model = null;
         }
     }

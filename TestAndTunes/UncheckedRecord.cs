@@ -16,8 +16,6 @@ namespace TestAndTunes
         public UncheckedRecord(IEnumerable<SheldueRecord> sheldue)
         {
             DateShift = new DateShiftVM(sheldue);
-            
-
         }
 
         private void DateShiftPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -53,7 +51,7 @@ namespace TestAndTunes
 
         public DateShiftVM DateShift { get; set; }
 
-
+        public bool IsNewRecord { get; set; }
 
 
 

@@ -113,8 +113,6 @@
     </ApplicationDefinition>
     <Compile Include="AddCommand.cs" />
     <Compile Include="CancellCommand.cs" />
-    <Compile Include="DAL\IJournal.cs" />
-    <Compile Include="DAL\Journal.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeRepair.cs" />
     <Compile Include="DAL\JournalRecordsSelectionCriterias\ExcludeСoncomitant.cs" />
     <Compile Include="Reports\OptionsWindow.xaml.cs">

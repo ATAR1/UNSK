@@ -11,14 +11,14 @@ namespace TestAndTunes
     internal class DeleteCommand : ICommand
     {
         private JournalRecordViewModel _selectedRecord;
-        private IJournal _journal;
+        private IJournalRepository _journalRepository;
         private MainWindowModel _viewModel;
         private UncheckedRecord _uncheckedRecord;
 
-        public DeleteCommand(IJournal journal, MainWindowModel viewModel)
+        public DeleteCommand(IJournalRepository journalRepository, MainWindowModel viewModel)
         {
             
-            this._journal = journal;
+            this._journalRepository = journalRepository;
             _viewModel = viewModel;
             _uncheckedRecord = _viewModel.UncheckedRecord;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
@@ -41,8 +41,7 @@ namespace TestAndTunes
         {
             if (MessageBox.Show("Удалить выбранную запись?","Внимание!",MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                _journal.Remove(_selectedRecord.Model);
-                _journal.SaveChanges();
+                _journalRepository.Remove(_selectedRecord.Model);
                 _viewModel.RefreshJournalRecords();
                 _viewModel.RefreshTotals();
             }

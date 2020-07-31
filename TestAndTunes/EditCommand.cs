@@ -36,6 +36,7 @@ namespace TestAndTunes
         public void Execute(object parameter)
         {
             _uncheckedRecord.Model = _selectedRecord.Model;
+            _uncheckedRecord.IsNewRecord = false;
         }
     }
 }

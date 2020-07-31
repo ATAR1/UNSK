@@ -36,16 +36,16 @@ namespace TestAndTunes.ViewModels
             {
                 var ctx = new JournalDBEntities();
                 _journalRepository = new JournalRepository(ctx);
-                var journal = new Journal(ctx);
+                
                 _service = new CollectionsRepository(ctx);
                 UncheckedRecord = new UncheckedRecord(_service.LoadSheldue().ToList());
-                _saveCommand = new SaveCommand(UncheckedRecord, journal, this);
-                _deleteCommand = new DeleteCommand(journal, this);
+                _saveCommand = new SaveCommand(UncheckedRecord, _journalRepository, this);
+                _deleteCommand = new DeleteCommand(_journalRepository, this);
                 _editCommand = new EditCommand(UncheckedRecord);
                 JournalRecords = new RangeEnabledObservableCollection<JournalRecordViewModel>();
                 _refreshCommand = new RefreshCommand(this);
-                _addCommand = new AddCommand(journal, UncheckedRecord);
-                _cancellCommand = new CancellCommand(journal, UncheckedRecord);
+                _addCommand = new AddCommand(UncheckedRecord);
+                _cancellCommand = new CancellCommand(UncheckedRecord);
                 
                 
                 RefreshJournalRecords();

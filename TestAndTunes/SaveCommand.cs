@@ -9,14 +9,14 @@ namespace TestAndTunes
 {
     public class SaveCommand : ICommand
     {
-        private IJournal _journal;
+        private IJournalRepository _journalRepository;
         private UncheckedRecord _uncheckedRecord;
         private MainWindowModel _viewModel;
 
-        public SaveCommand(UncheckedRecord uncheckedRecord, IJournal journal, MainWindowModel vievModel)
+        public SaveCommand(UncheckedRecord uncheckedRecord, IJournalRepository journalRepository, MainWindowModel vievModel)
         {
             this._uncheckedRecord = uncheckedRecord;
-            this._journal = journal;
+            this._journalRepository = journalRepository;
             _viewModel = vievModel;
             _uncheckedRecord.PropertyChanged += (s, a) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -32,10 +32,17 @@ namespace TestAndTunes
         {            
             if (_uncheckedRecord.CheckModel())
             {
-                _journal.SaveChanges();                
-                ((AddCommand)_viewModel.AddCommand).StoredWorkArea = _uncheckedRecord.WorkArea;
-                ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.DateShift.Date;
-                ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.DateShift.Shift;
+                if (_uncheckedRecord.IsNewRecord)
+                {
+                    ((AddCommand)_viewModel.AddCommand).StoredWorkArea = _uncheckedRecord.WorkArea;
+                    ((AddCommand)_viewModel.AddCommand).StoredDate = _uncheckedRecord.DateShift.Date;
+                    ((AddCommand)_viewModel.AddCommand).StoredShift = _uncheckedRecord.DateShift.Shift;
+                    _journalRepository.Add(_uncheckedRecord.Model);
+                }
+                else
+                {
+                    _journalRepository.Save(_viewModel.SelectedRecord.Model, _uncheckedRecord.Model);
+                }
                 _uncheckedRecord.Model = null;
                 _viewModel.RefreshJournalRecords();
                 _viewModel.RefreshTotals();
