@@ -8,7 +8,7 @@
         xmlns:models ="clr-namespace:TestAndTunes.Entities;assembly=TestAndTunes.Entities"
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="TestAndTunes.Views.MainWindow"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1280"  x:Name="MainWindow1" FontSize="{Binding Value, ElementName=FontSizeUpDown}" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
